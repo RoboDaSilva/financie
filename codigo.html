@@ -266,6 +266,22 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #138A59;
         }
+
+        /* Site-wide Text Justification (All writings, paragraphs & FAQ answers justified) */
+        p:not(.no-justify):not(.text-center),
+        .text-justify,
+        div[id^="faq-ans-"],
+        #modalDescription {
+            text-align: justify !important;
+            text-justify: inter-word;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+        }
+
+        /* Responsive Desktop Navigation Isolation: Never leaks into mobile */
+        .admin-nav-hidden {
+            display: none !important;
+        }
     </style>
 
     <!-- Schema.org JSON-LD Structured Data for ConstructionBusiness, RealEstateAgent, LocalBusiness & FAQPage -->
@@ -626,30 +642,16 @@
                             Financiamento Caixa Terreno e Construção em Maringá: <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-brand-greenLight">Projetos Geminadas & Obra Level</span>
                         </h1>
                         
-                        <p id="heroSubheadline" data-editable="true" class="text-slate-200 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        <p id="heroSubheadline" data-editable="true" class="text-slate-200 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0 text-justify">
                             Construa sua residência de médio ou alto padrão financiada pela Caixa em <strong>Maringá, Londrina e condomínios fechados da região</strong>. Da aprovação do crédito habitacional e projetos autorais <strong>Geminadas.com</strong> até a entrega das chaves pela <strong>Level Construtora</strong>, economize até <strong>35%</strong> em relação ao imóvel pronto.
                         </p>
 
                         <!-- Hero Action Buttons -->
                         <div class="flex flex-col sm:flex-row gap-4 pt-2 justify-center lg:justify-start">
-                            <a href="#simulador" class="inline-flex items-center justify-center gap-3 bg-brand-green hover:bg-brand-greenLight text-white font-bold px-7 py-4 rounded-2xl shadow-lg shadow-brand-green/30 transition transform hover:-translate-y-0.5 text-base touch-target">
+                            <a href="#simulador" class="inline-flex items-center justify-center gap-3 bg-brand-green hover:bg-brand-greenLight text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-brand-green/30 transition transform hover:-translate-y-0.5 text-base touch-target w-full sm:w-auto">
                                 <i class="fa-solid fa-calculator" aria-hidden="true"></i>
                                 <span>Simular Meu Crédito Agora</span>
                             </a>
-                            <a href="#" id="heroWhatsappBtn" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 bg-white text-brand-blue hover:bg-emerald-50 font-bold px-7 py-4 rounded-2xl shadow-lg transition transform hover:-translate-y-0.5 text-base touch-target">
-                                <i class="fa-brands fa-whatsapp text-brand-green text-xl" aria-hidden="true"></i>
-                                <span id="heroWhatsappLabel">WhatsApp Especialista</span>
-                            </a>
-                        </div>
-
-                        <!-- Quick Social Proof & Badges -->
-                        <div class="pt-3 flex flex-wrap items-center justify-center lg:justify-start gap-3">
-                            <span class="text-xs font-semibold uppercase tracking-wider text-emerald-300 flex items-center gap-1.5">
-                                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Solução 100% Integrada:
-                            </span>
-                            <div id="heroSocialBadges" class="flex flex-wrap items-center gap-2">
-                                <!-- Populated dynamically via JS -->
-                            </div>
                         </div>
 
                         <!-- Trust Metrics Grid -->
@@ -1259,7 +1261,7 @@
                             <span>1. Como funciona o financiamento de Terreno + Construção pela Caixa em Maringá e região?</span>
                             <i id="faq-icon-1" class="fa-solid fa-chevron-up text-brand-green text-sm shrink-0 transition-transform duration-300" aria-hidden="true"></i>
                         </button>
-                        <div id="faq-ans-1" class="px-5 sm:px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3" role="region" aria-labelledby="faq-btn-1">
+                        <div id="faq-ans-1" class="px-5 sm:px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3 text-justify" role="region" aria-labelledby="faq-btn-1">
                             Na modalidade <strong>Aquisição de Terreno + Construção</strong>, a Caixa financia tanto a compra do lote quanto toda a execução da obra em um único contrato imobiliário. A <strong>financiesuaobra.com.br</strong> cuida de todo o processo de aprovação bancária e planilhas PFUI/PLS, a <strong>Geminadas.com</strong> assina a arquitetura personalizada e a <strong>Level Construtora</strong> executa a obra chave na mão. É possível financiar até 80% do valor global (terreno + obra) pelo Sistema Financeiro de Habitação (SFH), com prazo de até 420 meses e amortização pelo sistema SAC.
                         </div>
                     </div>
@@ -1270,7 +1272,7 @@
                             <span>2. Posso utilizar o saldo do meu FGTS para construir a casa própria pela Caixa?</span>
                             <i id="faq-icon-2" class="fa-solid fa-chevron-down text-slate-400 text-sm shrink-0 transition-transform duration-300" aria-hidden="true"></i>
                         </button>
-                        <div id="faq-ans-2" class="hidden px-5 sm:px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3" role="region" aria-labelledby="faq-btn-2">
+                        <div id="faq-ans-2" class="hidden px-5 sm:px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3 text-justify" role="region" aria-labelledby="faq-btn-2">
                             <strong>Sim!</strong> O saldo acumulado da sua conta de FGTS pode ser utilizado na modalidade de Terreno + Construção para compor a entrada necessária (os 20% exigidos pela Caixa), reduzindo o valor desembolsado em recursos próprios. Além disso, ao longo do financiamento, você pode usar o FGTS para amortizar o saldo devedor, liquidar parcelas ou abater em até 80% o valor de até 12 parcelas consecutivas, conforme as normas do SFH.
                         </div>
                     </div>
@@ -1281,7 +1283,7 @@
                             <span>3. Qual é o teto máximo de valor para financiamento habitacional pelo SFH na Caixa?</span>
                             <i id="faq-icon-3" class="fa-solid fa-chevron-down text-slate-400 text-sm shrink-0 transition-transform duration-300" aria-hidden="true"></i>
                         </button>
-                        <div id="faq-ans-3" class="hidden px-5 sm:px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3" role="region" aria-labelledby="faq-btn-3">
+                        <div id="faq-ans-3" class="hidden px-5 sm:px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3 text-justify" role="region" aria-labelledby="faq-btn-3">
                             O teto oficial de avaliação pelo Sistema Financeiro de Habitação (SFH) é de <strong>R$ 2,25 milhões (R$ 2.250.000,00)</strong>. Imóveis residenciais dentro dessa faixa orçamentária contam com as taxas de juros mais acessíveis do mercado financeiro habitacional e autorização legal para utilização do FGTS. Nosso simulador já está calibrado respeitando rigorosamente o limite de R$ 2,25 milhões.
                         </div>
                     </div>
@@ -1292,7 +1294,7 @@
                             <span>4. Já possuo terreno quitado em condomínio fechado em Maringá. É possível financiar 100% da obra?</span>
                             <i id="faq-icon-4" class="fa-solid fa-chevron-down text-slate-400 text-sm shrink-0 transition-transform duration-300" aria-hidden="true"></i>
                         </button>
-                        <div id="faq-ans-4" class="hidden px-5 sm:px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3" role="region" aria-labelledby="faq-btn-4">
+                        <div id="faq-ans-4" class="hidden px-5 sm:px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3 text-justify" role="region" aria-labelledby="faq-btn-4">
                             <strong>Sim!</strong> Na modalidade de <strong>Construção em Terreno Próprio</strong>, o seu lote quitado (seja em condomínio fechado como Alphaville, Ecogarden, Vivá Home Resort, Jardins de Monet ou loteamento aberto) é avaliado pelo engenheiro credenciado da Caixa e o seu valor entra como a entrada da operação. Caso a avaliação do lote atinja a cota exigida, você financia <strong>até 100% do orçamento da obra</strong>, sem precisar retirar recursos de aplicações financeiras.
                         </div>
                     </div>
@@ -1303,7 +1305,7 @@
                             <span>5. Quanto posso economizar construindo em vez de comprar uma casa pronta em Maringá?</span>
                             <i id="faq-icon-5" class="fa-solid fa-chevron-down text-slate-400 text-sm shrink-0 transition-transform duration-300" aria-hidden="true"></i>
                         </button>
-                        <div id="faq-ans-5" class="hidden px-5 sm:px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3" role="region" aria-labelledby="faq-btn-5">
+                        <div id="faq-ans-5" class="hidden px-5 sm:px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3 text-justify" role="region" aria-labelledby="faq-btn-5">
                             A economia média real fica entre <strong>25% e 35%</strong>. Ao construir a preço de custo, você não paga o lucro do incorporador e a corretagem de venda. Além disso, há uma economia expressiva no imposto de transmissão (ITBI): enquanto no imóvel pronto o imposto incide sobre 100% do valor da casa pronta (ex: 2% a 3% sobre R$ 1,5 milhão), na construção financiada o ITBI incide <strong>apenas sobre o valor venal do terreno</strong> (ex: sobre R$ 350 mil), gerando economia instantânea de dezenas de milhares de reais.
                         </div>
                     </div>
@@ -1314,7 +1316,7 @@
                             <span>6. Quais são os prazos de financiamento e como funcionam as parcelas do sistema SAC?</span>
                             <i id="faq-icon-6" class="fa-solid fa-chevron-down text-slate-400 text-sm shrink-0 transition-transform duration-300" aria-hidden="true"></i>
                         </button>
-                        <div id="faq-ans-6" class="hidden px-5 sm:px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3" role="region" aria-labelledby="faq-btn-6">
+                        <div id="faq-ans-6" class="hidden px-5 sm:px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3 text-justify" role="region" aria-labelledby="faq-btn-6">
                             O prazo de financiamento na Caixa pode chegar a <strong>420 meses (35 anos)</strong>. O sistema de amortização padrão é o <strong>SAC (Sistema de Amortização Constante)</strong>, em que o valor da amortização é constante e a parcela cai gradativamente a cada mês. Durante o período de execução da obra pela <strong>Level Construtora</strong> (geralmente entre 8 e 12 meses), você não paga a parcela cheia de amortização, apenas a taxa de juros da evolução de obra proporcional às etapas físicas medidas e liberadas.
                         </div>
                     </div>
@@ -2248,7 +2250,7 @@
 
             publicView.classList.add('hidden');
             adminView.classList.remove('hidden');
-            publicNav.classList.add('hidden');
+            if (publicNav) publicNav.classList.add('admin-nav-hidden');
 
             document.title = "[Admin] Gestão financiesuaobra.com.br";
             populateAdminConfigForm();
@@ -2264,7 +2266,7 @@
 
             adminView.classList.add('hidden');
             publicView.classList.remove('hidden');
-            publicNav.classList.remove('hidden');
+            if (publicNav) publicNav.classList.remove('admin-nav-hidden');
             if (floatingBar) floatingBar.classList.add('hidden');
 
             document.title = siteConfig.pageTitle || defaultSiteConfig.pageTitle;
@@ -2321,9 +2323,11 @@
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             const icon = document.getElementById('mobileMenuIcon');
+            const btn = document.querySelector('button[aria-controls="mobileMenu"]');
             menu.classList.toggle('hidden');
             const isHidden = menu.classList.contains('hidden');
             icon.className = isHidden ? 'fa-solid fa-bars text-xl' : 'fa-solid fa-xmark text-xl';
+            if (btn) btn.setAttribute('aria-expanded', (!isHidden).toString());
         }
 
         function loadSavedDataFromStorage() {

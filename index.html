@@ -7,7 +7,7 @@
     <!-- SEO & Core Meta Tags (High-CTR, Search Intent & Local SEO) -->
     <title id="dynamicPageTitle">Financiamento Caixa Terreno e Construção | Financie Sua Obra</title>
     <meta name="description" content="Financie terreno e construção Caixa em Maringá e região. Economize até 35% com projetos Geminadas.com e obras Level Construtora. Simule parcelas online!">
-    <meta name="keywords" content="financiamento caixa construção maringá, financiamento terreno e construção caixa, construtora financiada pela caixa maringá, projeto arquitetônico geminadas, level construtora maringá, crédito habitacional caixa pr, teto sfh 2026, construção em condomínio fechado maringá, simulador habitacional caixa paraná, aquisição terreno e construção londrina">
+    <meta name="keywords" content="financiamento caixa construção maringá, financiamento terreno e construção caixa, construtora financiada pela caixa maringá, projeto arquitetônico geminadas, level construtora maringá, crédito habitacional caixa pr, teto sfh 2026, construção em condomínio fechado maringá, simulador habitacional caixa paraná, aquisição terreno e construção maringá e região">
     <meta name="author" content="financiesuaobra.com.br • Grupo Geminadas.com & Level Construtora">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="https://financiesuaobra.com.br/">
@@ -282,6 +282,33 @@
         .admin-nav-hidden {
             display: none !important;
         }
+
+        /* 9:16 Vertical Floorplan Ratio & Media Gallery */
+        .aspect-9-16 {
+            aspect-ratio: 9 / 16;
+        }
+
+        .floorplan-viewer-9-16 {
+            width: auto;
+            max-width: 100%;
+            height: 100%;
+            max-height: 560px;
+            aspect-ratio: 9 / 16;
+            object-fit: contain;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 640px) {
+            .floorplan-viewer-9-16 {
+                max-height: 480px;
+            }
+        }
+
+        .thumb-active {
+            outline: 2.5px solid #138A59;
+            outline-offset: 2px;
+        }
     </style>
 
     <!-- Schema.org JSON-LD Structured Data for ConstructionBusiness, RealEstateAgent, LocalBusiness & FAQPage -->
@@ -303,7 +330,7 @@
             "height": "600"
           },
           "image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
-          "description": "Empresa especializada em engenharia financeira de financiamento Caixa Econômica Federal (Aquisição de Terreno + Construção e Construção em Terreno Próprio), projetos de arquitetura autoral Geminadas.com e execução com rigor técnico Level Construtora em Maringá, Londrina e todo o Noroeste do Paraná.",
+          "description": "Empresa especializada em engenharia financeira de financiamento Caixa Econômica Federal (Aquisição de Terreno + Construção e Construção em Terreno Próprio), projetos de arquitetura autoral Geminadas.com e execução com rigor técnico Level Construtora em Maringá e todo o Noroeste do Paraná.",
           "telephone": "+55-44-99999-9999",
           "email": "contato@financiesuaobra.com.br",
           "priceRange": "$$$$",
@@ -328,7 +355,6 @@
             { "@type": "City", "name": "Marialva" },
             { "@type": "City", "name": "Mandaguaçu" },
             { "@type": "City", "name": "Paiçandu" },
-            { "@type": "City", "name": "Londrina", "sameAs": "https://pt.wikipedia.org/wiki/Londrina" },
             { "@type": "AdministrativeArea", "name": "Região Metropolitana de Maringá" },
             { "@type": "AdministrativeArea", "name": "Noroeste do Paraná" }
           ],
@@ -643,7 +669,7 @@
                         </h1>
                         
                         <p id="heroSubheadline" data-editable="true" class="text-slate-200 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0 text-justify">
-                            Construa sua residência de médio ou alto padrão financiada pela Caixa em <strong>Maringá, Londrina e condomínios fechados da região</strong>. Da aprovação do crédito habitacional e projetos autorais <strong>Geminadas.com</strong> até a entrega das chaves pela <strong>Level Construtora</strong>, economize até <strong>35%</strong> em relação ao imóvel pronto.
+                            Construa sua residência de médio ou alto padrão financiada pela Caixa em <strong>Maringá e condomínios fechados da região</strong>. Da aprovação do crédito habitacional e projetos autorais <strong>Geminadas.com</strong> até a entrega das chaves pela <strong>Level Construtora</strong>, economize até <strong>35%</strong> em relação ao imóvel pronto.
                         </p>
 
                         <!-- Hero Action Buttons -->
@@ -1638,33 +1664,57 @@
                             </div>
                         </div>
 
-                        <!-- Foto da Obra -->
-                        <div class="p-3.5 rounded-2xl bg-brand-ice border border-slate-200 space-y-2">
-                            <label for="projPhotoUrl" class="block text-xs font-bold uppercase text-brand-blue">
-                                <i class="fa-solid fa-camera text-brand-green mr-1" aria-hidden="true"></i> Foto Principal da Obra
-                            </label>
-                            <input type="text" id="projPhotoUrl" placeholder="URL da foto ou envie o arquivo" class="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs focus:outline-none focus:border-brand-green">
-                            <div class="flex items-center gap-2">
-                                <label class="cursor-pointer bg-brand-blue hover:bg-brand-blueLight text-white text-xs font-semibold px-3 py-2 rounded-lg transition inline-flex items-center gap-1.5 touch-target">
-                                    <i class="fa-solid fa-upload" aria-hidden="true"></i> Enviar Foto
-                                    <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, 'projPhotoUrl', 'previewPhoto')">
+                        <!-- 1. Galeria de Fotos da Casa (Múltiplas Fotos) -->
+                        <div class="p-4 rounded-2xl bg-brand-ice border border-slate-200 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <label class="block text-xs font-bold uppercase text-brand-blue flex items-center gap-1.5">
+                                    <i class="fa-solid fa-camera text-brand-green" aria-hidden="true"></i> Fotos da Casa (Fachada, Gourmet, Piscina, etc.)
                                 </label>
-                                <img id="previewPhoto" src="" alt="Preview da Foto" class="hidden w-10 h-10 object-cover rounded-lg border border-slate-300" width="40" height="40">
+                                <span id="adminPhotosCountBadge" class="text-[10px] font-bold bg-brand-blue text-white px-2 py-0.5 rounded-full">0 fotos</span>
+                            </div>
+                            <p class="text-[11px] text-slate-500">Adicione várias fotos da casa. A primeira foto será usada como a capa principal do card.</p>
+                            
+                            <div class="flex flex-wrap items-center gap-2">
+                                <label class="cursor-pointer bg-brand-blue hover:bg-brand-blueLight text-white text-xs font-semibold px-3.5 py-2.5 rounded-xl transition inline-flex items-center gap-1.5 touch-target shadow-sm">
+                                    <i class="fa-solid fa-cloud-arrow-up text-sm" aria-hidden="true"></i> Enviar Fotos (Múltiplas)
+                                    <input type="file" multiple accept="image/*" class="hidden" onchange="handleMultiplePhotosUpload(event)">
+                                </label>
+                                <div class="flex-1 min-w-[200px] flex gap-1">
+                                    <input type="text" id="adminPhotoUrlInput" placeholder="Ou cole a URL da foto..." class="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs focus:outline-none focus:border-brand-green">
+                                    <button type="button" onclick="addPhotoFromUrlInput()" class="bg-slate-200 hover:bg-brand-green hover:text-white text-slate-700 px-3 py-2 rounded-xl text-xs font-bold transition">Adicionar</button>
+                                </div>
+                            </div>
+
+                            <!-- Photo Thumbnails List -->
+                            <div id="adminPhotosList" class="grid grid-cols-3 sm:grid-cols-4 gap-2.5 pt-1">
+                                <div class="col-span-full py-3 text-center text-xs text-slate-400 border border-dashed border-slate-200 rounded-xl">Nenhuma foto adicionada ainda.</div>
                             </div>
                         </div>
 
-                        <!-- Planta Baixa -->
-                        <div class="p-3.5 rounded-2xl bg-brand-ice border border-slate-200 space-y-2">
-                            <label for="projFloorplanUrl" class="block text-xs font-bold uppercase text-brand-blue">
-                                <i class="fa-solid fa-compass-drafting text-brand-green mr-1" aria-hidden="true"></i> Imagem da Planta Baixa
-                            </label>
-                            <input type="text" id="projFloorplanUrl" placeholder="URL da planta baixa ou envie o arquivo" class="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs focus:outline-none focus:border-brand-green">
-                            <div class="flex items-center gap-2">
-                                <label class="cursor-pointer bg-brand-green hover:bg-brand-greenDark text-white text-xs font-semibold px-3 py-2 rounded-lg transition inline-flex items-center gap-1.5 touch-target">
-                                    <i class="fa-solid fa-upload" aria-hidden="true"></i> Enviar Planta Baixa
-                                    <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, 'projFloorplanUrl', 'previewFloorplan')">
+                        <!-- 2. Plantas Baixas (Formato 9:16 - Múltiplas Plantas para Sobrado) -->
+                        <div class="p-4 rounded-2xl bg-brand-ice border border-slate-200 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <label class="block text-xs font-bold uppercase text-brand-blue flex items-center gap-1.5">
+                                    <i class="fa-solid fa-compass-drafting text-brand-green" aria-hidden="true"></i> Plantas Baixas em Formato 9:16 (Sobrado / Pavimentos)
                                 </label>
-                                <img id="previewFloorplan" src="" alt="Preview da Planta" class="hidden w-10 h-10 object-cover rounded-lg border border-slate-300" width="40" height="40">
+                                <span class="text-[10px] font-bold bg-brand-green text-white px-2 py-0.5 rounded-full">Proporção 9:16</span>
+                            </div>
+                            <p class="text-[11px] text-slate-500">Para sobrados, adicione mais de uma planta (ex: Pavimento Térreo e Pavimento Superior). As imagens devem estar no formato vertical 9:16.</p>
+                            
+                            <div class="flex flex-wrap items-center gap-2">
+                                <label class="cursor-pointer bg-brand-green hover:bg-brand-greenDark text-white text-xs font-semibold px-3.5 py-2.5 rounded-xl transition inline-flex items-center gap-1.5 touch-target shadow-sm">
+                                    <i class="fa-solid fa-cloud-arrow-up text-sm" aria-hidden="true"></i> Enviar Plantas 9:16 (Múltiplas)
+                                    <input type="file" multiple accept="image/*" class="hidden" onchange="handleMultipleFloorplansUpload(event)">
+                                </label>
+                                <div class="flex-1 min-w-[200px] flex gap-1">
+                                    <input type="text" id="adminFloorplanUrlInput" placeholder="Ou cole a URL da planta..." class="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs focus:outline-none focus:border-brand-green">
+                                    <button type="button" onclick="addFloorplanFromUrlInput()" class="bg-slate-200 hover:bg-brand-green hover:text-white text-slate-700 px-3 py-2 rounded-xl text-xs font-bold transition">Adicionar</button>
+                                </div>
+                            </div>
+
+                            <!-- Floorplans List (9:16 Cards) -->
+                            <div id="adminFloorplansList" class="space-y-2 pt-1">
+                                <div class="py-3 text-center text-xs text-slate-400 border border-dashed border-slate-200 rounded-xl">Nenhuma planta 9:16 cadastrada ainda.</div>
                             </div>
                         </div>
 
@@ -1819,14 +1869,18 @@
                 </button>
             </div>
 
-            <!-- Modal Switcher: Foto da Obra vs. Planta Baixa -->
-            <div class="bg-brand-ice px-5 sm:px-6 py-3 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
-                <div class="flex gap-2">
-                    <button type="button" onclick="switchModalMedia('photo')" id="modalBtnPhoto" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-brand-blue text-white transition flex items-center gap-2 touch-target">
-                        <i class="fa-solid fa-camera" aria-hidden="true"></i> Foto da Construção
+            <!-- Modal Switcher: Fotos da Casa vs. Plantas Baixas (9:16) -->
+            <div class="bg-brand-ice px-4 sm:px-6 py-3 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
+                <div class="flex flex-wrap items-center gap-2">
+                    <button type="button" onclick="switchModalMedia('photo')" id="modalBtnPhoto" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-brand-blue text-white transition flex items-center gap-2 touch-target shadow-sm">
+                        <i class="fa-solid fa-camera" aria-hidden="true"></i>
+                        <span>Fotos da Casa</span>
+                        <span id="modalPhotoCountBadge" class="bg-white/20 text-white text-[11px] px-2 py-0.5 rounded-full">1</span>
                     </button>
-                    <button type="button" onclick="switchModalMedia('floorplan')" id="modalBtnFloorplan" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-brand-blue border border-slate-200 hover:border-brand-green transition flex items-center gap-2 touch-target">
-                        <i class="fa-solid fa-compass-drafting text-brand-green" aria-hidden="true"></i> Ver Planta Baixa
+                    <button type="button" onclick="switchModalMedia('floorplan')" id="modalBtnFloorplan" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-brand-blue border border-slate-200 hover:border-brand-green transition flex items-center gap-2 touch-target shadow-sm">
+                        <i class="fa-solid fa-compass-drafting text-brand-green" aria-hidden="true"></i>
+                        <span>Plantas Baixas (9:16)</span>
+                        <span id="modalFloorplanCountBadge" class="bg-brand-green/20 text-brand-greenDark text-[11px] px-2 py-0.5 rounded-full font-bold">1</span>
                     </button>
                 </div>
                 <span id="modalLocation" class="text-xs font-semibold text-slate-500 flex items-center gap-1.5">
@@ -1834,13 +1888,52 @@
                 </span>
             </div>
 
+            <!-- Floorplan Level Switcher Pills (Visible when viewing floorplans of a Sobrado / multiple levels) -->
+            <div id="modalFloorplanTabs" class="hidden bg-slate-900 px-4 py-2.5 flex items-center gap-2 overflow-x-auto border-b border-white/10 select-none">
+                <!-- Dynamically populated buttons for Pavimento Térreo, Pavimento Superior (Sobrado) -->
+            </div>
+
             <!-- Modal Body -->
             <div class="grid md:grid-cols-12">
-                <!-- Media Viewer -->
-                <div class="md:col-span-7 bg-slate-900 relative flex items-center justify-center min-h-[260px] sm:min-h-[380px]">
-                    <img id="modalMainImage" src="" alt="Imagem da Obra Financiada" class="w-full h-full max-h-[420px] object-cover">
-                    <div id="modalMediaCaption" class="absolute bottom-3 left-3 right-3 sm:right-auto bg-brand-blueDark/90 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg">
-                        Execução: Level Construtora | Projeto: Geminadas.com
+                <!-- Media Viewer (Optimized for both Landscape Photos and 9:16 Vertical Floorplans) -->
+                <div class="md:col-span-7 bg-slate-950 relative flex flex-col justify-between min-h-[350px] sm:min-h-[460px] md:min-h-[520px] overflow-hidden group select-none">
+                    
+                    <!-- Main Canvas Area -->
+                    <div class="flex-1 relative flex items-center justify-center p-2 sm:p-4 overflow-hidden bg-[#071526]" id="modalCanvasContainer">
+                        <img id="modalMainImage" src="" alt="Imagem da Obra Financiada" class="w-full h-full max-h-[480px] object-cover transition-all duration-300 cursor-pointer" onclick="openFullscreenModalImage()">
+                        
+                        <!-- Navigation Arrows -->
+                        <button type="button" onclick="prevModalMedia()" id="modalPrevBtn" class="absolute left-2.5 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-brand-blueDark/80 hover:bg-brand-blue text-white flex items-center justify-center shadow-xl transition backdrop-blur-md touch-target z-10" aria-label="Imagem Anterior">
+                            <i class="fa-solid fa-chevron-left text-sm sm:text-base"></i>
+                        </button>
+                        <button type="button" onclick="nextModalMedia()" id="modalNextBtn" class="absolute right-2.5 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-brand-blueDark/80 hover:bg-brand-blue text-white flex items-center justify-center shadow-xl transition backdrop-blur-md touch-target z-10" aria-label="Próxima Imagem">
+                            <i class="fa-solid fa-chevron-right text-sm sm:text-base"></i>
+                        </button>
+
+                        <!-- Top Floating Badges: Fullscreen / Zoom & Counter -->
+                        <div class="absolute top-3 left-3 flex items-center gap-2 z-10">
+                            <button type="button" onclick="openFullscreenModalImage()" class="bg-black/75 hover:bg-brand-blue backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-full transition flex items-center gap-1.5 touch-target shadow" title="Clique para ampliar em tela cheia">
+                                <i class="fa-solid fa-expand text-[10px]"></i>
+                                <span>Ampliar</span>
+                            </button>
+                            <span id="modalFormatBadge" class="hidden bg-brand-green text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow">
+                                Proporção 9:16
+                            </span>
+                        </div>
+
+                        <div id="modalMediaCounter" class="absolute top-3 right-3 bg-black/75 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full shadow z-10">
+                            1 / 1
+                        </div>
+                    </div>
+
+                    <!-- Bottom Caption Bar -->
+                    <div id="modalMediaCaption" class="bg-brand-blueDark/95 text-white text-xs px-4 py-2.5 flex items-center justify-between gap-2 border-t border-white/10 z-10">
+                        <span>Execução: Level Construtora • Projeto: Geminadas.com</span>
+                    </div>
+
+                    <!-- Thumbnail Strip -->
+                    <div id="modalThumbnailsStrip" class="bg-slate-900/90 px-3 py-2 flex items-center gap-2 overflow-x-auto border-t border-white/5 select-none">
+                        <!-- Populated dynamically with mini previews -->
                     </div>
                 </div>
 
@@ -1889,6 +1982,39 @@
                     </button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- FULLSCREEN 9:16 ARCHITECTURAL LIGHTBOX MODAL                               -->
+    <!-- ========================================================================= -->
+    <div id="fullscreenImageModal" class="fixed inset-0 z-[120] hidden bg-black/95 backdrop-blur-md flex flex-col justify-between p-3 sm:p-5" role="dialog" aria-modal="true" aria-label="Visualizador em Alta Resolução">
+        <!-- Top Controls -->
+        <div class="w-full max-w-6xl mx-auto flex items-center justify-between text-white py-2 px-3 border-b border-white/10">
+            <div class="flex items-center gap-2.5">
+                <span id="fsBadge" class="bg-brand-green text-white text-xs font-bold px-3 py-1 rounded-full">Formato 9:16</span>
+                <span id="fsTitle" class="font-display font-bold text-sm sm:text-base">Planta Baixa Humanizada</span>
+            </div>
+            <button type="button" onclick="closeFullscreenModal()" class="w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-white transition touch-target" aria-label="Fechar Tela Cheia">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Center Image Viewer (Perfect 9:16 Vertical Accompaniment) -->
+        <div class="flex-1 w-full flex items-center justify-center p-2 relative overflow-hidden">
+            <img id="fsMainImage" src="" alt="Imagem Ampliada" class="max-h-[82vh] max-w-[95vw] object-contain shadow-2xl rounded-xl transition duration-200">
+            
+            <button type="button" onclick="prevModalMedia(); syncFullscreenImage();" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center backdrop-blur-md transition shadow-lg">
+                <i class="fa-solid fa-chevron-left text-lg"></i>
+            </button>
+            <button type="button" onclick="nextModalMedia(); syncFullscreenImage();" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center backdrop-blur-md transition shadow-lg">
+                <i class="fa-solid fa-chevron-right text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Bottom Controls -->
+        <div class="w-full max-w-6xl mx-auto text-center py-2 text-xs text-slate-400 border-t border-white/10">
+            <span id="fsFooterInfo">Geminadas.com Arquitetura • Level Construtora • financiesuaobra.com.br</span>
         </div>
     </div>
 
@@ -2011,42 +2137,75 @@
 
         let siteConfig = { ...defaultSiteConfig };
 
-        function createArchitecturalFloorplanSvg(title, area, specs) {
+        function createArchitecturalFloorplanSvg(title, area, specs, levelName = "Pavimento Térreo") {
             const safeTitle = (title || 'Residência').toUpperCase();
             const safeArea = area || 200;
-            const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 550" width="100%" height="100%">
-                <rect width="800" height="550" fill="#0F3156"/>
-                <g stroke="#1A4B82" stroke-width="1">
-                    <line x1="0" y1="50" x2="800" y2="50"/><line x1="0" y1="100" x2="800" y2="100"/><line x1="0" y1="150" x2="800" y2="150"/>
-                    <line x1="0" y1="200" x2="800" y2="200"/><line x1="0" y1="250" x2="800" y2="250"/><line x1="0" y1="300" x2="800" y2="300"/>
-                    <line x1="0" y1="350" x2="800" y2="350"/><line x1="0" y1="400" x2="800" y2="400"/><line x1="0" y1="450" x2="800" y2="450"/>
-                    <line x1="100" y1="0" x2="100" y2="550"/><line x1="200" y1="0" x2="200" y2="550"/><line x1="300" y1="0" x2="300" y2="550"/>
-                    <line x1="400" y1="0" x2="400" y2="550"/><line x1="500" y1="0" x2="500" y2="550"/><line x1="600" y1="0" x2="600" y2="550"/><line x1="700" y1="0" x2="700" y2="550"/>
+            const isSobradoSuperior = (levelName || '').toLowerCase().includes('superior');
+            
+            // Authentic 9:16 Architectural Presentation Sheet (900 x 1600)
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1600" width="100%" height="100%">
+                <rect width="900" height="1600" fill="#0B1E33"/>
+                <g stroke="#15365C" stroke-width="1" opacity="0.65">
+                    <line x1="0" y1="100" x2="900" y2="100"/><line x1="0" y1="200" x2="900" y2="200"/><line x1="0" y1="300" x2="900" y2="300"/>
+                    <line x1="0" y1="400" x2="900" y2="400"/><line x1="0" y1="500" x2="900" y2="500"/><line x1="0" y1="600" x2="900" y2="600"/>
+                    <line x1="0" y1="700" x2="900" y2="700"/><line x1="0" y1="800" x2="900" y2="800"/><line x1="0" y1="900" x2="900" y2="900"/>
+                    <line x1="0" y1="1000" x2="900" y2="1000"/><line x1="0" y1="1100" x2="900" y2="1100"/><line x1="0" y1="1200" x2="900" y2="1200"/>
+                    <line x1="0" y1="1300" x2="900" y2="1300"/><line x1="0" y1="1400" x2="900" y2="1400"/><line x1="0" y1="1500" x2="900" y2="1500"/>
+                    <line x1="100" y1="0" x2="100" y2="1600"/><line x1="200" y1="0" x2="200" y2="1600"/><line x1="300" y1="0" x2="300" y2="1600"/>
+                    <line x1="400" y1="0" x2="400" y2="1600"/><line x1="500" y1="0" x2="500" y2="1600"/><line x1="600" y1="0" x2="600" y2="1600"/>
+                    <line x1="700" y1="0" x2="700" y2="1600"/><line x1="800" y1="0" x2="800" y2="1600"/>
                 </g>
-                <rect x="90" y="60" width="620" height="390" fill="#091E36" stroke="#FFFFFF" stroke-width="6"/>
-                <rect x="90" y="60" width="220" height="170" fill="none" stroke="#138A59" stroke-width="4"/>
-                <text x="200" y="140" fill="#FFFFFF" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">SUÍTE MASTER + CLOSET</text>
-                <text x="200" y="162" fill="#34D399" font-family="sans-serif" font-size="12" text-anchor="middle">28,50 m²</text>
+                <rect x="50" y="45" width="800" height="125" rx="16" fill="#071526" stroke="#138A59" stroke-width="3"/>
+                <text x="80" y="85" fill="#34D399" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="bold" letter-spacing="2">PLANTA BAIXA AUTORAL • PROPORÇÃO 9:16</text>
+                <text x="80" y="125" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-size="24" font-weight="800">${safeTitle}</text>
+                <rect x="650" y="65" width="180" height="42" rx="10" fill="#138A59"/>
+                <text x="740" y="92" fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">${(levelName || "TÉRREO").toUpperCase()}</text>
+                <text x="740" y="140" fill="#94A3B8" font-family="sans-serif" font-size="12" text-anchor="middle">ÁREA: ${safeArea} m²</text>
+                <rect x="50" y="190" width="800" height="1260" fill="#071526" stroke="#FFFFFF" stroke-width="5" rx="8"/>
+                ${!isSobradoSuperior ? `
+                    <rect x="80" y="220" width="350" height="270" fill="#0B1E33" stroke="#FFFFFF" stroke-width="3"/>
+                    <text x="255" y="345" fill="#FFFFFF" font-family="sans-serif" font-size="18" font-weight="bold" text-anchor="middle">GARAGEM COBERTA</text>
+                    <text x="255" y="375" fill="#94A3B8" font-family="sans-serif" font-size="14" text-anchor="middle">2 Vagas Paralelas (34 m²)</text>
 
-                <rect x="310" y="60" width="180" height="170" fill="none" stroke="#FFFFFF" stroke-width="3"/>
-                <text x="400" y="140" fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">SUÍTE 02</text>
-                <text x="400" y="160" fill="#94A3B8" font-family="sans-serif" font-size="12" text-anchor="middle">16,20 m²</text>
+                    <rect x="450" y="220" width="370" height="270" fill="#0B1E33" stroke="#138A59" stroke-width="3"/>
+                    <text x="635" y="335" fill="#FFFFFF" font-family="sans-serif" font-size="18" font-weight="bold" text-anchor="middle">HALL &amp; LAVABO SOCIAL</text>
+                    <text x="635" y="365" fill="#34D399" font-family="sans-serif" font-size="14" text-anchor="middle">Acesso Escada Sobrado</text>
 
-                <rect x="490" y="60" width="220" height="170" fill="#0F3156" stroke="#38BDF8" stroke-width="3"/>
-                <text x="600" y="140" fill="#38BDF8" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">PISCINA &amp; DECK</text>
-                <text x="600" y="160" fill="#E2E8F0" font-family="sans-serif" font-size="12" text-anchor="middle">Lazer Integrado</text>
+                    <rect x="80" y="510" width="740" height="350" fill="#0B1E33" stroke="#FFFFFF" stroke-width="3"/>
+                    <text x="450" y="665" fill="#FFFFFF" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">LIVING INTEGRADO (ESTAR &amp; JANTAR)</text>
+                    <text x="450" y="700" fill="#34D399" font-family="sans-serif" font-size="15" text-anchor="middle">Pé-Direito Duplo • Iluminação Natural • 48 m²</text>
 
-                <rect x="90" y="230" width="220" height="220" fill="none" stroke="#FFFFFF" stroke-width="3"/>
-                <text x="200" y="335" fill="#FFFFFF" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">GARAGEM LADO A LADO</text>
-                <text x="200" y="355" fill="#94A3B8" font-family="sans-serif" font-size="12" text-anchor="middle">2 Carros Cobertos</text>
+                    <rect x="80" y="880" width="740" height="340" fill="#091E36" stroke="#138A59" stroke-width="4"/>
+                    <text x="450" y="1030" fill="#FFFFFF" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">COZINHA &amp; ESPAÇO GOURMET</text>
+                    <text x="450" y="1065" fill="#34D399" font-family="sans-serif" font-size="15" text-anchor="middle">Ilha Central, Churrasqueira &amp; Bancada Integrada • 42 m²</text>
 
-                <rect x="310" y="230" width="400" height="220" fill="none" stroke="#138A59" stroke-width="4"/>
-                <text x="510" y="330" fill="#FFFFFF" font-family="sans-serif" font-size="17" font-weight="bold" text-anchor="middle">LIVING + ESPAÇO GOURMET</text>
-                <text x="510" y="355" fill="#34D399" font-family="sans-serif" font-size="13" text-anchor="middle">Pé-Direito Duplo • 54,00 m²</text>
+                    <rect x="80" y="1240" width="740" height="190" fill="#0F3156" stroke="#38BDF8" stroke-width="3" rx="10"/>
+                    <text x="450" y="1325" fill="#38BDF8" font-family="sans-serif" font-size="20" font-weight="bold" text-anchor="middle">PISCINA COM PRAINHA &amp; DECK</text>
+                    <text x="450" y="1355" fill="#E2E8F0" font-family="sans-serif" font-size="14" text-anchor="middle">Cascata, Hidro e Solarium Integrado</text>
+                ` : `
+                    <rect x="80" y="220" width="740" height="260" fill="#071526" stroke="#34D399" stroke-width="3" stroke-dasharray="10 5"/>
+                    <text x="450" y="335" fill="#34D399" font-family="sans-serif" font-size="20" font-weight="bold" text-anchor="middle">MEZANINO • VAZIO DO PÉ-DIREITO DUPLO</text>
+                    <text x="450" y="370" fill="#94A3B8" font-family="sans-serif" font-size="14" text-anchor="middle">Guarda-Corpo Panorâmico com Vista para o Living</text>
 
-                <rect x="90" y="470" width="620" height="50" rx="8" fill="#138A59"/>
-                <text x="115" y="500" fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold">PLANTA: ${safeTitle} (${safeArea}m²)</text>
-                <text x="690" y="500" fill="#E2E8F0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="end">ARQUITETURA: GEMINADAS.COM</text>
+                    <rect x="80" y="500" width="740" height="430" fill="#0B1E33" stroke="#138A59" stroke-width="4"/>
+                    <text x="450" y="690" fill="#FFFFFF" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">SUÍTE MASTER COM CLOSET</text>
+                    <text x="450" y="725" fill="#34D399" font-family="sans-serif" font-size="15" text-anchor="middle">Cuba Dupla, Chuveiro Duplo &amp; Sacada Privativa • 32 m²</text>
+
+                    <rect x="80" y="950" width="360" height="340" fill="#0B1E33" stroke="#FFFFFF" stroke-width="3"/>
+                    <text x="260" y="1105" fill="#FFFFFF" font-family="sans-serif" font-size="18" font-weight="bold" text-anchor="middle">SUÍTE 02</text>
+                    <text x="260" y="1135" fill="#94A3B8" font-family="sans-serif" font-size="14" text-anchor="middle">Sacada Frontal • 18 m²</text>
+
+                    <rect x="460" y="950" width="360" height="340" fill="#0B1E33" stroke="#FFFFFF" stroke-width="3"/>
+                    <text x="640" y="1105" fill="#FFFFFF" font-family="sans-serif" font-size="18" font-weight="bold" text-anchor="middle">SUÍTE 03 / OFFICE</text>
+                    <text x="640" y="1135" fill="#94A3B8" font-family="sans-serif" font-size="14" text-anchor="middle">17,5 m²</text>
+
+                    <rect x="80" y="1310" width="740" height="120" fill="#091E36" stroke="#FFFFFF" stroke-width="2"/>
+                    <text x="450" y="1375" fill="#E2E8F0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">CIRCULAÇÃO ÍNTIMA &amp; ROUPARIA CENTRAL</text>
+                `}
+                <rect x="50" y="1470" width="800" height="90" rx="12" fill="#138A59"/>
+                <text x="80" y="1508" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-size="15" font-weight="bold">ARQUITETURA: GEMINADAS.COM • EXECUÇÃO: LEVEL CONSTRUTORA</text>
+                <text x="80" y="1533" fill="#E2E8F0" font-family="sans-serif" font-size="12">ENGENHARIA CAIXA • FINANCIAMENTO HABITACIONAL SFH • PROPORÇÃO 9:16</text>
+                <text x="820" y="1522" fill="#FFFFFF" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="end">ESCALA 1:50</text>
             </svg>`;
             return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
         }
@@ -2065,16 +2224,32 @@
                 garage: 2,
                 cost: 920000,
                 valuation: 1280000,
-                photoUrl: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
-                floorplanUrl: createArchitecturalFloorplanSvg("Residência Horizonte", 235, "3 Suítes"),
-                description: "Obra executada 100% via financiamento Caixa na modalidade Aquisição de Terreno + Construção. Projeto arquitetônico assinado pela Geminadas.com com fachada em concreto aparente, brises amadeirados, pé-direito duplo no living integrado ao espaço gourmet e piscina com prainha. Execução pela Level Construtora."
+                photoUrl: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=80",
+                photos: [
+                    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1000&q=80"
+                ],
+                floorplanUrl: createArchitecturalFloorplanSvg("Residência Horizonte", 235, "3 Suítes", "Pavimento Térreo"),
+                floorplans: [
+                    {
+                        name: "Pavimento Térreo (Living, Gourmet & Piscina)",
+                        url: createArchitecturalFloorplanSvg("Residência Horizonte", 235, "3 Suítes", "Pavimento Térreo")
+                    },
+                    {
+                        name: "Pavimento Superior (3 Suítes & Mezanino)",
+                        url: createArchitecturalFloorplanSvg("Residência Horizonte", 235, "3 Suítes", "Pavimento Superior")
+                    }
+                ],
+                description: "Sobrado de alto padrão executado 100% via financiamento Caixa na modalidade Aquisição de Terreno + Construção. Projeto arquitetônico autoral Geminadas.com com fachada imponente em concreto aparente e brises amadeirados. Pavimento térreo com living integrado em pé-direito duplo, espaço gourmet completo e piscina com prainha; pavimento superior reservado com mezanino panorâmico e 3 amplas suítes. Execução primorosa pela Level Construtora."
             },
             {
                 id: "obra-2",
                 title: "Casa Reserva Imperial",
                 modality: "Construção em Terreno Próprio",
                 standard: "Alto Padrão",
-                location: "Condomínio Jardins • Região Metropolitana",
+                location: "Condomínio Fechado • Maringá e Região",
                 timeline: "10 meses",
                 area: 192,
                 lotArea: 360,
@@ -2082,9 +2257,20 @@
                 garage: 2,
                 cost: 740000,
                 valuation: 1020000,
-                photoUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
-                floorplanUrl: createArchitecturalFloorplanSvg("Casa Reserva Imperial", 192, "3 Suítes"),
-                description: "O cliente já possuía o terreno quitado no condomínio e utilizou o próprio lote como entrada na operação Caixa. Planta baixa inteligente otimizando a insolação da tarde na piscina, esquadrias pretas em PVC e porcelanatos de grandes formatos."
+                photoUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80",
+                photos: [
+                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1000&q=80"
+                ],
+                floorplanUrl: createArchitecturalFloorplanSvg("Casa Reserva Imperial", 192, "3 Suítes", "Planta Baixa Térrea"),
+                floorplans: [
+                    {
+                        name: "Planta Baixa Térrea (9:16)",
+                        url: createArchitecturalFloorplanSvg("Casa Reserva Imperial", 192, "3 Suítes", "Planta Baixa Térrea")
+                    }
+                ],
+                description: "O cliente já possuía o terreno quitado no condomínio e utilizou o próprio lote como entrada na operação Caixa. Planta baixa inteligente em proporção 9:16 otimizando a insolação da tarde na piscina, esquadrias pretas em PVC e porcelanatos de grandes formatos."
             },
             {
                 id: "obra-3",
@@ -2099,8 +2285,18 @@
                 garage: 2,
                 cost: 530000,
                 valuation: 720000,
-                photoUrl: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80",
-                floorplanUrl: createArchitecturalFloorplanSvg("Residência Bella Vista", 148, "1 Suíte + 2 Quartos"),
+                photoUrl: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1000&q=80",
+                photos: [
+                    "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1000&q=80"
+                ],
+                floorplanUrl: createArchitecturalFloorplanSvg("Residência Bella Vista", 148, "1 Suíte + 2 Quartos", "Planta Baixa Humanizada"),
+                floorplans: [
+                    {
+                        name: "Planta Baixa Humanizada (9:16)",
+                        url: createArchitecturalFloorplanSvg("Residência Bella Vista", 148, "1 Suíte + 2 Quartos", "Planta Baixa Humanizada")
+                    }
+                ],
                 description: "Projeto focado em altíssima liquidez e conforto. Compra do terreno e construção financiadas em contrato único pela Caixa com uso do FGTS na entrada. Entregue pela Level Construtora com área gourmet integrada e infraestrutura completa para energia solar e climatização."
             }
         ];
@@ -2113,6 +2309,11 @@
 
         let currentFilter = 'all';
         let activeModalProject = null;
+        let currentModalTab = 'photo'; // 'photo' | 'floorplan'
+        let currentPhotoIndex = 0;
+        let currentFloorplanIndex = 0;
+        let currentFormPhotos = [];
+        let currentFormFloorplans = [];
         let isDirectEditMode = false;
 
         // ============================================================================
@@ -2340,7 +2541,19 @@
                 if (savedProjs) {
                     const parsed = JSON.parse(savedProjs);
                     if (Array.isArray(parsed) && parsed.length > 0) {
-                        projects = parsed;
+                        projects = parsed.map(p => {
+                            let photos = Array.isArray(p.photos) && p.photos.length > 0 ? p.photos : (p.photoUrl ? [p.photoUrl] : []);
+                            let floorplans = Array.isArray(p.floorplans) && p.floorplans.length > 0 
+                                ? p.floorplans 
+                                : (p.floorplanUrl ? [{ name: 'Pavimento Térreo', url: p.floorplanUrl }] : []);
+                            return {
+                                ...p,
+                                photos,
+                                photoUrl: photos[0] || p.photoUrl || '',
+                                floorplans,
+                                floorplanUrl: floorplans[0]?.url || p.floorplanUrl || ''
+                            };
+                        });
                     }
                 }
             } catch (err) {
@@ -2709,6 +2922,38 @@
             renderPublicProjects();
         }
 
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function compressImageFile(file, maxWidth = 1000, quality = 0.82) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onerror = reject;
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onerror = reject;
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        const scale = img.width > maxWidth ? maxWidth / img.width : 1;
+                        canvas.width = Math.round(img.width * scale);
+                        canvas.height = Math.round(img.height * scale);
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        resolve(canvas.toDataURL('image/jpeg', quality));
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
         function renderPublicProjects() {
             const grid = document.getElementById('projectsGrid');
             if (!grid) return;
@@ -2720,28 +2965,42 @@
 
             grid.innerHTML = projects.map((proj, idx) => {
                 const gainPercent = proj.valuation && proj.cost ? Math.round(((proj.valuation - proj.cost) / proj.cost) * 100) : 28;
+                const photosCount = (Array.isArray(proj.photos) && proj.photos.length > 0) ? proj.photos.length : 1;
+                const floorplansCount = (Array.isArray(proj.floorplans) && proj.floorplans.length > 0) ? proj.floorplans.length : 1;
+                const isSobrado = floorplansCount > 1;
+                const coverPhoto = (Array.isArray(proj.photos) && proj.photos[0]) || proj.photoUrl || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80';
+
                 return `
                 <article class="bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-100 hover:shadow-2xl transition flex flex-col justify-between group">
                     <div>
-                        <div class="relative aspect-[16/10] overflow-hidden bg-slate-200 cursor-pointer" onclick="openProjectModal('${proj.id}')">
-                            <img src="${proj.photoUrl}" alt="${proj.title} - ${proj.modality} financiada pela Caixa em ${proj.location} | Projetos Geminadas.com e Obra Level Construtora" loading="lazy" decoding="async" width="600" height="375" onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="relative aspect-[16/10] overflow-hidden bg-slate-900 cursor-pointer" onclick="openProjectModal('${proj.id}', 'photo')">
+                            <img src="${coverPhoto}" alt="${escapeHtml(proj.title)} - ${escapeHtml(proj.modality)} financiada pela Caixa em ${escapeHtml(proj.location)} | Geminadas.com e Level Construtora" loading="lazy" decoding="async" width="600" height="375" onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            
                             <div class="absolute top-3 left-3 bg-brand-blue/90 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">
-                                ${proj.modality}
+                                ${escapeHtml(proj.modality)}
                             </div>
                             <div class="absolute top-3 right-3 bg-brand-green text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">
-                                ${proj.standard}
+                                ${escapeHtml(proj.standard)}
                             </div>
+
+                            <!-- Photo Count Badge -->
+                            <div class="absolute bottom-3 left-3 bg-brand-blueDark/85 backdrop-blur-md text-white text-xs font-semibold px-2.5 py-1 rounded-xl shadow flex items-center gap-1.5">
+                                <i class="fa-solid fa-camera text-emerald-400"></i> ${photosCount} ${photosCount === 1 ? 'Foto' : 'Fotos'}
+                            </div>
+
+                            <!-- 9:16 Floorplan / Sobrado Badge -->
                             <div class="absolute bottom-3 right-3 bg-white/95 text-brand-blue text-xs font-bold px-3 py-1.5 rounded-xl shadow flex items-center gap-1.5">
-                                <i class="fa-solid fa-compass-drafting text-brand-green" aria-hidden="true"></i> Fotos + Planta
+                                <i class="fa-solid fa-compass-drafting text-brand-green" aria-hidden="true"></i> 
+                                ${isSobrado ? `${floorplansCount} Plantas (Sobrado)` : 'Planta 9:16'}
                             </div>
                         </div>
 
                         <div class="p-5 sm:p-6">
                             <div class="text-xs font-semibold text-slate-500 flex items-center gap-1.5 mb-1.5">
-                                <i class="fa-solid fa-location-dot text-brand-green" aria-hidden="true"></i> ${proj.location}
+                                <i class="fa-solid fa-location-dot text-brand-green" aria-hidden="true"></i> ${escapeHtml(proj.location)}
                             </div>
-                            <h3 class="fluid-card-title font-display font-extrabold text-brand-blue group-hover:text-brand-green transition cursor-pointer" onclick="openProjectModal('${proj.id}')">
-                                ${proj.title}
+                            <h3 class="fluid-card-title font-display font-extrabold text-brand-blue group-hover:text-brand-green transition cursor-pointer" onclick="openProjectModal('${proj.id}', 'photo')">
+                                ${escapeHtml(proj.title)}
                             </h3>
 
                             <div class="grid grid-cols-3 gap-2 my-4 py-3 border-y border-slate-100 text-xs text-slate-600">
@@ -2751,7 +3010,7 @@
                                 </div>
                                 <div class="flex items-center gap-1.5">
                                     <i class="fa-solid fa-bed text-brand-blue" aria-hidden="true"></i>
-                                    <span class="truncate">${proj.beds}</span>
+                                    <span class="truncate">${escapeHtml(proj.beds)}</span>
                                 </div>
                                 <div class="flex items-center gap-1.5">
                                     <i class="fa-solid fa-car text-brand-blue" aria-hidden="true"></i>
@@ -2774,10 +3033,10 @@
 
                     <div class="px-5 sm:px-6 pb-6 pt-1 flex gap-2">
                         <button type="button" onclick="openProjectModal('${proj.id}', 'photo')" class="flex-1 py-3 px-3 rounded-xl bg-brand-blue hover:bg-brand-blueLight text-white font-bold text-xs transition flex items-center justify-center gap-1.5 touch-target">
-                            <i class="fa-solid fa-eye" aria-hidden="true"></i> Detalhes da Obra
+                            <i class="fa-solid fa-images" aria-hidden="true"></i> Fotos (${photosCount})
                         </button>
                         <button type="button" onclick="openProjectModal('${proj.id}', 'floorplan')" class="py-3 px-3.5 rounded-xl bg-emerald-50 hover:bg-brand-green text-brand-greenDark hover:text-white border border-brand-green/30 font-bold text-xs transition flex items-center justify-center gap-1.5 touch-target">
-                            <i class="fa-solid fa-compass-drafting" aria-hidden="true"></i> Planta Baixa
+                            <i class="fa-solid fa-compass-drafting" aria-hidden="true"></i> ${isSobrado ? `Plantas 9:16 (${floorplansCount})` : 'Planta 9:16'}
                         </button>
                     </div>
                 </article>`;
@@ -2789,9 +3048,19 @@
             if (!proj) return;
             activeModalProject = proj;
 
+            if (!Array.isArray(activeModalProject.photos) || activeModalProject.photos.length === 0) {
+                activeModalProject.photos = activeModalProject.photoUrl ? [activeModalProject.photoUrl] : [];
+            }
+            if (!Array.isArray(activeModalProject.floorplans) || activeModalProject.floorplans.length === 0) {
+                activeModalProject.floorplans = [{
+                    name: 'Pavimento Térreo',
+                    url: activeModalProject.floorplanUrl || createArchitecturalFloorplanSvg(proj.title, proj.area, proj.beds, 'Pavimento Térreo')
+                }];
+            }
+
             document.getElementById('modalBadge').textContent = `${proj.modality} • ${proj.standard}`;
             document.getElementById('modalTitle').textContent = proj.title;
-            document.getElementById('modalLocation').innerHTML = `<i class="fa-solid fa-location-dot text-brand-green" aria-hidden="true"></i> ${proj.location}`;
+            document.getElementById('modalLocation').innerHTML = `<i class="fa-solid fa-location-dot text-brand-green" aria-hidden="true"></i> ${escapeHtml(proj.location)}`;
             document.getElementById('modalArea').textContent = `${proj.area} m²`;
             document.getElementById('modalLot').textContent = `${proj.lotArea || 360} m²`;
             document.getElementById('modalBeds').textContent = proj.beds;
@@ -2799,6 +3068,14 @@
             document.getElementById('modalCost').textContent = formatBRL(proj.cost);
             document.getElementById('modalValuation').textContent = formatBRL(proj.valuation || proj.cost * 1.28);
             document.getElementById('modalDescription').textContent = proj.description;
+
+            const photoBadge = document.getElementById('modalPhotoCountBadge');
+            if (photoBadge) photoBadge.textContent = activeModalProject.photos.length;
+            const fpBadge = document.getElementById('modalFloorplanCountBadge');
+            if (fpBadge) fpBadge.textContent = activeModalProject.floorplans.length;
+
+            currentPhotoIndex = 0;
+            currentFloorplanIndex = 0;
 
             switchModalMedia(initialTab);
 
@@ -2815,36 +3092,212 @@
 
         function switchModalMedia(type) {
             if (!activeModalProject) return;
-            const img = document.getElementById('modalMainImage');
-            const caption = document.getElementById('modalMediaCaption');
+            currentModalTab = type;
             const btnPhoto = document.getElementById('modalBtnPhoto');
             const btnFloorplan = document.getElementById('modalBtnFloorplan');
 
             if (type === 'floorplan') {
-                img.src = activeModalProject.floorplanUrl || createArchitecturalFloorplanSvg(activeModalProject.title, activeModalProject.area, activeModalProject.beds);
-                img.alt = `Planta baixa humanizada - ${activeModalProject.title} (${activeModalProject.area}m²) | Geminadas.com Arquitetura Maringá`;
-                caption.textContent = "Planta Baixa Inteligente • Escritório Geminadas.com Arquitetura";
-                btnFloorplan.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-brand-green text-white transition flex items-center gap-2 touch-target";
-                btnPhoto.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-brand-blue border border-slate-200 transition flex items-center gap-2 touch-target";
+                btnFloorplan.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-brand-green text-white transition flex items-center gap-2 touch-target shadow-sm";
+                btnPhoto.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-brand-blue border border-slate-200 hover:border-brand-blue transition flex items-center gap-2 touch-target shadow-sm";
             } else {
-                img.src = activeModalProject.photoUrl;
-                img.alt = `Obra executada - ${activeModalProject.title} financiada pela Caixa em ${activeModalProject.location} | Level Construtora`;
-                caption.textContent = "Obra Executada pela Level Construtora • Financiamento Caixa";
-                btnPhoto.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-brand-blue text-white transition flex items-center gap-2 touch-target";
-                btnFloorplan.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-brand-blue border border-slate-200 hover:border-brand-green transition flex items-center gap-2 touch-target";
+                btnPhoto.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-brand-blue text-white transition flex items-center gap-2 touch-target shadow-sm";
+                btnFloorplan.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-brand-blue border border-slate-200 hover:border-brand-green transition flex items-center gap-2 touch-target shadow-sm";
+            }
+
+            renderActiveModalMedia();
+        }
+
+        function renderActiveModalMedia() {
+            if (!activeModalProject) return;
+            const img = document.getElementById('modalMainImage');
+            const caption = document.getElementById('modalMediaCaption');
+            const counter = document.getElementById('modalMediaCounter');
+            const formatBadge = document.getElementById('modalFormatBadge');
+            const floorTabs = document.getElementById('modalFloorplanTabs');
+            const thumbStrip = document.getElementById('modalThumbnailsStrip');
+
+            if (currentModalTab === 'floorplan') {
+                const floorplans = activeModalProject.floorplans || [];
+                if (currentFloorplanIndex >= floorplans.length) currentFloorplanIndex = 0;
+                const currentFp = floorplans[currentFloorplanIndex] || { name: 'Planta Baixa (9:16)', url: '' };
+
+                // Floorplan 9:16 Styling
+                img.className = "floorplan-viewer-9-16 w-auto h-auto max-h-[480px] sm:max-h-[520px] object-contain shadow-2xl rounded-xl transition-all duration-200 cursor-pointer mx-auto";
+                img.src = currentFp.url;
+                img.alt = `Planta Baixa 9:16 - ${currentFp.name} - ${activeModalProject.title}`;
+
+                formatBadge.classList.remove('hidden');
+                counter.textContent = `${currentFloorplanIndex + 1} / ${floorplans.length}`;
+                caption.innerHTML = `
+                    <span class="truncate"><i class="fa-solid fa-compass-drafting text-brand-green mr-1.5"></i> ${escapeHtml(currentFp.name)} • Escritório Geminadas.com Arquitetura</span>
+                    <span class="text-emerald-400 text-[11px] font-bold shrink-0">Proporção 9:16</span>
+                `;
+
+                // Multi-floor Level Tabs (Sobrado)
+                if (floorplans.length > 1) {
+                    floorTabs.classList.remove('hidden');
+                    floorTabs.innerHTML = floorplans.map((fp, i) => `
+                        <button type="button" onclick="selectModalFloorplan(${i})" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition whitespace-nowrap touch-target flex items-center gap-1.5 ${i === currentFloorplanIndex ? 'bg-brand-green text-white shadow-md' : 'bg-white/10 text-slate-300 hover:bg-white/20 hover:text-white'}">
+                            <i class="fa-solid fa-layer-group text-[10px]"></i>
+                            <span>${escapeHtml(fp.name || `Pavimento ${i + 1}`)}</span>
+                        </button>
+                    `).join('');
+                } else {
+                    floorTabs.classList.add('hidden');
+                }
+
+                // Thumbnails strip
+                if (floorplans.length > 1) {
+                    thumbStrip.classList.remove('hidden');
+                    thumbStrip.innerHTML = floorplans.map((fp, i) => `
+                        <button type="button" onclick="selectModalFloorplan(${i})" class="w-10 h-16 rounded-lg overflow-hidden border-2 transition shrink-0 ${i === currentFloorplanIndex ? 'border-brand-green ring-2 ring-brand-green/50 scale-105' : 'border-slate-700 opacity-60 hover:opacity-100'}">
+                            <img src="${fp.url}" alt="${escapeHtml(fp.name)}" class="w-full h-full object-cover">
+                        </button>
+                    `).join('');
+                } else {
+                    thumbStrip.classList.add('hidden');
+                }
+
+            } else {
+                // Photo gallery
+                const photos = activeModalProject.photos || [];
+                if (currentPhotoIndex >= photos.length) currentPhotoIndex = 0;
+                const currentPhoto = photos[currentPhotoIndex] || activeModalProject.photoUrl;
+
+                img.className = "w-full h-full max-h-[480px] sm:max-h-[520px] object-cover transition-all duration-300 cursor-pointer";
+                img.src = currentPhoto;
+                img.alt = `Foto ${currentPhotoIndex + 1} - ${activeModalProject.title} • Execução Level Construtora`;
+
+                formatBadge.classList.add('hidden');
+                floorTabs.classList.add('hidden');
+                counter.textContent = `${currentPhotoIndex + 1} / ${photos.length}`;
+                caption.innerHTML = `
+                    <span class="truncate"><i class="fa-solid fa-camera text-brand-green mr-1.5"></i> Foto ${currentPhotoIndex + 1} de ${photos.length} • Obra Executada pela Level Construtora</span>
+                    <span class="text-slate-400 text-[11px] shrink-0">Financiamento Caixa</span>
+                `;
+
+                // Thumbnails strip
+                if (photos.length > 1) {
+                    thumbStrip.classList.remove('hidden');
+                    thumbStrip.innerHTML = photos.map((ph, i) => `
+                        <button type="button" onclick="selectModalPhoto(${i})" class="w-14 h-11 rounded-lg overflow-hidden border-2 transition shrink-0 ${i === currentPhotoIndex ? 'border-brand-blue ring-2 ring-brand-blue/50 scale-105' : 'border-slate-700 opacity-60 hover:opacity-100'}">
+                            <img src="${ph}" alt="Foto ${i + 1}" class="w-full h-full object-cover">
+                        </button>
+                    `).join('');
+                } else {
+                    thumbStrip.classList.add('hidden');
+                }
+            }
+
+            syncFullscreenImage();
+        }
+
+        function nextModalMedia() {
+            if (!activeModalProject) return;
+            if (currentModalTab === 'floorplan') {
+                const total = activeModalProject.floorplans?.length || 1;
+                currentFloorplanIndex = (currentFloorplanIndex + 1) % total;
+            } else {
+                const total = activeModalProject.photos?.length || 1;
+                currentPhotoIndex = (currentPhotoIndex + 1) % total;
+            }
+            renderActiveModalMedia();
+        }
+
+        function prevModalMedia() {
+            if (!activeModalProject) return;
+            if (currentModalTab === 'floorplan') {
+                const total = activeModalProject.floorplans?.length || 1;
+                currentFloorplanIndex = (currentFloorplanIndex - 1 + total) % total;
+            } else {
+                const total = activeModalProject.photos?.length || 1;
+                currentPhotoIndex = (currentPhotoIndex - 1 + total) % total;
+            }
+            renderActiveModalMedia();
+        }
+
+        function selectModalPhoto(index) {
+            currentPhotoIndex = index;
+            renderActiveModalMedia();
+        }
+
+        function selectModalFloorplan(index) {
+            currentFloorplanIndex = index;
+            renderActiveModalMedia();
+        }
+
+        function openFullscreenModalImage() {
+            const fsModal = document.getElementById('fullscreenImageModal');
+            if (!fsModal) return;
+            fsModal.classList.remove('hidden');
+            syncFullscreenImage();
+        }
+
+        function closeFullscreenModal() {
+            const fsModal = document.getElementById('fullscreenImageModal');
+            if (fsModal) fsModal.classList.add('hidden');
+            if (!document.getElementById('projectModal').classList.contains('hidden')) {
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function syncFullscreenImage() {
+            const fsModal = document.getElementById('fullscreenImageModal');
+            if (!fsModal || fsModal.classList.contains('hidden') || !activeModalProject) return;
+
+            const fsImg = document.getElementById('fsMainImage');
+            const fsBadge = document.getElementById('fsBadge');
+            const fsTitle = document.getElementById('fsTitle');
+
+            if (currentModalTab === 'floorplan') {
+                const fp = activeModalProject.floorplans[currentFloorplanIndex];
+                if (fp) {
+                    fsImg.src = fp.url;
+                    fsBadge.className = 'bg-brand-green text-white text-xs font-bold px-3 py-1 rounded-full';
+                    fsBadge.textContent = 'Formato 9:16 Vertical';
+                    fsTitle.textContent = `${activeModalProject.title} • ${fp.name}`;
+                }
+            } else {
+                const photo = activeModalProject.photos[currentPhotoIndex];
+                if (photo) {
+                    fsImg.src = photo;
+                    fsBadge.className = 'bg-brand-blue text-white text-xs font-bold px-3 py-1 rounded-full';
+                    fsBadge.textContent = `Foto ${currentPhotoIndex + 1} de ${activeModalProject.photos.length}`;
+                    fsTitle.textContent = `${activeModalProject.title} • Fachada e Obra`;
+                }
             }
         }
 
         function closeProjectModal() {
             document.getElementById('projectModal').classList.add('hidden');
+            closeFullscreenModal();
             document.body.style.overflow = '';
         }
 
-        // Close modals on Escape key
+        // Close modals on Escape key & Navigation via Keyboard
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
+                const fs = document.getElementById('fullscreenImageModal');
+                if (fs && !fs.classList.contains('hidden')) {
+                    closeFullscreenModal();
+                    return;
+                }
                 closeProjectModal();
                 closeAdminAuthModal();
+            }
+            if (e.key === 'ArrowRight') {
+                const pModal = document.getElementById('projectModal');
+                const fsModal = document.getElementById('fullscreenImageModal');
+                if ((pModal && !pModal.classList.contains('hidden')) || (fsModal && !fsModal.classList.contains('hidden'))) {
+                    nextModalMedia();
+                }
+            }
+            if (e.key === 'ArrowLeft') {
+                const pModal = document.getElementById('projectModal');
+                const fsModal = document.getElementById('fullscreenImageModal');
+                if ((pModal && !pModal.classList.contains('hidden')) || (fsModal && !fsModal.classList.contains('hidden'))) {
+                    prevModalMedia();
+                }
             }
             // Admin shortcut: Ctrl+Shift+A
             if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
@@ -2863,6 +3316,16 @@
             }
         });
 
+        const fsModalEl = document.getElementById('fullscreenImageModal');
+        if (fsModalEl) {
+            fsModalEl.addEventListener('click', (e) => {
+                if (e.target === fsModalEl || e.target.id === 'fsMainImage') {
+                    // Clicking backdrop closes fullscreen
+                    if (e.target === fsModalEl) closeFullscreenModal();
+                }
+            });
+        }
+
         const authModalBackdrop = document.getElementById('adminAuthModal');
         if (authModalBackdrop) {
             authModalBackdrop.addEventListener('click', (e) => {
@@ -2873,36 +3336,168 @@
         }
 
         // ============================================================================
-        // 7. ADMIN CMS CRUD FOR PROJECTS
+        // 7. ADMIN CMS CRUD FOR MULTI-PHOTOS & MULTI-FLOORPLANS (9:16)
         // ============================================================================
-        function handleImageUpload(event, targetInputId, previewImgId) {
-            const file = event.target.files[0];
-            if (!file) return;
+        async function handleMultiplePhotosUpload(event) {
+            const files = Array.from(event.target.files || []);
+            if (files.length === 0) return;
 
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    const maxWidth = 900;
-                    const scale = img.width > maxWidth ? maxWidth / img.width : 1;
-                    canvas.width = img.width * scale;
-                    canvas.height = img.height * scale;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.82);
-
-                    document.getElementById(targetInputId).value = compressedDataUrl;
-                    const preview = document.getElementById(previewImgId);
-                    preview.src = compressedDataUrl;
-                    preview.classList.remove('hidden');
-                    showToast('Imagem carregada e otimizada!');
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
+            showToast(`Otimizando ${files.length} foto(s)...`);
+            try {
+                for (const file of files) {
+                    const compressed = await compressImageFile(file, 1000, 0.82);
+                    currentFormPhotos.push(compressed);
+                }
+                renderAdminPhotosList();
+                showToast(`${files.length} foto(s) adicionada(s) com sucesso!`);
+            } catch (err) {
+                console.error('Erro ao processar fotos:', err);
+                showToast('Erro ao carregar fotos.', 'error');
+            }
+            event.target.value = '';
         }
 
+        function addPhotoFromUrlInput() {
+            const input = document.getElementById('adminPhotoUrlInput');
+            const url = input.value.trim();
+            if (!url) return;
+            currentFormPhotos.push(url);
+            input.value = '';
+            renderAdminPhotosList();
+            showToast('Foto adicionada via link!');
+        }
+
+        function removePhotoFromForm(index) {
+            currentFormPhotos.splice(index, 1);
+            renderAdminPhotosList();
+            showToast('Foto removida.');
+        }
+
+        function setCoverPhoto(index) {
+            if (index <= 0 || index >= currentFormPhotos.length) return;
+            const chosen = currentFormPhotos.splice(index, 1)[0];
+            currentFormPhotos.unshift(chosen);
+            renderAdminPhotosList();
+            showToast('Foto definida como capa principal!');
+        }
+
+        function renderAdminPhotosList() {
+            const container = document.getElementById('adminPhotosList');
+            const countBadge = document.getElementById('adminPhotosCountBadge');
+            if (countBadge) countBadge.textContent = `${currentFormPhotos.length} ${currentFormPhotos.length === 1 ? 'foto' : 'fotos'}`;
+
+            if (!container) return;
+            if (currentFormPhotos.length === 0) {
+                container.innerHTML = `<div class="col-span-full py-3 text-center text-xs text-slate-400 border border-dashed border-slate-300 rounded-xl">Nenhuma foto adicionada ainda. Envie fotos ou insira URLs.</div>`;
+                return;
+            }
+
+            container.innerHTML = currentFormPhotos.map((photoUrl, idx) => `
+                <div class="relative group rounded-xl overflow-hidden border ${idx === 0 ? 'border-brand-blue ring-2 ring-brand-blue/30' : 'border-slate-200'} bg-slate-900 aspect-[4/3]">
+                    <img src="${photoUrl}" alt="Foto ${idx + 1}" class="w-full h-full object-cover">
+                    ${idx === 0 ? `
+                        <span class="absolute top-1 left-1 bg-brand-blue text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded shadow">★ Capa</span>
+                    ` : `
+                        <button type="button" onclick="setCoverPhoto(${idx})" class="absolute top-1 left-1 bg-black/70 hover:bg-brand-blue text-white text-[9px] font-bold px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition shadow" title="Definir como foto de capa">
+                            Capa
+                        </button>
+                    `}
+                    <button type="button" onclick="removePhotoFromForm(${idx})" class="absolute top-1 right-1 w-6 h-6 rounded-full bg-red-600/80 hover:bg-red-600 text-white flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow" title="Remover foto">
+                        <i class="fa-solid fa-trash-can text-[10px]"></i>
+                    </button>
+                    <div class="absolute bottom-1 right-1 bg-black/60 text-white text-[9px] px-1 rounded">#${idx + 1}</div>
+                </div>
+            `).join('');
+        }
+
+        // Multi-Floorplans (9:16) Handlers
+        async function handleMultipleFloorplansUpload(event) {
+            const files = Array.from(event.target.files || []);
+            if (files.length === 0) return;
+
+            showToast(`Otimizando ${files.length} planta(s) 9:16...`);
+            try {
+                for (let i = 0; i < files.length; i++) {
+                    const compressed = await compressImageFile(files[i], 900, 0.85);
+                    let defaultName = 'Pavimento Térreo';
+                    if (currentFormFloorplans.length === 1) defaultName = 'Pavimento Superior (Sobrado)';
+                    else if (currentFormFloorplans.length > 1) defaultName = `Pavimento ${currentFormFloorplans.length + 1}`;
+
+                    currentFormFloorplans.push({
+                        name: defaultName,
+                        url: compressed
+                    });
+                }
+                renderAdminFloorplansList();
+                showToast(`${files.length} planta(s) 9:16 adicionada(s)!`);
+            } catch (err) {
+                console.error('Erro ao processar plantas:', err);
+                showToast('Erro ao carregar plantas 9:16.', 'error');
+            }
+            event.target.value = '';
+        }
+
+        function addFloorplanFromUrlInput() {
+            const input = document.getElementById('adminFloorplanUrlInput');
+            const url = input.value.trim();
+            if (!url) return;
+            let defaultName = 'Pavimento Térreo';
+            if (currentFormFloorplans.length === 1) defaultName = 'Pavimento Superior (Sobrado)';
+            else if (currentFormFloorplans.length > 1) defaultName = `Pavimento ${currentFormFloorplans.length + 1}`;
+
+            currentFormFloorplans.push({
+                name: defaultName,
+                url
+            });
+            input.value = '';
+            renderAdminFloorplansList();
+            showToast('Planta 9:16 adicionada via link!');
+        }
+
+        function removeFloorplanFromForm(index) {
+            currentFormFloorplans.splice(index, 1);
+            renderAdminFloorplansList();
+            showToast('Planta removida.');
+        }
+
+        function updateFloorplanName(index, newName) {
+            if (currentFormFloorplans[index]) {
+                currentFormFloorplans[index].name = newName.trim() || `Pavimento ${index + 1}`;
+            }
+        }
+
+        function renderAdminFloorplansList() {
+            const container = document.getElementById('adminFloorplansList');
+            if (!container) return;
+
+            if (currentFormFloorplans.length === 0) {
+                container.innerHTML = `<div class="py-3 text-center text-xs text-slate-400 border border-dashed border-slate-300 rounded-xl">Nenhuma planta 9:16 cadastrada ainda. Adicione plantas térreas ou de sobrados.</div>`;
+                return;
+            }
+
+            container.innerHTML = currentFormFloorplans.map((fp, idx) => `
+                <div class="flex items-center justify-between gap-3 p-2.5 rounded-xl bg-white border border-slate-200 hover:border-brand-green transition">
+                    <div class="flex items-center gap-3 min-w-0 flex-1">
+                        <div class="w-12 h-20 rounded-lg overflow-hidden bg-slate-900 shrink-0 border border-slate-300 flex items-center justify-center">
+                            <img src="${fp.url}" alt="${escapeHtml(fp.name)}" class="w-full h-full object-contain">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <label class="block text-[10px] font-bold uppercase text-slate-400 mb-0.5">Identificação do Pavimento / Nível:</label>
+                            <input type="text" value="${escapeHtml(fp.name)}" oninput="updateFloorplanName(${idx}, this.value)" placeholder="Ex: Pavimento Térreo ou Pavimento Superior" class="w-full rounded-lg border border-slate-200 px-2.5 py-1 text-xs font-semibold text-brand-blue focus:outline-none focus:border-brand-green">
+                            <div class="flex items-center gap-2 mt-1">
+                                <span class="text-[10px] bg-brand-green/20 text-brand-greenDark px-2 py-0.5 rounded font-bold">Proporção 9:16</span>
+                                <span class="text-[10px] text-slate-400">Planta #${idx + 1}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" onclick="removeFloorplanFromForm(${idx})" class="w-8 h-8 rounded-xl bg-red-50 hover:bg-red-600 text-red-600 hover:text-white flex items-center justify-center transition shrink-0" title="Excluir planta">
+                        <i class="fa-solid fa-trash-can text-xs"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Save & Edit Projects
         function saveProject(e) {
             e.preventDefault();
             const existingId = document.getElementById('projId').value;
@@ -2912,8 +3507,20 @@
             const cost = parseFloat(document.getElementById('projCost').value) || 650000;
             const valuation = parseFloat(document.getElementById('projValuation').value) || Math.round(cost * 1.28);
 
-            const photoUrl = document.getElementById('projPhotoUrl').value.trim() || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80";
-            const floorplanUrl = document.getElementById('projFloorplanUrl').value.trim() || createArchitecturalFloorplanSvg(title, area, beds);
+            // Photos fallback
+            let finalPhotos = [...currentFormPhotos];
+            if (finalPhotos.length === 0) {
+                finalPhotos = ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"];
+            }
+
+            // Floorplans fallback
+            let finalFloorplans = [...currentFormFloorplans];
+            if (finalFloorplans.length === 0) {
+                finalFloorplans = [{
+                    name: "Pavimento Térreo",
+                    url: createArchitecturalFloorplanSvg(title, area, beds, "Pavimento Térreo")
+                }];
+            }
 
             const projectData = {
                 id: existingId || 'obra-' + Date.now(),
@@ -2928,8 +3535,10 @@
                 garage: parseInt(document.getElementById('projGarage').value) || 2,
                 cost,
                 valuation,
-                photoUrl,
-                floorplanUrl,
+                photoUrl: finalPhotos[0],
+                photos: finalPhotos,
+                floorplanUrl: finalFloorplans[0].url,
+                floorplans: finalFloorplans,
                 description: document.getElementById('projDescription').value.trim()
             };
 
@@ -2964,9 +3573,27 @@
             document.getElementById('projGarage').value = proj.garage;
             document.getElementById('projCost').value = proj.cost;
             document.getElementById('projValuation').value = proj.valuation;
-            document.getElementById('projPhotoUrl').value = proj.photoUrl;
-            document.getElementById('projFloorplanUrl').value = proj.floorplanUrl;
             document.getElementById('projDescription').value = proj.description;
+
+            // Load multi photos
+            if (Array.isArray(proj.photos) && proj.photos.length > 0) {
+                currentFormPhotos = [...proj.photos];
+            } else if (proj.photoUrl) {
+                currentFormPhotos = [proj.photoUrl];
+            } else {
+                currentFormPhotos = [];
+            }
+            renderAdminPhotosList();
+
+            // Load multi floorplans
+            if (Array.isArray(proj.floorplans) && proj.floorplans.length > 0) {
+                currentFormFloorplans = JSON.parse(JSON.stringify(proj.floorplans));
+            } else if (proj.floorplanUrl) {
+                currentFormFloorplans = [{ name: 'Pavimento Térreo', url: proj.floorplanUrl }];
+            } else {
+                currentFormFloorplans = [];
+            }
+            renderAdminFloorplansList();
 
             document.getElementById('formProjectTitle').innerHTML = `<i class="fa-solid fa-pen-to-square text-brand-green" aria-hidden="true"></i> Editando Obra`;
             document.getElementById('submitProjectBtnText').textContent = "Atualizar Obra";
@@ -2987,8 +3614,10 @@
         function resetProjectForm() {
             document.getElementById('projectForm').reset();
             document.getElementById('projId').value = '';
-            document.getElementById('previewPhoto').classList.add('hidden');
-            document.getElementById('previewFloorplan').classList.add('hidden');
+            currentFormPhotos = [];
+            currentFormFloorplans = [];
+            renderAdminPhotosList();
+            renderAdminFloorplansList();
             document.getElementById('formProjectTitle').innerHTML = `<i class="fa-solid fa-plus-circle text-brand-green" aria-hidden="true"></i> 2. Cadastrar Obra Financiada`;
             document.getElementById('submitProjectBtnText').textContent = "Salvar e Publicar no Site";
             document.getElementById('cancelEditBtn').classList.add('hidden');
@@ -3003,17 +3632,25 @@
                 return;
             }
 
-            container.innerHTML = projects.map(proj => `
+            container.innerHTML = projects.map(proj => {
+                const photosCount = (Array.isArray(proj.photos) && proj.photos.length > 0) ? proj.photos.length : 1;
+                const floorplansCount = (Array.isArray(proj.floorplans) && proj.floorplans.length > 0) ? proj.floorplans.length : 1;
+                const cover = (Array.isArray(proj.photos) && proj.photos[0]) || proj.photoUrl || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=200&q=80';
+
+                return `
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-2xl bg-brand-ice border border-slate-200 hover:border-brand-blue transition">
                     <div class="flex items-center gap-3.5 min-w-0">
-                        <img src="${proj.photoUrl}" alt="${proj.title}" loading="lazy" width="80" height="64" onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=200&q=80'" class="w-16 h-14 sm:w-20 sm:h-16 rounded-xl object-cover shrink-0 border border-slate-300">
+                        <img src="${cover}" alt="${escapeHtml(proj.title)}" loading="lazy" width="80" height="64" onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=200&q=80'" class="w-16 h-14 sm:w-20 sm:h-16 rounded-xl object-cover shrink-0 border border-slate-300">
                         <div class="min-w-0">
                             <div class="flex flex-wrap items-center gap-1.5">
-                                <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-brand-blue text-white">${proj.modality}</span>
-                                <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-brand-green text-white">${proj.area} m²</span>
+                                <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-brand-blue text-white">${escapeHtml(proj.modality)}</span>
+                                <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-brand-green text-white">${photosCount} foto(s)</span>
+                                <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded ${floorplansCount > 1 ? 'bg-amber-600 text-white' : 'bg-slate-700 text-white'}">
+                                    ${floorplansCount > 1 ? `${floorplansCount} plantas (Sobrado)` : '1 planta 9:16'}
+                                </span>
                             </div>
-                            <h4 class="font-display font-bold text-sm sm:text-base text-brand-blue mt-1 truncate">${proj.title}</h4>
-                            <p class="text-xs text-slate-500 truncate">${proj.location} • ${formatBRL(proj.cost)}</p>
+                            <h4 class="font-display font-bold text-sm sm:text-base text-brand-blue mt-1 truncate">${escapeHtml(proj.title)}</h4>
+                            <p class="text-xs text-slate-500 truncate">${escapeHtml(proj.location)} • ${formatBRL(proj.cost)}</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-2 self-end sm:self-center shrink-0">
@@ -3025,7 +3662,7 @@
                         </button>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
         }
 
         // ============================================================================

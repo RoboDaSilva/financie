@@ -1,0 +1,2611 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="dynamicPageTitle">financiesuaobra.com.br | Construção Financiada Caixa - Grupo Geminadas.com & Level</title>
+    <link id="dynamicFavicon" rel="icon" type="image/svg+xml" href="">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0F3156',
+                            blueLight: '#1A4B82',
+                            blueDark: '#091E36',
+                            green: '#138A59',
+                            greenLight: '#19B374',
+                            greenDark: '#0D633F',
+                            ice: '#F4F7F9'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1E293B;
+            background-color: #FFFFFF;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        /* Custom Range Slider Styling */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            background: #E2E8F0;
+            border-radius: 999px;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #138A59;
+            cursor: pointer;
+            border: 3px solid #FFFFFF;
+            box-shadow: 0 2px 6px rgba(15, 49, 86, 0.35);
+            transition: transform 0.15s ease, background-color 0.15s ease;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            background: #0F3156;
+        }
+        /* Inline Direct Editing Mode Styles */
+        body.direct-edit-active [data-editable="true"] {
+            outline: 2px dashed #138A59;
+            outline-offset: 4px;
+            border-radius: 6px;
+            cursor: text;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        body.direct-edit-active [data-editable="true"]:hover,
+        body.direct-edit-active [data-editable="true"]:focus {
+            outline: 2px solid #19B374;
+            background-color: rgba(19, 138, 89, 0.08);
+        }
+        .draggable-handle {
+            cursor: grab;
+        }
+        .draggable-handle:active {
+            cursor: grabbing;
+        }
+        /* Smooth Pulse for WhatsApp Floating Button */
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(19, 138, 89, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(19, 138, 89, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(19, 138, 89, 0); }
+        }
+        .whatsapp-pulse {
+            animation: pulse-green 2s infinite;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F4F7F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0F3156;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #138A59;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-green selection:text-white">
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="toastContainer" class="fixed top-20 right-4 z-[100] flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- TOP BAR: GROUP AUTHORITY & SOCIAL LINKS -->
+    <div class="bg-brand-blueDark text-white/90 text-xs py-2 px-4 border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center gap-2 sm:gap-4 flex-wrap">
+                <span class="inline-flex items-center gap-1.5 font-medium text-brand-greenLight">
+                    <i class="fa-solid fa-layer-group"></i> Ecossistema Completo:
+                </span>
+                <span class="hover:text-white transition"><strong>Geminadas.com</strong> (Arquitetura)</span>
+                <span class="text-white/30">•</span>
+                <span class="hover:text-white transition"><strong>Level</strong> (Construtora)</span>
+                <span class="text-white/30 hidden sm:inline">•</span>
+                <span class="hidden sm:inline text-white font-semibold">financiesuaobra.com.br</span>
+            </div>
+            <div class="flex items-center gap-4 ml-auto">
+                <div class="flex items-center gap-3" id="topSocialLinks">
+                    <!-- Populated via JS -->
+                </div>
+                <button onclick="toggleDirectEditMode()" id="directEditToggleBtn" class="bg-brand-green/20 hover:bg-brand-green border border-brand-greenLight/40 text-emerald-300 hover:text-white px-2.5 py-1 rounded-md text-xs font-semibold transition flex items-center gap-1.5" title="Editar textos e barras direto na página">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> <span id="directEditBtnLabel">Editar Direto no Site</span>
+                </button>
+                <button onclick="toggleView('admin')" id="adminToggleBtnTop" class="bg-white/10 hover:bg-brand-green text-white px-2.5 py-1 rounded-md text-xs font-medium transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-sliders"></i> <span id="adminBtnLabel">Painel Admin</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FLOATING DRAGGABLE QUICK-EDIT BAR (MOVABLE DIRECTLY ON THE SITE) -->
+    <div id="floatingQuickAdminBar" class="hidden fixed top-24 left-4 z-50 w-80 sm:w-96 bg-brand-blueDark/95 backdrop-blur-md text-white rounded-3xl shadow-2xl border-2 border-brand-green overflow-hidden">
+        <!-- Drag Handle Header -->
+        <div id="quickAdminDragHeader" class="draggable-handle bg-gradient-to-r from-brand-blue to-brand-green px-4 py-3 flex items-center justify-between select-none">
+            <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider">
+                <i class="fa-solid fa-arrows-up-down-left-right text-emerald-300"></i>
+                <span>Barra Arrastável • Edição ao Vivo</span>
+            </div>
+            <button onclick="toggleDirectEditMode()" class="w-7 h-7 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-white text-xs">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="p-4 space-y-3 text-xs max-h-[75vh] overflow-y-auto">
+            <div class="bg-white/10 rounded-xl p-3 border border-white/10">
+                <p class="text-emerald-300 font-semibold flex items-center gap-1.5">
+                    <i class="fa-solid fa-pen-nib"></i> Edição de Textos Ativa!
+                </p>
+                <p class="text-slate-300 text-[11px] mt-1">
+                    Clique em qualquer título ou texto tracejado na página para digitar diretamente. Arraste esta caixa por onde quiser!
+                </p>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block font-bold uppercase text-emerald-300">WhatsApp Rápido (Com DDD)</label>
+                <input type="text" id="quickCfgWhatsapp" oninput="syncQuickAdminChanges()" placeholder="5544999999999" class="w-full rounded-xl bg-white/10 border border-white/20 px-3 py-2 text-white font-semibold focus:outline-none focus:border-brand-greenLight">
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+                <div>
+                    <label class="block font-bold uppercase text-slate-300 mb-1">Telefone Exibido</label>
+                    <input type="text" id="quickCfgPhone" oninput="syncQuickAdminChanges()" placeholder="(44) 99999-9999" class="w-full rounded-xl bg-white/10 border border-white/20 px-2.5 py-1.5 text-white focus:outline-none focus:border-brand-greenLight">
+                </div>
+                <div>
+                    <label class="block font-bold uppercase text-slate-300 mb-1">Margem Mercado (%)</label>
+                    <input type="number" id="quickCfgMargin" value="30" min="15" max="50" oninput="updateHeroInteractiveCard(); updateVantagensInteractive();" class="w-full rounded-xl bg-white/10 border border-white/20 px-2.5 py-1.5 text-emerald-300 font-bold focus:outline-none focus:border-brand-greenLight">
+                </div>
+            </div>
+
+            <div class="space-y-1.5 pt-1 border-t border-white/10">
+                <label class="block font-bold uppercase text-emerald-300">Redes Sociais na Capa</label>
+                <input type="text" id="quickCfgInstagram" oninput="syncQuickAdminChanges()" placeholder="Link do Instagram" class="w-full rounded-lg bg-white/10 border border-white/15 px-2.5 py-1.5 text-white focus:outline-none">
+                <input type="text" id="quickCfgFacebook" oninput="syncQuickAdminChanges()" placeholder="Link do Facebook" class="w-full rounded-lg bg-white/10 border border-white/15 px-2.5 py-1.5 text-white focus:outline-none">
+                <input type="text" id="quickCfgYoutube" oninput="syncQuickAdminChanges()" placeholder="Link do YouTube" class="w-full rounded-lg bg-white/10 border border-white/15 px-2.5 py-1.5 text-white focus:outline-none">
+            </div>
+
+            <div class="pt-2 border-t border-white/10">
+                <label class="block font-bold uppercase text-slate-300 mb-1">Posição do Botão Flutuante WhatsApp</label>
+                <input type="range" id="quickWaPosSlider" min="16" max="220" value="24" oninput="moveFloatingWhatsappPosition(this.value)">
+                <div class="flex justify-between text-[10px] text-slate-400 mt-0.5">
+                    <span>Canto Direito</span>
+                    <span>Mais ao Centro</span>
+                </div>
+            </div>
+
+            <div class="pt-2 flex gap-2">
+                <button type="button" onclick="saveDirectEditsToStorage()" class="flex-1 bg-brand-green hover:bg-brand-greenLight text-white font-bold py-2.5 rounded-xl shadow transition flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-floppy-disk"></i> Salvar Tudo
+                </button>
+                <button type="button" onclick="toggleView('admin')" class="bg-white/15 hover:bg-white/25 text-white font-semibold px-3 py-2.5 rounded-xl transition">
+                    Painel Completo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER / NAVBAR -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo (Recreated faithfully from attached LOGO COMPLETA.jpg) -->
+            <a href="#inicio" onclick="toggleView('public')" class="flex items-center gap-3 group focus:outline-none">
+                <svg class="w-12 h-12 sm:w-14 sm:h-14 transition-transform duration-300 group-hover:scale-105" viewBox="0 0 120 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Left House Outline (Dark Blue #0F3156) -->
+                    <path d="M16 55L56 20C59.5 17 63.5 17 67 20L76 28" stroke="#0F3156" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M27 47V84C27 91 32 95 39 95H43C49 95 53 91 53 84V76" stroke="#0F3156" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <!-- Rising Trend Arrow (Dark Blue #0F3156) -->
+                    <path d="M44 59L59 45L71 55L98 27" stroke="#0F3156" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M83 25H100V42" stroke="#0F3156" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <!-- Right Rising Bars Forming House Base (Emerald Green #138A59) -->
+                    <path d="M55 95H90C96 95 100 91 100 84V47L93 40" stroke="#138A59" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M67 95V68" stroke="#138A59" stroke-width="10" stroke-linecap="round"/>
+                    <path d="M83 95V58" stroke="#138A59" stroke-width="10" stroke-linecap="round"/>
+                    <!-- Upward Arrow Tip on Green Bar -->
+                    <path d="M100 47L107 54" stroke="#138A59" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="flex flex-col leading-none">
+                    <span class="font-display font-extrabold text-2xl sm:text-[26px] tracking-tight text-brand-blue">financie</span>
+                    <span class="font-display font-extrabold text-2xl sm:text-[26px] tracking-tight text-brand-green -mt-1.5">suaobra</span>
+                    <span class="font-sans font-semibold text-[11px] text-brand-blue self-end -mt-1">.com.br</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav id="publicNav" class="hidden lg:flex items-center gap-7 text-sm font-semibold text-slate-700">
+                <a href="#modalidades" class="hover:text-brand-green transition">Modalidades Caixa</a>
+                <a href="#vantagens" class="hover:text-brand-green transition">Construir vs. Comprar</a>
+                <a href="#grupo" class="hover:text-brand-green transition">O Grupo</a>
+                <a href="#simulador" class="text-brand-blue hover:text-brand-green transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-calculator text-brand-green"></i> Simulador de Crédito
+                </a>
+                <a href="#obras" class="hover:text-brand-green transition">Obras Financiadas</a>
+            </nav>
+
+            <!-- CTA & Mobile Menu Button -->
+            <div class="flex items-center gap-3">
+                <a href="#" id="headerWhatsappBtn" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 bg-brand-green hover:bg-brand-greenDark text-white font-semibold text-sm px-5 py-2.5 rounded-xl shadow-md shadow-brand-green/20 transition transform hover:-translate-y-0.5">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Falar com Especialista</span>
+                </a>
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl text-brand-blue hover:bg-brand-ice focus:outline-none" aria-label="Abrir Menu">
+                    <i class="fa-solid fa-bars text-xl" id="mobileMenuIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#modalidades" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg font-semibold text-slate-700 hover:bg-brand-ice hover:text-brand-green">Modalidades Caixa</a>
+            <a href="#vantagens" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg font-semibold text-slate-700 hover:bg-brand-ice hover:text-brand-green">Vantagens de Construir</a>
+            <a href="#grupo" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg font-semibold text-slate-700 hover:bg-brand-ice hover:text-brand-green">Grupo Geminadas.com & Level</a>
+            <a href="#simulador" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg font-semibold text-brand-blue bg-brand-ice/70">Simulador de Crédito Caixa</a>
+            <a href="#obras" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg font-semibold text-slate-700 hover:bg-brand-ice hover:text-brand-green">Obras Realizadas</a>
+            <div class="pt-2 flex flex-col gap-2">
+                <button onclick="toggleMobileMenu(); toggleView('admin');" class="w-full py-2.5 px-4 rounded-xl font-semibold text-sm bg-slate-100 text-brand-blue flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-sliders"></i> Acessar Painel Admin
+                </button>
+                <a href="#" id="mobileWhatsappBtn" target="_blank" rel="noopener noreferrer" class="w-full py-3 px-4 rounded-xl font-bold text-sm bg-brand-green text-white flex items-center justify-center gap-2 shadow-md">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Falar no WhatsApp Agora
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- PUBLIC WEBSITE VIEW                        -->
+    <!-- ========================================== -->
+    <main id="publicView">
+
+        <!-- HERO SECTION -->
+        <section id="inicio" class="relative overflow-hidden bg-gradient-to-br from-brand-blueDark via-brand-blue to-[#123d6b] text-white pt-12 pb-20 lg:py-24">
+            <!-- Subtle Architectural Grid Background -->
+            <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#138A59 1px, transparent 1px), radial-gradient(#ffffff 1px, #0F3156 1px); background-size: 40px 40px;"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Column: Copy & Value Proposition -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/15 px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium text-emerald-300">
+                            <span class="w-2 h-2 rounded-full bg-brand-greenLight animate-ping"></span>
+                            <span data-editable="true" id="editBadgeHero">Grupo <strong class="text-white">Geminadas.com</strong> Arquitetura & <strong class="text-white">Level</strong> Construtora</span>
+                        </div>
+                        
+                        <h1 id="heroHeadline" data-editable="true" class="font-display font-extrabold text-3xl sm:text-5xl lg:text-[52px] leading-[1.12] tracking-tight">
+                            Construa sua Casa de Médio ou Alto Padrão com <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-brand-greenLight">Recursos da Caixa.</span>
+                        </h1>
+                        
+                        <p id="heroSubheadline" data-editable="true" class="text-slate-200 text-base sm:text-lg leading-relaxed max-w-2xl">
+                            Já tem terreno ou quer adquirir <strong>Terreno + Construção</strong> em um único contrato? Da aprovação do crédito e projeto arquitetônico autoral até a entrega das chaves, você economiza até <strong>30%</strong> em relação a comprar um imóvel pronto.
+                        </p>
+
+                        <!-- Hero Action Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                            <a href="#simulador" class="inline-flex items-center justify-center gap-3 bg-brand-green hover:bg-brand-greenLight text-white font-bold px-7 py-4 rounded-2xl shadow-lg shadow-brand-green/30 transition transform hover:-translate-y-0.5 text-base">
+                                <i class="fa-solid fa-calculator"></i>
+                                <span>Simular Meu Crédito Agora</span>
+                            </a>
+                            <a href="#" id="heroWhatsappBtn" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 bg-white text-brand-blue hover:bg-emerald-50 font-bold px-7 py-4 rounded-2xl shadow-lg transition transform hover:-translate-y-0.5 text-base">
+                                <i class="fa-brands fa-whatsapp text-brand-green text-xl"></i>
+                                <span id="heroWhatsappLabel">WhatsApp Especialista</span>
+                            </a>
+                        </div>
+
+                        <!-- Quick Connect Bar: Social Media & Official Channels on Homepage -->
+                        <div class="pt-3 flex flex-wrap items-center gap-3">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-emerald-300 flex items-center gap-1.5">
+                                <i class="fa-solid fa-share-nodes"></i> Siga e Acompanhe Nossas Obras:
+                            </span>
+                            <div id="heroSocialBadges" class="flex flex-wrap items-center gap-2">
+                                <!-- Populated dynamically via JS from Admin Settings -->
+                            </div>
+                        </div>
+
+                        <!-- Key Trust Metrics -->
+                        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10">
+                            <div>
+                                <div class="font-display font-extrabold text-2xl sm:text-3xl text-emerald-400" data-editable="true">100%</div>
+                                <div class="text-xs sm:text-sm text-slate-300" data-editable="true">Chave na Mão: Crédito + Projeto + Obra</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: INTERACTIVE LIVE COMPARATOR & SLIDER WIDGET DIRECTLY ON HERO -->
+                    <div class="lg:col-span-5">
+                        <div id="heroInteractiveWidget" class="bg-white rounded-3xl p-6 sm:p-7 text-slate-800 shadow-2xl border-2 border-emerald-400/40 relative transition-all">
+                            <!-- Floating Interactive Badge -->
+                            <div class="absolute -top-3.5 right-6 bg-brand-green text-white text-[11px] font-bold px-3.5 py-1 rounded-full shadow-md flex items-center gap-1.5">
+                                <i class="fa-solid fa-sliders"></i> Arraste a Barra ou Edite o Valor
+                            </div>
+
+                            <!-- Header with Editable Area & Title -->
+                            <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+                                <div>
+                                    <span class="text-[11px] font-bold uppercase tracking-wider text-brand-green flex items-center gap-1">
+                                        <i class="fa-solid fa-bolt"></i> Simulador Rápido ao Vivo
+                                    </span>
+                                    <h3 class="font-display font-extrabold text-lg sm:text-xl text-brand-blue flex flex-wrap items-center gap-1.5 mt-0.5">
+                                        <span data-editable="true" id="heroCardTitleText">Casa Alto Padrão</span>
+                                        <span id="heroCardSqmBadge" class="bg-brand-ice text-brand-green text-xs font-extrabold px-2.5 py-0.5 rounded-lg border border-brand-green/20">(~220 m²)</span>
+                                    </h3>
+                                </div>
+                                <div class="bg-brand-ice p-2.5 rounded-2xl text-brand-blue shrink-0">
+                                    <i class="fa-solid fa-building-columns text-xl"></i>
+                                </div>
+                            </div>
+
+                            <!-- INTERACTIVE SLIDER 1: ORÇAMENTO CONSTRUINDO CONOSCO (EDITABLE INPUT + SLIDER) -->
+                            <div class="mb-4 p-3.5 rounded-2xl bg-brand-ice/90 border border-slate-200/90">
+                                <div class="flex justify-between items-center mb-1.5">
+                                    <label for="heroCostSlider" class="text-xs font-bold text-brand-blue flex items-center gap-1">
+                                        <i class="fa-solid fa-arrows-left-right text-brand-green"></i> Seu Investimento (Terreno + Obra):
+                                    </label>
+                                    <div class="flex items-center bg-white border border-brand-green/40 rounded-lg px-2 py-0.5 shadow-sm">
+                                        <span class="text-xs font-bold text-brand-green mr-1">R$</span>
+                                        <input type="text" id="heroCostInputDirect" value="1.020.000" onchange="handleHeroDirectInput(this.value)" class="w-24 text-right font-display font-extrabold text-sm text-brand-blue focus:outline-none" title="Clique para digitar qualquer valor até R$ 2.250.000 (Teto SFH)">
+                                    </div>
+                                </div>
+                                <input type="range" id="heroCostSlider" min="300000" max="2250000" step="10000" value="1020000" oninput="updateHeroInteractiveCard()" class="w-full">
+                                <div class="flex justify-between text-[10px] font-semibold text-slate-400 mt-1">
+                                    <span>R$ 300 mil</span>
+                                    <span class="text-brand-green font-bold">◄ Arraste a barra ►</span>
+                                    <span class="text-brand-blue font-bold">R$ 2,25 mi (Teto SFH)</span>
+                                </div>
+                            </div>
+
+                            <!-- INTERACTIVE SLIDER 2: PERCENTUAL FINANCIADO PELA CAIXA VS ENTRADA -->
+                            <div class="mb-4 px-3 py-2.5 rounded-2xl bg-slate-50 border border-slate-200/70">
+                                <div class="flex justify-between items-center text-xs mb-1">
+                                    <span class="font-semibold text-slate-600">Cota Financiada Caixa: <strong id="heroQuotaLabel" class="text-brand-blue">80%</strong></span>
+                                    <span class="font-bold text-brand-green" id="heroCaixaFinancedValue">Crédito: R$ 816.000</span>
+                                </div>
+                                <input type="range" id="heroQuotaSlider" min="50" max="80" step="5" value="80" oninput="updateHeroInteractiveCard()" class="w-full">
+                                <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                                    <span id="heroEntryRequiredLabel">Entrada/Terreno (20%): R$ 204.000</span>
+                                    <span id="heroEstimatedInstallment" class="font-semibold text-brand-blue">1ª Parc. ~R$ 7.980</span>
+                                </div>
+                            </div>
+
+                            <!-- LIVE DYNAMIC COMPARISON BARS -->
+                            <div class="space-y-3">
+                                <!-- Bar 1: Comprar Pronta no Mercado -->
+                                <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80">
+                                    <div class="flex justify-between items-center text-xs sm:text-sm mb-1.5">
+                                        <span class="font-semibold text-slate-600" data-editable="true">Comprar Casa Pronta Equivalente</span>
+                                        <span id="heroReadyMarketPrice" class="font-extrabold text-red-600">R$ 1.448.400</span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
+                                        <div id="heroBarMarket" class="bg-red-500 h-full rounded-full transition-all duration-300" style="width: 100%"></div>
+                                    </div>
+                                    <p class="text-[11px] text-slate-500 mt-1" data-editable="true">Inclui lucro do incorporador (+30%), corretagem e ITBI cheio.</p>
+                                </div>
+
+                                <!-- Bar 2: Construir Conosco via Caixa -->
+                                <div class="p-3.5 rounded-2xl bg-emerald-50/80 border-2 border-brand-green relative">
+                                    <div class="flex justify-between items-center text-xs sm:text-sm mb-1.5">
+                                        <span class="font-bold text-brand-blue flex items-center gap-1.5">
+                                            <i class="fa-solid fa-circle-check text-brand-green"></i> <span data-editable="true">Construir Conosco via Caixa</span>
+                                        </span>
+                                        <span id="heroBuildWithUsPrice" class="font-extrabold text-brand-green text-sm sm:text-base">R$ 1.020.000</span>
+                                    </div>
+                                    <div class="w-full bg-emerald-200 h-2.5 rounded-full overflow-hidden">
+                                        <div id="heroBarBuild" class="bg-brand-green h-full rounded-full transition-all duration-300" style="width: 70%"></div>
+                                    </div>
+                                    <p class="text-[11px] text-slate-600 mt-1" data-editable="true">Custo real + Projeto <strong>Geminadas.com</strong> + Execução <strong>Level</strong>.</p>
+                                </div>
+                            </div>
+
+                            <!-- Immediate Equity Gain Box -->
+                            <div class="mt-4 bg-brand-blue text-white p-4 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                <div>
+                                    <div class="text-[11px] text-emerald-300 font-medium" data-editable="true">Economia / Valorização Imediata:</div>
+                                    <div id="heroEquitySavingsValue" class="font-display font-extrabold text-xl sm:text-2xl text-white">+ R$ 428.400</div>
+                                </div>
+                                <button type="button" onclick="sendHeroQuickSimToWhatsApp()" class="bg-brand-green hover:bg-brand-greenLight text-white text-xs font-bold px-4 py-3 rounded-xl transition flex items-center justify-center gap-1.5 shadow-md shrink-0">
+                                    <i class="fa-brands fa-whatsapp text-sm"></i> Enviar Simulação
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- MODALIDADES DE FINANCIAMENTO CAIXA -->
+        <section id="modalidades" class="py-16 lg:py-24 bg-brand-ice">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <span class="inline-block bg-brand-blue/10 text-brand-blue font-bold text-xs uppercase tracking-widest px-3.5 py-1.5 rounded-full mb-3">
+                        Crédito Inteligente Caixa
+                    </span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-blue">
+                        Duas Modalidades para Tirar Sua Casa do Papel
+                    </h2>
+                    <p class="text-slate-600 mt-3 text-base sm:text-lg">
+                        Não importa se você já possui um lote ou se ainda está escolhendo o condomínio ideal: a <strong>financiesuaobra.com.br</strong> aprova e gerencia todo o processo junto à Caixa.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Modalidade 1: Aquisição de Terreno + Construção -->
+                    <div class="bg-white rounded-3xl p-8 shadow-lg border border-slate-100 hover:border-brand-green transition flex flex-col justify-between relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-green/5 rounded-bl-full -z-0 transition group-hover:scale-110"></div>
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-brand-blue text-white flex items-center justify-center text-2xl mb-6 shadow-md">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                            </div>
+                            <span class="bg-emerald-100 text-brand-greenDark text-xs font-bold px-3 py-1 rounded-full">Modalidade Mais Procurada</span>
+                            <h3 class="font-display font-extrabold text-2xl text-brand-blue mt-3">
+                                1. Aquisição de Terreno + Construção
+                            </h3>
+                            <p class="text-slate-600 mt-3 leading-relaxed">
+                                Ideal para quem ainda não tem terreno. A Caixa Econômica financia <strong>a compra do lote e toda a construção da residência em um único contrato</strong>, com as menores taxas do mercado imobiliário.
+                            </p>
+                            <ul class="mt-6 space-y-3 text-sm text-slate-700">
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-brand-green mt-1"></i>
+                                    <span><strong>Até 80% de financiamento</strong> do valor global (Terreno + Obra).</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-brand-green mt-1"></i>
+                                    <span><strong>Uso do FGTS:</strong> Utilize seu saldo para abater a entrada ou reduzir o valor financiado.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-brand-green mt-1"></i>
+                                    <span><strong>Assessoria na Escolha do Lote:</strong> Avaliamos a topografia antes da compra para economizar em fundação e muro de arrimo.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-slate-500">Prazo de até 420 meses (35 anos)</span>
+                            <a href="#simulador" onclick="selectModalityInSimulator('terreno_construcao')" class="inline-flex items-center gap-2 text-brand-green font-bold text-sm hover:text-brand-blue transition">
+                                Simular Terreno + Obra <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Modalidade 2: Construção em Terreno Próprio -->
+                    <div class="bg-white rounded-3xl p-8 shadow-lg border border-slate-100 hover:border-brand-blue transition flex flex-col justify-between relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-blue/5 rounded-bl-full -z-0 transition group-hover:scale-110"></div>
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-brand-green text-white flex items-center justify-center text-2xl mb-6 shadow-md">
+                                <i class="fa-solid fa-trowel-bricks"></i>
+                            </div>
+                            <span class="bg-blue-100 text-brand-blue text-xs font-bold px-3 py-1 rounded-full">Zero Descapitalização</span>
+                            <h3 class="font-display font-extrabold text-2xl text-brand-blue mt-3">
+                                2. Construção em Terreno Próprio
+                            </h3>
+                            <p class="text-slate-600 mt-3 leading-relaxed">
+                                Para você que já possui um terreno quitado em condomínio fechado ou bairro. O seu próprio lote entra como garantia e compõe o percentual de entrada da operação, permitindo financiar <strong>até 100% do custo da obra</strong>.
+                            </p>
+                            <ul class="mt-6 space-y-3 text-sm text-slate-700">
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-brand-green mt-1"></i>
+                                    <span><strong>Seu Terreno Vale como Entrada:</strong> Construa sem precisar tirar recursos das suas aplicações financeiras.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-brand-green mt-1"></i>
+                                    <span><strong>Carência Durante a Obra:</strong> Enquanto a Level Construtora executa sua casa, você paga apenas os juros proporcionais às etapas liberadas.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-brand-green mt-1"></i>
+                                    <span><strong>Projetos Sob Medida:</strong> A Geminadas.com cria uma planta exclusiva para o perfil da sua família.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-slate-500">Liberação por etapas (PLS Caixa)</span>
+                            <a href="#simulador" onclick="selectModalityInSimulator('terreno_proprio')" class="inline-flex items-center gap-2 text-brand-blue font-bold text-sm hover:text-brand-green transition">
+                                Simular em Terreno Próprio <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VANTAGENS: POR QUE CONSTRUIR AO INVÉS DE COMPRAR PRONTA -->
+        <section id="vantagens" class="py-16 lg:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-5 space-y-5">
+                        <span class="inline-block bg-emerald-100 text-brand-greenDark font-bold text-xs uppercase tracking-widest px-3.5 py-1.5 rounded-full" data-editable="true">
+                            Construir vs. Comprar Pronta
+                        </span>
+                        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-blue leading-tight" data-editable="true">
+                            Por que construir financiado é muito mais vantajoso do que comprar um imóvel pronto?
+                        </h2>
+                        <p class="text-slate-600 leading-relaxed" data-editable="true">
+                            Quem compra uma casa pronta paga o lucro do construtor/investidor (geralmente entre 25% e 35%), além de comissão imobiliária e ITBI sobre o valor cheio. Quando você constrói com a <strong>financiesuaobra.com.br</strong>, esse lucro fica no patrimônio da sua família.
+                        </p>
+
+                        <!-- INTERACTIVE SQM COMPARATOR BAR DIRECTLY IN ADVANTAGES SECTION -->
+                        <div class="p-5 rounded-3xl bg-brand-ice border-2 border-brand-green/30 shadow-sm space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-brand-blue flex items-center gap-1.5">
+                                    <i class="fa-solid fa-sliders text-brand-green"></i> Simule por Tamanho da Casa (m²):
+                                </span>
+                                <span id="vantagensSqmLabel" class="font-display font-extrabold text-lg text-brand-green bg-white px-3 py-1 rounded-xl border border-brand-green/20">200 m²</span>
+                            </div>
+                            <input type="range" id="vantagensSqmSlider" min="100" max="450" step="10" value="200" oninput="updateVantagensInteractive()">
+                            <div class="space-y-2 text-xs">
+                                <div class="flex justify-between">
+                                    <span class="text-slate-600">Comprar Pronta (<span id="vantagensSqmEcho1">200</span>m²):</span>
+                                    <strong id="vantagensMarketVal" class="text-red-600">R$ 1.320.000</strong>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-brand-blue font-semibold">Construir Conosco (<span id="vantagensSqmEcho2">200</span>m²):</span>
+                                    <strong id="vantagensBuildVal" class="text-brand-green">R$ 930.000</strong>
+                                </div>
+                                <div class="pt-2 border-t border-slate-200 flex justify-between items-center text-sm">
+                                    <span class="font-bold text-brand-blue">Você Economiza / Ganha:</span>
+                                    <span id="vantagensSavingsVal" class="font-display font-extrabold text-brand-green text-base">+ R$ 390.000</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="p-5 rounded-2xl bg-brand-ice border-l-4 border-brand-green space-y-2">
+                            <div class="font-display font-bold text-brand-blue flex items-center gap-2" data-editable="true">
+                                <i class="fa-solid fa-gem text-brand-green"></i> Economia no ITBI e Cartório
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-600" data-editable="true">
+                                Na construção financiada, o imposto de transmissão (ITBI) incide <strong>apenas sobre o valor do terreno</strong>, e não sobre a casa pronta — gerando uma economia imediata de dezenas de milhares de reais em taxas.
+                            </p>
+                        </div>
+
+                        <div class="pt-2">
+                            <a href="#simulador" class="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blueLight text-white font-bold px-6 py-3.5 rounded-xl shadow-md transition">
+                                <span>Descobrir Quanto Posso Economizar</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 4 Pillars Grid -->
+                    <div class="lg:col-span-7 grid sm:grid-cols-2 gap-6">
+                        <!-- Card 1 -->
+                        <div class="p-6 rounded-2xl bg-brand-ice/70 border border-slate-200/70 hover:shadow-md transition">
+                            <div class="w-12 h-12 rounded-xl bg-brand-green/15 text-brand-green flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-sack-dollar"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-lg text-brand-blue">Até 35% Mais Barato por m²</h3>
+                            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                                Você constrói a preço de custo contratado. Ao final da obra, sua residência vale no mercado até 35% a mais do que o valor investido.
+                            </p>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="p-6 rounded-2xl bg-brand-ice/70 border border-slate-200/70 hover:shadow-md transition">
+                            <div class="w-12 h-12 rounded-xl bg-brand-blue/15 text-brand-blue flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-compass-drafting"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-lg text-brand-blue">Personalização 100% Autoral</h3>
+                            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                                Nada de reformas quebrando paredes depois de comprar. O escritório <strong>Geminadas.com</strong> projeta cada suíte, área gourmet, piscina e fachada exatamente para o seu estilo de vida.
+                            </p>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="p-6 rounded-2xl bg-brand-ice/70 border border-slate-200/70 hover:shadow-md transition">
+                            <div class="w-12 h-12 rounded-xl bg-brand-green/15 text-brand-green flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-helmet-safety"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-lg text-brand-blue">Rigor Técnico Level Construtora</h3>
+                            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                                Imóveis feitos para venda rápida costumam economizar no que você não vê. Com a <strong>Level</strong>, você acompanha fundação, impermeabilização, estrutura e acabamentos premium com garantia total.
+                            </p>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="p-6 rounded-2xl bg-brand-ice/70 border border-slate-200/70 hover:shadow-md transition">
+                            <div class="w-12 h-12 rounded-xl bg-brand-blue/15 text-brand-blue flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-lg text-brand-blue">Alavancagem Patrimonial</h3>
+                            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                                Mantenha seu capital investido rendendo acima da taxa do financiamento habitacional Caixa e construa patrimônio sólido usando recursos subsidiados.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- O GRUPO: ECOSSISTEMA GEMINADAS.COM + LEVEL + FINANCIESUAOBRA -->
+        <section id="grupo" class="py-16 lg:py-20 bg-brand-blue text-white relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <span class="inline-block bg-white/10 text-emerald-300 font-bold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full mb-3">
+                        Solução Turnkey (Chave na Mão)
+                    </span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl">
+                        A Força de 3 Empresas Especialistas Trabalhando pela Sua Casa
+                    </h2>
+                    <p class="text-slate-300 mt-3 text-base sm:text-lg">
+                        Esqueça a dor de cabeça de lidar com despachantes bancários, arquitetos e empreiteiros separados. Nosso grupo integra todas as pontas em um único contrato seguro.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Step 1: financiesuaobra.com.br -->
+                    <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-3xl p-7 relative">
+                        <div class="w-10 h-10 rounded-full bg-brand-green text-white font-display font-bold flex items-center justify-center text-lg mb-5">1</div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-emerald-300">Engenharia Financeira Caixa</div>
+                        <h3 class="font-display font-extrabold text-2xl mt-1">financiesuaobra.com.br</h3>
+                        <p class="text-slate-200 text-sm mt-3 leading-relaxed">
+                            Realizamos a análise de crédito, aprovação junto à Caixa Econômica, elaboração das planilhas PFUI/PLS de engenharia bancária, liberação do FGTS e gestão de vistorias para liberação das etapas.
+                        </p>
+                    </div>
+
+                    <!-- Step 2: Geminadas.com -->
+                    <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-3xl p-7 relative">
+                        <div class="w-10 h-10 rounded-full bg-brand-green text-white font-display font-bold flex items-center justify-center text-lg mb-5">2</div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-emerald-300">Escritório de Arquitetura</div>
+                        <h3 class="font-display font-extrabold text-2xl mt-1">Geminadas.com</h3>
+                        <p class="text-slate-200 text-sm mt-3 leading-relaxed">
+                            Nosso escritório desenvolve projetos arquitetônicos de médio e alto padrão, fachadas imponentes, plantas inteligentes com iluminação natural, maquete 3D realista e todos os projetos complementares de engenharia.
+                        </p>
+                    </div>
+
+                    <!-- Step 3: Level Construtora -->
+                    <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-3xl p-7 relative">
+                        <div class="w-10 h-10 rounded-full bg-brand-green text-white font-display font-bold flex items-center justify-center text-lg mb-5">3</div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-emerald-300">Execução de Excelência</div>
+                        <h3 class="font-display font-extrabold text-2xl mt-1">Level Construtora</h3>
+                        <p class="text-slate-200 text-sm mt-3 leading-relaxed">
+                            Nossa construtora assume a execução integral da obra, gestão de suprimentos, mão de obra qualificada, cumprimento rigoroso do cronograma físico-financeiro da Caixa até o Habite-se e entrega das chaves.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SIMULADOR DE CRÉDITO CAIXA INTERATIVO -->
+        <section id="simulador" class="py-16 lg:py-24 bg-brand-ice">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="inline-block bg-brand-green/15 text-brand-greenDark font-bold text-xs uppercase tracking-widest px-3.5 py-1.5 rounded-full mb-3">
+                        Simulador Online Caixa
+                    </span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-blue">
+                        Simule o Financiamento da Sua Construção
+                    </h2>
+                    <p class="text-slate-600 mt-2 text-base">
+                        Personalize os valores de terreno, padrão construtivo e entrada para descobrir as parcelas estimadas e o ganho patrimonial da sua obra.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-xl border border-slate-200/80 overflow-hidden grid lg:grid-cols-12">
+                    
+                    <!-- Left Side: Interactive Controls -->
+                    <div class="lg:col-span-7 p-6 sm:p-10 space-y-7">
+                        
+                        <!-- 1. Modalidade Selection -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">1. Escolha a Modalidade Caixa</label>
+                            <div class="grid sm:grid-cols-2 gap-3">
+                                <button type="button" id="btnModTerrenoObra" onclick="setSimModality('terreno_construcao')" class="p-4 rounded-2xl border-2 border-brand-green bg-emerald-50/50 text-left transition flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-brand-green text-white flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-map-location-dot"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-display font-bold text-sm text-brand-blue">Terreno + Construção</div>
+                                        <div class="text-xs text-slate-500">Ainda vou comprar o lote</div>
+                                    </div>
+                                </button>
+                                <button type="button" id="btnModTerrenoProprio" onclick="setSimModality('terreno_proprio')" class="p-4 rounded-2xl border-2 border-slate-200 hover:border-brand-blue text-left transition flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-slate-100 text-brand-blue flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-trowel-bricks"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-display font-bold text-sm text-brand-blue">Já Tenho Terreno</div>
+                                        <div class="text-xs text-slate-500">Usar meu lote na operação</div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 2. Padrão Construtivo (Level Construtora + Geminadas.com) -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">2. Padrão da Residência Desejada</label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <button type="button" onclick="setSimStandard('medio')" id="stdMedio" class="py-2.5 px-3 rounded-xl border-2 border-slate-200 text-xs sm:text-sm font-bold text-slate-700 hover:border-brand-blue transition">
+                                    Médio Padrão
+                                </button>
+                                <button type="button" onclick="setSimStandard('alto')" id="stdAlto" class="py-2.5 px-3 rounded-xl border-2 border-brand-blue bg-brand-blue text-white text-xs sm:text-sm font-bold transition">
+                                    Alto Padrão
+                                </button>
+                                <button type="button" onclick="setSimStandard('luxo')" id="stdLuxo" class="py-2.5 px-3 rounded-xl border-2 border-slate-200 text-xs sm:text-sm font-bold text-slate-700 hover:border-brand-blue transition">
+                                    Alto Luxo
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 3. Sliders for Values -->
+                        <div class="space-y-6">
+                            <!-- SFH Ceiling Badge -->
+                            <div class="p-3 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-between gap-2">
+                                <div class="flex items-center gap-2 text-xs font-bold text-brand-blue">
+                                    <i class="fa-solid fa-shield-halved text-brand-green text-sm"></i>
+                                    <span>Teto SFH Caixa: <strong>R$ 2,25 milhões</strong> (uso de FGTS e taxas reduzidas)</span>
+                                </div>
+                                <span id="sfhLimitBadge" class="hidden text-[10px] font-extrabold uppercase bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full shrink-0">
+                                    Limite SFH Atingido
+                                </span>
+                            </div>
+
+                            <!-- Valor do Terreno -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label for="simTerrenoRange" class="text-sm font-semibold text-slate-700" id="labelTerreno">Valor do Terreno Desejado:</label>
+                                    <span id="simTerrenoDisplay" class="font-display font-extrabold text-lg text-brand-blue">R$ 250.000</span>
+                                </div>
+                                <input type="range" id="simTerrenoRange" min="80000" max="1500000" step="10000" value="250000" oninput="updateSimulation('terreno')">
+                                <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                                    <span>R$ 80 mil</span>
+                                    <span>R$ 1,5 milhão</span>
+                                </div>
+                            </div>
+
+                            <!-- Valor da Construção / Obra -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label for="simObraRange" class="text-sm font-semibold text-slate-700">Orçamento Estimado para a Construção:</label>
+                                    <div class="text-right">
+                                        <span id="simObraDisplay" class="font-display font-extrabold text-lg text-brand-green">R$ 550.000</span>
+                                        <span id="simAreaEstimada" class="block text-[11px] text-slate-500">Área aprox. sugerida: ~155 m²</span>
+                                    </div>
+                                </div>
+                                <input type="range" id="simObraRange" min="200000" max="2050000" step="10000" value="550000" oninput="updateSimulation('obra')">
+                                <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                                    <span>R$ 200 mil</span>
+                                    <span>Teto Global (Terreno + Obra): R$ 2,25 milhões</span>
+                                </div>
+                            </div>
+
+                            <!-- Recursos Próprios + FGTS -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label for="simEntradaRange" class="text-sm font-semibold text-slate-700">Entrada em Dinheiro + Saldo FGTS:</label>
+                                    <span id="simEntradaDisplay" class="font-display font-extrabold text-lg text-brand-blue">R$ 160.000</span>
+                                </div>
+                                <input type="range" id="simEntradaRange" min="0" max="1000000" step="10000" value="160000" oninput="updateSimulation()">
+                                <p id="simEntradaNotice" class="text-xs text-slate-500 mt-1">
+                                    * A Caixa financia até 80% do valor global. Na modalidade Terreno Próprio, o lote quitado já abatido pode cobrir 100% da entrada exigida.
+                                </p>
+                            </div>
+
+                            <!-- Prazo e Amortização -->
+                            <div class="grid sm:grid-cols-2 gap-4 pt-2">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Prazo (Meses)</label>
+                                    <select id="simPrazoSelect" onchange="updateSimulation()" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm font-semibold text-brand-blue focus:outline-none focus:border-brand-green">
+                                        <option value="420" selected>420 meses (35 anos)</option>
+                                        <option value="360">360 meses (30 anos)</option>
+                                        <option value="300">300 meses (25 anos)</option>
+                                        <option value="240">240 meses (20 anos)</option>
+                                        <option value="180">180 meses (15 anos)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Nome (Opcional p/ WhatsApp)</label>
+                                    <input type="text" id="simClientName" placeholder="Ex: Dr. Rodrigo Silva" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-brand-green">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Real-Time Calculation Results -->
+                    <div class="lg:col-span-5 bg-brand-blue text-white p-6 sm:p-10 flex flex-col justify-between relative">
+                        <div>
+                            <div class="flex items-center justify-between border-b border-white/15 pb-4 mb-6">
+                                <div>
+                                    <span class="text-xs uppercase tracking-wider text-emerald-300 font-bold">Resumo da Simulação (Teto SFH R$ 2,25 mi)</span>
+                                    <h3 class="font-display font-bold text-xl">Viabilidade Caixa Econômica</h3>
+                                </div>
+                                <i class="fa-solid fa-file-invoice-dollar text-2xl text-emerald-400"></i>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-slate-300">Investimento Total (Terreno + Obra):</span>
+                                    <span id="resTotalProject" class="font-bold text-base">R$ 800.000,00</span>
+                                </div>
+
+                                <div class="bg-white/10 rounded-2xl p-4 border border-white/15">
+                                    <div class="text-xs text-emerald-300 font-medium">Crédito Liberado pela Caixa (Financiado):</div>
+                                    <div id="resFinancedAmount" class="font-display font-extrabold text-3xl text-white mt-0.5">R$ 640.000,00</div>
+                                    <div id="resEntrySummary" class="text-xs text-slate-300 mt-1">Entrada + FGTS: R$ 160.000,00 (20%)</div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                                        <div class="text-[11px] text-slate-300">1ª Parcela Estimada (SAC)</div>
+                                        <div id="resFirstInstallment" class="font-display font-bold text-lg text-emerald-300 mt-0.5">R$ 6.320</div>
+                                    </div>
+                                    <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                                        <div class="text-[11px] text-slate-300">Última Parcela Estimada</div>
+                                        <div id="resLastInstallment" class="font-display font-bold text-lg text-white mt-0.5">R$ 1.560</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-between items-center text-xs sm:text-sm pt-2 border-t border-white/10">
+                                    <span class="text-slate-300">Renda Familiar Bruta Recomendada:</span>
+                                    <span id="resRequiredIncome" class="font-bold text-emerald-300">R$ 21.000/mês</span>
+                                </div>
+
+                                <!-- Equity Valuation Highlight -->
+                                <div class="bg-gradient-to-r from-brand-greenDark to-brand-green rounded-2xl p-4 mt-4 shadow-inner">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-100">Valor de Mercado Após Pronta</span>
+                                        <span class="bg-white/20 text-white text-[11px] font-bold px-2 py-0.5 rounded-md">+28% Valorização</span>
+                                    </div>
+                                    <div id="resMarketValuation" class="font-display font-extrabold text-2xl text-white mt-1">R$ 1.024.000,00</div>
+                                    <div id="resNetEquityGain" class="text-xs text-emerald-100 mt-0.5">Lucro patrimonial imediato estimado: <strong>+ R$ 224.000,00</strong></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 space-y-3">
+                            <button type="button" onclick="sendSimulationToWhatsApp()" class="w-full py-4 px-6 rounded-2xl bg-brand-green hover:bg-brand-greenLight text-white font-display font-bold text-base shadow-lg shadow-brand-green/40 transition flex items-center justify-center gap-2.5">
+                                <i class="fa-brands fa-whatsapp text-xl"></i>
+                                <span>Receber Estudo Completo no WhatsApp</span>
+                            </button>
+                            <p class="text-[11px] text-center text-slate-300">
+                                Simulação referencial baseada nas taxas SBPE/Caixa vigentes (<span id="resRateDisplay">9,89%</span> a.a. + TR). Aprovação sujeita à análise de crédito.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFÓLIO DE OBRAS FINANCIADAS (COM FOTOS E PLANTA BAIXA) -->
+        <section id="obras" class="py-16 lg:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                    <div>
+                        <span class="inline-block bg-brand-blue/10 text-brand-blue font-bold text-xs uppercase tracking-widest px-3.5 py-1.5 rounded-full mb-3">
+                            Portfólio Realizado
+                        </span>
+                        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-blue">
+                            Obras Construídas com Financiamento Caixa
+                        </h2>
+                        <p class="text-slate-600 mt-2 max-w-2xl">
+                            Confira casas de médio e alto padrão projetadas pela <strong>Geminadas.com</strong> e executadas pela <strong>Level Construtora</strong> através da <strong>financiesuaobra.com.br</strong>. Clique para ver <strong>Fotos e Planta Baixa</strong>.
+                        </p>
+                    </div>
+
+                    <!-- Filter Buttons -->
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="filterProjects('all')" id="filter-all" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-brand-blue text-white transition">
+                            Todas as Obras
+                        </button>
+                        <button onclick="filterProjects('Terreno + Construção')" id="filter-tc" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-brand-ice text-slate-700 hover:bg-slate-200 transition">
+                            Terreno + Construção
+                        </button>
+                        <button onclick="filterProjects('Construção em Terreno Próprio')" id="filter-tp" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-brand-ice text-slate-700 hover:bg-slate-200 transition">
+                            Terreno Próprio
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Projects Grid -->
+                <div id="projectsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Populated via JS -->
+                </div>
+
+                <!-- Admin Quick Shortcut Banner -->
+                <div class="mt-14 bg-brand-ice rounded-3xl p-6 sm:p-8 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-blue text-white flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-folder-plus"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-display font-bold text-lg text-brand-blue">É gestor da financiesuaobra.com.br?</h4>
+                            <p class="text-sm text-slate-600">Cadastre novas obras entregues, plantas baixas, fotos e personalize o WhatsApp e redes sociais no Painel Admin.</p>
+                        </div>
+                    </div>
+                    <button onclick="toggleView('admin')" class="shrink-0 bg-white hover:bg-brand-blue hover:text-white text-brand-blue border border-brand-blue font-bold text-sm px-5 py-3 rounded-xl transition flex items-center gap-2">
+                        <i class="fa-solid fa-sliders"></i> Gerenciar Obras no Admin
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================== -->
+    <!-- ADMIN PANEL VIEW (CUSTOMIZATION & CMS)     -->
+    <!-- ========================================== -->
+    <section id="adminView" class="hidden min-h-screen bg-brand-ice py-10 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto space-y-8">
+            
+            <!-- Admin Header -->
+            <div class="bg-brand-blue text-white rounded-3xl p-6 sm:p-8 shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-brand-green px-3 py-1 rounded-full text-xs font-bold mb-2">
+                        <i class="fa-solid fa-shield-halved"></i> Painel Administrativo • Personalização em Tempo Real
+                    </div>
+                    <h1 class="font-display font-extrabold text-2xl sm:text-3xl">Gestão financiesuaobra.com.br</h1>
+                    <p class="text-slate-300 text-sm mt-1">Configure abaixo o WhatsApp, Instagram, Facebook, YouTube, Ícone da Aba do Site (Favicon) e cadastre suas Obras Financiadas.</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                    <button type="button" onclick="exportBackupJson()" class="bg-white/10 hover:bg-white/20 text-white font-semibold text-xs px-4 py-3 rounded-xl transition flex items-center gap-2" title="Baixar Backup dos Dados">
+                        <i class="fa-solid fa-download"></i> Exportar Backup
+                    </button>
+                    <label class="cursor-pointer bg-white/10 hover:bg-white/20 text-white font-semibold text-xs px-4 py-3 rounded-xl transition flex items-center gap-2" title="Restaurar Backup">
+                        <i class="fa-solid fa-upload"></i> Importar
+                        <input type="file" accept=".json" class="hidden" onchange="importBackupJson(event)">
+                    </label>
+                    <button onclick="toggleView('public')" class="bg-white text-brand-blue hover:bg-emerald-50 font-bold text-sm px-5 py-3 rounded-xl shadow transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-eye text-brand-green"></i> Ver Site Público
+                    </button>
+                </div>
+            </div>
+
+            <!-- ========================================================================= -->
+            <!-- BLOCO 1 (SEMPRE VISÍVEL NO TOPO): WHATSAPP, REDES SOCIAIS E ÍCONE DA ABA  -->
+            <!-- ========================================================================= -->
+            <form onsubmit="saveSiteConfig(event)" class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border-2 border-brand-green/30 space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-brand-green">Configuração Rápida da Página Inicial e Navegador</span>
+                        <h2 class="font-display font-extrabold text-xl sm:text-2xl text-brand-blue flex items-center gap-2 mt-0.5">
+                            <i class="fa-solid fa-sliders text-brand-green"></i> 1. Personalizar WhatsApp, Instagram, Facebook, YouTube e Ícone da Aba
+                        </h2>
+                    </div>
+                    <button type="submit" class="bg-brand-green hover:bg-brand-greenDark text-white font-display font-bold text-sm px-6 py-3.5 rounded-xl shadow-md shadow-brand-green/20 transition flex items-center justify-center gap-2 shrink-0">
+                        <i class="fa-solid fa-floppy-disk"></i> Salvar Alterações Agora
+                    </button>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-6">
+                    
+                    <!-- Coluna Esquerda (7 cols): WhatsApp e Redes Sociais -->
+                    <div class="lg:col-span-7 space-y-5">
+                        <!-- WhatsApp Box -->
+                        <div class="p-4 sm:p-5 rounded-2xl bg-emerald-50/60 border border-emerald-200 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-display font-bold text-sm text-brand-blue flex items-center gap-2">
+                                    <i class="fa-brands fa-whatsapp text-brand-green text-lg"></i> WhatsApp Oficial do Site e Simulador
+                                </h3>
+                                <span class="text-[11px] font-bold bg-brand-green text-white px-2.5 py-0.5 rounded-full">Ativo na Home</span>
+                            </div>
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-brand-blue mb-1">Número com DDD (Somente números) *</label>
+                                    <input type="text" id="cfgWhatsapp" required placeholder="5544999999999" oninput="updateLiveAdminPreview()" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-bold text-brand-blue focus:outline-none focus:border-brand-green">
+                                    <span class="text-[11px] text-slate-500">Ex: 5544999999999 (Código 55 + DDD + Número)</span>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-brand-blue mb-1">Exibição Formatada no Site *</label>
+                                    <input type="text" id="cfgPhoneDisplay" placeholder="(44) 99999-9999" oninput="updateLiveAdminPreview()" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-semibold text-slate-700 focus:outline-none focus:border-brand-green">
+                                    <span class="text-[11px] text-slate-500">Aparece no topo, botão da Home e rodapé</span>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-brand-blue mb-1">Mensagem Padrão ao Clicar no Botão de WhatsApp</label>
+                                <input type="text" id="cfgWhatsappMsg" placeholder="Olá! Vim pelo site financiesuaobra.com.br e quero simular minha construção financiada." class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs text-slate-700 focus:outline-none focus:border-brand-green">
+                            </div>
+                        </div>
+
+                        <!-- Redes Sociais Box (Instagram, Facebook, YouTube) -->
+                        <div class="p-4 sm:p-5 rounded-2xl bg-brand-ice border border-slate-200 space-y-4">
+                            <h3 class="font-display font-bold text-sm text-brand-blue flex items-center gap-2">
+                                <i class="fa-solid fa-share-nodes text-brand-blue"></i> Links das Redes Sociais (Aparecem no Topo, Hero Inicial e Rodapé)
+                            </h3>
+                            <div class="grid sm:grid-cols-3 gap-3">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1 flex items-center gap-1.5">
+                                        <i class="fa-brands fa-instagram text-pink-600 text-base"></i> Instagram
+                                    </label>
+                                    <input type="text" id="cfgInstagram" placeholder="https://instagram.com/financiesuaobra" class="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-xs focus:outline-none focus:border-brand-green">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1 flex items-center gap-1.5">
+                                        <i class="fa-brands fa-facebook text-blue-600 text-base"></i> Facebook
+                                    </label>
+                                    <input type="text" id="cfgFacebook" placeholder="https://facebook.com/financiesuaobra" class="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-xs focus:outline-none focus:border-brand-green">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1 flex items-center gap-1.5">
+                                        <i class="fa-brands fa-youtube text-red-600 text-base"></i> YouTube
+                                    </label>
+                                    <input type="text" id="cfgYoutube" placeholder="https://youtube.com/@financiesuaobra" class="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-xs focus:outline-none focus:border-brand-green">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Parâmetros Extras (Taxa de Juros, E-mail e Endereço) -->
+                        <div class="grid sm:grid-cols-3 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Taxa Juros Simulador (% a.a.)</label>
+                                <input type="number" step="0.01" id="cfgInterestRate" placeholder="9.89" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs font-bold text-brand-blue focus:outline-none focus:border-brand-green">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">E-mail Comercial</label>
+                                <input type="email" id="cfgEmail" placeholder="contato@financiesuaobra.com.br" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs focus:outline-none focus:border-brand-green">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Localização / Grupo</label>
+                                <input type="text" id="cfgAddress" placeholder="Grupo Geminadas.com & Level Construtora" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs focus:outline-none focus:border-brand-green">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coluna Direita (5 cols): Ícone da Aba do Site (Favicon) + Título da Aba -->
+                    <div class="lg:col-span-5 p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between space-y-4">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-display font-bold text-sm text-brand-blue flex items-center gap-2">
+                                    <i class="fa-solid fa-window-maximize text-brand-green"></i> Ícone da Aba do Site (Favicon) e Título
+                                </h3>
+                                <span class="text-[11px] font-semibold text-slate-500">Aba do Navegador</span>
+                            </div>
+
+                            <!-- Simulação Visual em Tempo Real da Aba do Navegador -->
+                            <div class="bg-slate-200 p-2.5 rounded-2xl border border-slate-300">
+                                <div class="text-[10px] font-bold uppercase text-slate-500 mb-1.5 px-1">Preview ao Vivo da Aba do Navegador:</div>
+                                <div class="bg-white rounded-xl px-3.5 py-2.5 shadow-sm flex items-center justify-between gap-2 border border-slate-200/80">
+                                    <div class="flex items-center gap-2.5 min-w-0">
+                                        <img id="browserTabFaviconPreview" src="" alt="Favicon" class="w-5 h-5 object-contain shrink-0">
+                                        <span id="browserTabTitlePreview" class="text-xs font-semibold text-slate-700 truncate">financiesuaobra.com.br | Construção Financiada Caixa</span>
+                                    </div>
+                                    <i class="fa-solid fa-xmark text-slate-400 text-xs shrink-0"></i>
+                                </div>
+                            </div>
+
+                            <!-- Título da Aba do Site -->
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Título da Aba do Navegador</label>
+                                <input type="text" id="cfgPageTitle" oninput="updateLiveAdminPreview()" placeholder="financiesuaobra.com.br | Construção Financiada Caixa" class="w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-medium focus:outline-none focus:border-brand-green">
+                            </div>
+
+                            <!-- Opções de Ícone da Aba (Logo Oficial, Upload ou URL) -->
+                            <div class="space-y-2">
+                                <label class="block text-xs font-bold uppercase text-slate-600">Escolher Ícone da Aba (Favicon):</label>
+                                <div class="flex flex-wrap gap-2">
+                                    <button type="button" onclick="useOfficialLogoFavicon()" class="px-3 py-2 rounded-xl bg-brand-blue hover:bg-brand-blueLight text-white text-xs font-bold transition flex items-center gap-1.5">
+                                        <i class="fa-solid fa-Rotate-left"></i> Usar Logo Oficial (Casa + Gráfico)
+                                    </button>
+                                    <label class="cursor-pointer px-3 py-2 rounded-xl bg-brand-green hover:bg-brand-greenDark text-white text-xs font-bold transition flex items-center gap-1.5">
+                                        <i class="fa-solid fa-upload"></i> Enviar Ícone (PNG/JPG/SVG)
+                                        <input type="file" accept="image/*" class="hidden" onchange="handleFaviconUpload(event)">
+                                    </label>
+                                </div>
+                                <input type="text" id="cfgFaviconUrl" oninput="updateLiveAdminPreview()" placeholder="Ou cole aqui a URL do ícone (ou Base64 gerado no botão acima)" class="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-[11px] text-slate-600 focus:outline-none focus:border-brand-green">
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                            <span>Título Hero Opcional:</span>
+                            <input type="text" id="cfgHeroTitle" placeholder="Construa sua Casa de Médio ou Alto Padrão..." class="w-2/3 rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-xs focus:outline-none focus:border-brand-green">
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+            <!-- ========================================================================= -->
+            <!-- BLOCO 2: CADASTRAR E GERENCIAR OBRAS FINANCIADAS (FOTOS E PLANTA BAIXA)   -->
+            <!-- ========================================================================= -->
+            <div id="adminTabObras" class="grid lg:grid-cols-12 gap-8">
+                
+                <!-- Left Column: Form to Add/Edit Project -->
+                <div class="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200/80 h-fit">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+                        <h3 id="formProjectTitle" class="font-display font-extrabold text-xl text-brand-blue flex items-center gap-2">
+                            <i class="fa-solid fa-plus-circle text-brand-green"></i> 2. Cadastrar Obra Financiada
+                        </h3>
+                        <button type="button" id="cancelEditBtn" onclick="resetProjectForm()" class="hidden text-xs font-bold text-red-600 hover:underline">
+                            Cancelar Edição
+                        </button>
+                    </div>
+
+                    <form id="projectForm" onsubmit="saveProject(event)" class="space-y-4">
+                        <input type="hidden" id="projId">
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Título da Obra / Residência *</label>
+                            <input type="text" id="projTitle" required placeholder="Ex: Residência Aurora - Condomínio Alphaville" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:outline-none focus:border-brand-green">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Modalidade Caixa *</label>
+                                <select id="projModality" class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm font-medium focus:outline-none focus:border-brand-green">
+                                    <option value="Terreno + Construção">Terreno + Construção</option>
+                                    <option value="Construção em Terreno Próprio">Terreno Próprio</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Padrão Construtivo *</label>
+                                <select id="projStandard" class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm font-medium focus:outline-none focus:border-brand-green">
+                                    <option value="Alto Padrão">Alto Padrão</option>
+                                    <option value="Médio Padrão">Médio Padrão</option>
+                                    <option value="Alto Luxo">Alto Luxo</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Cidade / Condomínio *</label>
+                                <input type="text" id="projLocation" required placeholder="Ex: Cond. Jardins / Maringá" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:outline-none focus:border-brand-green">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Prazo de Obra (Level)</label>
+                                <input type="text" id="projTimeline" placeholder="Ex: 10 meses" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:outline-none focus:border-brand-green">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-4 gap-2">
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Área (m²)*</label>
+                                <input type="number" id="projArea" required placeholder="210" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:border-brand-green">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Lote (m²)</label>
+                                <input type="number" id="projLotArea" placeholder="360" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:border-brand-green">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Quartos/Suítes</label>
+                                <input type="text" id="projBeds" placeholder="3 Suítes" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:border-brand-green">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Vagas</label>
+                                <input type="number" id="projGarage" placeholder="2" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:border-brand-green">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Valor Financiado / Custo (R$)*</label>
+                                <input type="number" id="projCost" required placeholder="850000" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:outline-none focus:border-brand-green">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Avaliação Pronta (R$)</label>
+                                <input type="number" id="projValuation" placeholder="1150000" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:outline-none focus:border-brand-green">
+                            </div>
+                        </div>
+
+                        <!-- Foto da Obra (URL ou Upload Local) -->
+                        <div class="p-3.5 rounded-2xl bg-brand-ice border border-slate-200 space-y-2">
+                            <label class="block text-xs font-bold uppercase text-brand-blue">
+                                <i class="fa-solid fa-camera text-brand-green mr-1"></i> Foto Principal da Obra Pronta
+                            </label>
+                            <input type="text" id="projPhotoUrl" placeholder="Cole a URL da foto ou envie o arquivo abaixo" class="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs focus:outline-none focus:border-brand-green">
+                            <div class="flex items-center gap-2">
+                                <label class="cursor-pointer bg-brand-blue hover:bg-brand-blueLight text-white text-xs font-semibold px-3 py-2 rounded-lg transition inline-flex items-center gap-1.5">
+                                    <i class="fa-solid fa-upload"></i> Enviar Foto do Computador/Celular
+                                    <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, 'projPhotoUrl', 'previewPhoto')">
+                                </label>
+                                <img id="previewPhoto" src="" alt="Preview" class="hidden w-10 h-10 object-cover rounded-lg border border-slate-300">
+                            </div>
+                        </div>
+
+                        <!-- Planta Baixa (URL ou Upload Local) -->
+                        <div class="p-3.5 rounded-2xl bg-brand-ice border border-slate-200 space-y-2">
+                            <label class="block text-xs font-bold uppercase text-brand-blue">
+                                <i class="fa-solid fa-Drafting-compass text-brand-green mr-1"></i> Imagem da Planta Baixa (Geminadas.com)
+                            </label>
+                            <input type="text" id="projFloorplanUrl" placeholder="Cole a URL da planta baixa ou envie o arquivo abaixo" class="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs focus:outline-none focus:border-brand-green">
+                            <div class="flex items-center gap-2">
+                                <label class="cursor-pointer bg-brand-green hover:bg-brand-greenDark text-white text-xs font-semibold px-3 py-2 rounded-lg transition inline-flex items-center gap-1.5">
+                                    <i class="fa-solid fa-upload"></i> Enviar Planta Baixa
+                                    <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, 'projFloorplanUrl', 'previewFloorplan')">
+                                </label>
+                                <img id="previewFloorplan" src="" alt="Preview Planta" class="hidden w-10 h-10 object-cover rounded-lg border border-slate-300">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Informações da Construção & Memorial Resumido *</label>
+                            <textarea id="projDescription" rows="3" required placeholder="Descreva os diferenciais da obra: pé-direito duplo, área gourmet integrada, piscina aquecida, esquadrias automatizadas, projeto Geminadas.com e execução Level Construtora..." class="w-full rounded-xl border border-slate-200 px-3.5 py-2 text-sm focus:outline-none focus:border-brand-green"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-brand-green hover:bg-brand-greenDark text-white font-display font-bold text-sm shadow-md transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            <span id="submitProjectBtnText">Salvar e Publicar Obra no Site</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Right Column: List of Registered Projects -->
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200/80">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <h3 class="font-display font-extrabold text-xl text-brand-blue">Obras Cadastradas no Portfólio</h3>
+                                <p class="text-xs text-slate-500">Gerencie, edite ou exclua as obras que aparecem na página inicial.</p>
+                            </div>
+                            <span id="adminProjectsCount" class="bg-brand-ice text-brand-blue font-bold text-xs px-3 py-1.5 rounded-full">3 obras</span>
+                        </div>
+
+                        <div id="adminProjectsList" class="space-y-4">
+                            <!-- Populated via JS -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: CONFIGURAÇÕES GERAIS, WHATSAPP E REDES SOCIAIS -->
+            <div id="adminTabConfig" class="hidden">
+                <form onsubmit="saveSiteConfig(event)" class="bg-white rounded-3xl p-6 sm:p-10 shadow-md border border-slate-200/80 max-w-4xl mx-auto space-y-8">
+                    <div class="border-b border-slate-100 pb-4">
+                        <h3 class="font-display font-extrabold text-2xl text-brand-blue">Personalização Total do Site</h3>
+                        <p class="text-sm text-slate-500 mt-1">Configure o número oficial de WhatsApp, redes sociais do grupo e parâmetros do simulador que aparecem na página inicial.</p>
+                    </div>
+
+                    <!-- WhatsApp & Contact -->
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-brand-blue mb-1.5">
+                                <i class="fa-brands fa-whatsapp text-brand-green mr-1"></i> Número do WhatsApp (Com DDD) *
+                            </label>
+                            <input type="text" id="cfgWhatsapp" required placeholder="5544999999999" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold focus:outline-none focus:border-brand-green">
+                            <span class="text-[11px] text-slate-400">Ex: 5544999999999 (Receberá as simulações e contatos do site)</span>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-brand-blue mb-1.5">
+                                <i class="fa-solid fa-phone text-brand-blue mr-1"></i> Telefone / Exibição no Rodapé
+                            </label>
+                            <input type="text" id="cfgPhoneDisplay" placeholder="(44) 99999-9999" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:outline-none focus:border-brand-green">
+                        </div>
+                    </div>
+
+                    <!-- Social Media Links -->
+                    <div class="grid sm:grid-cols-3 gap-6 pt-2">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1.5">
+                                <i class="fa-brands fa-instagram text-pink-600 mr-1"></i> Link do Instagram
+                            </label>
+                            <input type="url" id="cfgInstagram" placeholder="https://instagram.com/financiesuaobra" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:outline-none focus:border-brand-green">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1.5">
+                                <i class="fa-brands fa-facebook text-blue-600 mr-1"></i> Link do Facebook
+                            </label>
+                            <input type="url" id="cfgFacebook" placeholder="https://facebook.com/financiesuaobra" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:outline-none focus:border-brand-green">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1.5">
+                                <i class="fa-brands fa-youtube text-red-600 mr-1"></i> Link do YouTube
+                            </label>
+                            <input type="url" id="cfgYoutube" placeholder="https://youtube.com/@financiesuaobra" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:outline-none focus:border-brand-green">
+                        </div>
+                    </div>
+
+                    <!-- Group & Simulator Customization -->
+                    <div class="grid sm:grid-cols-3 gap-6 pt-2 border-t border-slate-100">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1.5">Taxa Anual Base do Simulador (%)</label>
+                            <input type="number" step="0.01" id="cfgInterestRate" placeholder="9.89" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm font-semibold focus:outline-none focus:border-brand-green">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1.5">Endereço do Escritório (Geminadas.com & Level)</label>
+                            <input type="text" id="cfgAddress" placeholder="Atendimento Presencial e Online • Grupo Geminadas.com & Level Construtora" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:outline-none focus:border-brand-green">
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1.5">Título Principal (Hero da Página Inicial)</label>
+                            <input type="text" id="cfgHeroTitle" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:outline-none focus:border-brand-green">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1.5">E-mail de Contato</label>
+                            <input type="email" id="cfgEmail" placeholder="contato@financiesuaobra.com.br" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:outline-none focus:border-brand-green">
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex justify-end">
+                        <button type="submit" class="bg-brand-green hover:bg-brand-greenDark text-white font-display font-bold text-base px-8 py-4 rounded-2xl shadow-lg transition flex items-center gap-2">
+                            <i class="fa-solid fa-check-double"></i> Salvar Todas as Configurações
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- PROJECT DETAILS & FLOORPLAN MODAL          -->
+    <!-- ========================================== -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden bg-brand-blueDark/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-slate-100 my-8">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-4 bg-brand-blue text-white">
+                <div>
+                    <span id="modalBadge" class="text-xs font-bold uppercase tracking-wider text-emerald-300">Terreno + Construção</span>
+                    <h3 id="modalTitle" class="font-display font-extrabold text-xl sm:text-2xl">Residência Contemporânea</h3>
+                </div>
+                <button onclick="closeProjectModal()" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Modal Switcher: Foto da Obra vs. Planta Baixa -->
+            <div class="bg-brand-ice px-6 py-3 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
+                <div class="flex gap-2">
+                    <button onclick="switchModalMedia('photo')" id="modalBtnPhoto" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-brand-blue text-white transition flex items-center gap-2">
+                        <i class="fa-solid fa-camera"></i> Foto da Construção
+                    </button>
+                    <button onclick="switchModalMedia('floorplan')" id="modalBtnFloorplan" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white text-brand-blue border border-slate-200 hover:border-brand-green transition flex items-center gap-2">
+                        <i class="fa-solid fa-compass-drafting text-brand-green"></i> Ver Planta Baixa (Geminadas.com)
+                    </button>
+                </div>
+                <span id="modalLocation" class="text-xs font-semibold text-slate-500 flex items-center gap-1.5">
+                    <i class="fa-solid fa-location-dot text-brand-green"></i> Condomínio Fechado
+                </span>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="grid md:grid-cols-12">
+                <!-- Media Viewer -->
+                <div class="md:col-span-7 bg-slate-900 relative flex items-center justify-center min-h-[300px] sm:min-h-[400px]">
+                    <img id="modalMainImage" src="" alt="Imagem da Obra" class="w-full h-full max-h-[440px] object-cover">
+                    <div id="modalMediaCaption" class="absolute bottom-3 left-3 bg-brand-blueDark/85 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg">
+                        Execução: Level Construtora | Projeto: Geminadas.com
+                    </div>
+                </div>
+
+                <!-- Technical Specs -->
+                <div class="md:col-span-5 p-6 flex flex-col justify-between space-y-5">
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-2 gap-2.5 text-center">
+                            <div class="p-3 rounded-xl bg-brand-ice">
+                                <div class="text-[11px] text-slate-500 uppercase font-bold">Área Construída</div>
+                                <div id="modalArea" class="font-display font-extrabold text-base text-brand-blue">220 m²</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-brand-ice">
+                                <div class="text-[11px] text-slate-500 uppercase font-bold">Terreno</div>
+                                <div id="modalLot" class="font-display font-extrabold text-base text-brand-blue">360 m²</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-brand-ice">
+                                <div class="text-[11px] text-slate-500 uppercase font-bold">Dormitórios</div>
+                                <div id="modalBeds" class="font-display font-extrabold text-base text-brand-blue">3 Suítes</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-brand-ice">
+                                <div class="text-[11px] text-slate-500 uppercase font-bold">Prazo Level</div>
+                                <div id="modalTimeline" class="font-display font-extrabold text-base text-brand-green">10 Meses</div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-200">
+                            <div class="flex justify-between text-xs text-slate-600">
+                                <span>Custo / Financiamento Caixa:</span>
+                                <strong id="modalCost" class="text-brand-blue">R$ 850.000</strong>
+                            </div>
+                            <div class="flex justify-between text-xs text-slate-600 mt-1">
+                                <span>Avaliação de Mercado Pronta:</span>
+                                <strong id="modalValuation" class="text-brand-green">R$ 1.150.000</strong>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-display font-bold text-sm text-brand-blue mb-1">Memorial e Detalhes da Construção:</h4>
+                            <p id="modalDescription" class="text-xs sm:text-sm text-slate-600 leading-relaxed"></p>
+                        </div>
+                    </div>
+
+                    <button id="modalWhatsappBtn" type="button" class="w-full py-3.5 px-5 rounded-xl bg-brand-green hover:bg-brand-greenDark text-white font-display font-bold text-sm shadow-md transition flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Quero Construir um Projeto Similar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-blueDark text-white pt-16 pb-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+                
+                <!-- Col 1: Brand & Group -->
+                <div class="md:col-span-5 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-white p-2 rounded-2xl inline-flex">
+                            <svg class="w-10 h-10" viewBox="0 0 120 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 55L56 20C59.5 17 63.5 17 67 20L76 28" stroke="#0F3156" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M27 47V84C27 91 32 95 39 95H43C49 95 53 91 53 84V76" stroke="#0F3156" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M44 59L59 45L71 55L98 27" stroke="#0F3156" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M83 25H100V42" stroke="#0F3156" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M55 95H90C96 95 100 91 100 84V47L93 40" stroke="#138A59" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M67 95V68" stroke="#138A59" stroke-width="10" stroke-linecap="round"/>
+                                <path d="M83 95V58" stroke="#138A59" stroke-width="10" stroke-linecap="round"/>
+                                <path d="M100 47L107 54" stroke="#138A59" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="flex flex-col leading-none">
+                            <span class="font-display font-extrabold text-2xl text-white">financie</span>
+                            <span class="font-display font-extrabold text-2xl text-brand-greenLight -mt-1">suaobra<span class="text-xs font-normal text-slate-300 ml-1">.com.br</span></span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-300 leading-relaxed max-w-md">
+                        Especialistas em viabilização de crédito Caixa Econômica Federal, projetos arquitetônicos de médio e alto padrão (<strong class="text-white">Geminadas.com</strong>) e execução de obras chave na mão (<strong class="text-white">Level Construtora</strong>).
+                    </p>
+                    <div id="footerSocialLinks" class="flex items-center gap-3 pt-2">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <div class="md:col-span-3 space-y-2.5 text-sm">
+                    <h4 class="font-display font-bold text-base text-emerald-300 mb-3">Soluções do Grupo</h4>
+                    <p><a href="#modalidades" class="text-slate-300 hover:text-white transition">Aquisição Terreno + Construção</a></p>
+                    <p><a href="#modalidades" class="text-slate-300 hover:text-white transition">Construção em Terreno Próprio</a></p>
+                    <p><a href="#vantagens" class="text-slate-300 hover:text-white transition">Construir vs. Comprar Pronta</a></p>
+                    <p><a href="#simulador" class="text-slate-300 hover:text-white transition">Simulador de Crédito Caixa</a></p>
+                    <p><a href="#obras" class="text-slate-300 hover:text-white transition">Portfólio de Obras e Plantas</a></p>
+                </div>
+
+                <!-- Col 3: Contact Info (Dynamic from Admin) -->
+                <div class="md:col-span-4 space-y-3 text-sm">
+                    <h4 class="font-display font-bold text-base text-emerald-300 mb-3">Atendimento Especializado</h4>
+                    <p class="flex items-start gap-2.5 text-slate-300">
+                        <i class="fa-brands fa-whatsapp text-brand-greenLight text-lg mt-0.5"></i>
+                        <span id="footerPhone">(44) 99999-9999</span>
+                    </p>
+                    <p class="flex items-start gap-2.5 text-slate-300">
+                        <i class="fa-solid fa-envelope text-brand-greenLight mt-1"></i>
+                        <span id="footerEmail">contato@financiesuaobra.com.br</span>
+                    </p>
+                    <p class="flex items-start gap-2.5 text-slate-300">
+                        <i class="fa-solid fa-location-dot text-brand-greenLight mt-1"></i>
+                        <span id="footerAddress">Grupo Geminadas.com Arquitetura & Level Construtora</span>
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+                <p>© <span id="currentYear"></span> <strong>financiesuaobra.com.br</strong> — Todos os direitos reservados ao Grupo Geminadas.com & Level Construtora.</p>
+                <button onclick="toggleView('admin')" class="text-slate-400 hover:text-emerald-300 transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-lock"></i> Área Administrativa
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="#" id="floatingWhatsappBtn" target="_blank" rel="noopener noreferrer" aria-label="Conversar no WhatsApp" class="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-brand-green hover:bg-brand-greenDark text-white flex items-center justify-center text-3xl shadow-2xl whatsapp-pulse transition transform hover:scale-110">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- APPLICATION LOGIC & STATE MANAGEMENT -->
+    <script>
+        // ============================================================================
+        // 1. INITIAL DATA (SITE SETTINGS, OFFICIAL FAVICON & DEFAULT PORTFOLIO PROJECTS)
+        // ============================================================================
+        function getOfficialLogoFaviconDataUrl() {
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 110">
+                <rect width="120" height="110" rx="24" fill="#FFFFFF"/>
+                <path d="M16 55L56 20C59.5 17 63.5 17 67 20L76 28" stroke="#0F3156" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <path d="M27 47V84C27 91 32 95 39 95H43C49 95 53 91 53 84V76" stroke="#0F3156" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <path d="M44 59L59 45L71 55L98 27" stroke="#0F3156" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <path d="M83 25H100V42" stroke="#0F3156" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <path d="M55 95H90C96 95 100 91 100 84V47L93 40" stroke="#138A59" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <path d="M67 95V68" stroke="#138A59" stroke-width="10" stroke-linecap="round" fill="none"/>
+                <path d="M83 95V58" stroke="#138A59" stroke-width="10" stroke-linecap="round" fill="none"/>
+                <path d="M100 47L107 54" stroke="#138A59" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>`;
+            return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+        }
+
+        const defaultSiteConfig = {
+            whatsapp: "5544999999999",
+            phoneDisplay: "(44) 99999-9999",
+            whatsappMsg: "Olá! Vim pelo site financiesuaobra.com.br e gostaria de conversar sobre construção financiada pela Caixa (Grupo Geminadas.com & Level Construtora).",
+            instagram: "https://instagram.com/geminadas",
+            facebook: "https://facebook.com/geminadas",
+            youtube: "https://youtube.com/@geminadas",
+            interestRate: 9.89,
+            address: "Grupo Geminadas.com Arquitetura & Level Construtora - Atendimento Presencial e Online",
+            email: "contato@financiesuaobra.com.br",
+            heroTitle: "Construa sua Casa de Médio ou Alto Padrão com Recursos da Caixa.",
+            pageTitle: "financiesuaobra.com.br | Construção Financiada Caixa - Grupo Geminadas.com & Level",
+            faviconUrl: getOfficialLogoFaviconDataUrl()
+        };
+
+        let siteConfig = { ...defaultSiteConfig };
+
+        // Helper function to generate clean SVG architectural floorplan data URLs for default projects
+        function createArchitecturalFloorplanSvg(title, area, specs) {
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 550" width="100%" height="100%">
+                <rect width="800" height="550" fill="#0F3156"/>
+                <g stroke="#1A4B82" stroke-width="1">
+                    <line x1="0" y1="50" x2="800" y2="50"/><line x1="0" y1="100" x2="800" y2="100"/><line x1="0" y1="150" x2="800" y2="150"/>
+                    <line x1="0" y1="200" x2="800" y2="200"/><line x1="0" y1="250" x2="800" y2="250"/><line x1="0" y1="300" x2="800" y2="300"/>
+                    <line x1="0" y1="350" x2="800" y2="350"/><line x1="0" y1="400" x2="800" y2="400"/><line x1="0" y1="450" x2="800" y2="450"/>
+                    <line x1="100" y1="0" x2="100" y2="550"/><line x1="200" y1="0" x2="200" y2="550"/><line x1="300" y1="0" x2="300" y2="550"/>
+                    <line x1="400" y1="0" x2="400" y2="550"/><line x1="500" y1="0" x2="500" y2="550"/><line x1="600" y1="0" x2="600" y2="550"/><line x1="700" y1="0" x2="700" y2="550"/>
+                </g>
+                <!-- Outer Walls -->
+                <rect x="90" y="60" width="620" height="390" fill="#091E36" stroke="#FFFFFF" stroke-width="6"/>
+                <!-- Internal Rooms -->
+                <rect x="90" y="60" width="220" height="170" fill="none" stroke="#138A59" stroke-width="4"/>
+                <text x="200" y="140" fill="#FFFFFF" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">SUÍTE MASTER + CLOSET</text>
+                <text x="200" y="162" fill="#34D399" font-family="sans-serif" font-size="12" text-anchor="middle">28,50 m²</text>
+
+                <rect x="310" y="60" width="180" height="170" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+                <text x="400" y="140" fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">SUÍTE 02</text>
+                <text x="400" y="160" fill="#94A3B8" font-family="sans-serif" font-size="12" text-anchor="middle">16,20 m²</text>
+
+                <rect x="490" y="60" width="220" height="170" fill="#0F3156" stroke="#38BDF8" stroke-width="3"/>
+                <text x="600" y="140" fill="#38BDF8" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">PISCINA &amp; DECK</text>
+                <text x="600" y="160" fill="#E2E8F0" font-family="sans-serif" font-size="12" text-anchor="middle">Lazer Integrado</text>
+
+                <rect x="90" y="230" width="220" height="220" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+                <text x="200" y="335" fill="#FFFFFF" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">GARAGEM LADO A LADO</text>
+                <text x="200" y="355" fill="#94A3B8" font-family="sans-serif" font-size="12" text-anchor="middle">2 Carros Cobertos</text>
+
+                <rect x="310" y="230" width="400" height="220" fill="none" stroke="#138A59" stroke-width="4"/>
+                <text x="510" y="330" fill="#FFFFFF" font-family="sans-serif" font-size="17" font-weight="bold" text-anchor="middle">LIVING + COZINHA GOURMET INTEGRADA</text>
+                <text x="510" y="355" fill="#34D399" font-family="sans-serif" font-size="13" text-anchor="middle">Pé-Direito Duplo • 54,00 m²</text>
+
+                <!-- Blueprint Title Block -->
+                <rect x="90" y="470" width="620" height="50" rx="8" fill="#138A59"/>
+                <text x="115" y="500" fill="#FFFFFF" font-family="sans-serif" font-size="15" font-weight="bold">PLANTA BAIXA: ${title.toUpperCase()} (${area}m²)</text>
+                <text x="690" y="500" fill="#E2E8F0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="end">ARQUITETURA: GEMINADAS.COM</text>
+            </svg>`;
+            return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+        }
+
+        let projects = [
+            {
+                id: "obra-1",
+                title: "Residência Horizonte Contemporânea",
+                modality: "Terreno + Construção",
+                standard: "Alto Padrão",
+                location: "Condomínio Fechado • Maringá/PR",
+                timeline: "11 meses",
+                area: 235,
+                lotArea: 420,
+                beds: "3 Suítes (1 Master)",
+                garage: 2,
+                cost: 920000,
+                valuation: 1280000,
+                photoUrl: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=80",
+                floorplanUrl: createArchitecturalFloorplanSvg("Residência Horizonte", 235, "3 Suítes"),
+                description: "Obra executada 100% via financiamento Caixa na modalidade Aquisição de Terreno + Construção. Projeto arquitetônico assinado pela Geminadas.com com fachada em concreto aparente, brises amadeirados, pé-direito duplo no living integrado ao espaço gourmet e piscina com prainha. Execução rigorosa pela Level Construtora."
+            },
+            {
+                id: "obra-2",
+                title: "Casa Reserva Imperial",
+                modality: "Construção em Terreno Próprio",
+                standard: "Alto Padrão",
+                location: "Condomínio Jardins • Região Metropolitana",
+                timeline: "10 meses",
+                area: 192,
+                lotArea: 360,
+                beds: "3 Suítes",
+                garage: 2,
+                cost: 740000,
+                valuation: 1020000,
+                photoUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80",
+                floorplanUrl: createArchitecturalFloorplanSvg("Casa Reserva Imperial", 192, "3 Suítes"),
+                description: "O cliente já possuía o terreno quitado no condomínio e utilizou o próprio lote como entrada na operação junto à Caixa Econômica Federal. Planta baixa inteligente otimizando a insolação da tarde na piscina, esquadrias automatizadas em PVC preto e porcelanatos de grandes formatos."
+            },
+            {
+                id: "obra-3",
+                title: "Residência Bella Vista",
+                modality: "Terreno + Construção",
+                standard: "Médio Padrão",
+                location: "Bairro Planejado • Alto da Boa Vista",
+                timeline: "8 meses",
+                area: 148,
+                lotArea: 300,
+                beds: "1 Suíte + 2 Demi",
+                garage: 2,
+                cost: 530000,
+                valuation: 720000,
+                photoUrl: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1000&q=80",
+                floorplanUrl: createArchitecturalFloorplanSvg("Residência Bella Vista", 148, "1 Suíte + 2 Quartos"),
+                description: "Projeto focado em altíssima liquidez e conforto familiar. Compra do terreno e construção financiadas em contrato único pela Caixa com uso do FGTS na entrada. Entregue pela Level Construtora com área gourmet com churrasqueira a carvão, lavabo e infraestrutura completa para energia solar e ar-condicionado."
+            }
+        ];
+
+        // Simulator State
+        let simState = {
+            modality: 'terreno_construcao', // 'terreno_construcao' or 'terreno_proprio'
+            standard: 'alto',               // 'medio', 'alto', 'luxo'
+            costPerSqm: 3550
+        };
+
+        let currentFilter = 'all';
+        let activeModalProject = null;
+
+        // ============================================================================
+        // 2. CURRENCY & UI HELPERS
+        // ============================================================================
+        function formatBRL(value) {
+            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(value);
+        }
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            const bgClass = type === 'success' ? 'bg-brand-green' : 'bg-brand-blue';
+            toast.className = `${bgClass} text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 text-sm font-semibold pointer-events-auto transition transform duration-300`;
+            toast.innerHTML = `<i class="fa-solid fa-circle-check text-lg"></i> <span>${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-x-5');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const icon = document.getElementById('mobileMenuIcon');
+            menu.classList.toggle('hidden');
+            icon.className = menu.classList.contains('hidden') ? 'fa-solid fa-bars text-xl' : 'fa-solid fa-xmark text-xl';
+        }
+
+        function toggleView(view) {
+            const publicView = document.getElementById('publicView');
+            const adminView = document.getElementById('adminView');
+            const publicNav = document.getElementById('publicNav');
+            const adminBtnLabel = document.getElementById('adminBtnLabel');
+
+            if (view === 'admin') {
+                publicView.classList.add('hidden');
+                adminView.classList.remove('hidden');
+                publicNav.classList.add('hidden');
+                adminBtnLabel.textContent = 'Ver Site Público';
+                document.getElementById('adminToggleBtnTop').setAttribute('onclick', "toggleView('public')");
+                populateAdminConfigForm();
+                renderAdminProjectsList();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                adminView.classList.add('hidden');
+                publicView.classList.remove('hidden');
+                publicNav.classList.remove('hidden');
+                adminBtnLabel.textContent = 'Painel Admin';
+                document.getElementById('adminToggleBtnTop').setAttribute('onclick', "toggleView('admin')");
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // ============================================================================
+        // 3. APPLY SITE CONFIG (WHATSAPP, SOCIAL MEDIA, FAVICON) & LOCALSTORAGE
+        // ============================================================================
+        function loadSavedDataFromStorage() {
+            try {
+                const savedCfg = localStorage.getItem('fso_siteConfig_v2');
+                if (savedCfg) {
+                    siteConfig = { ...defaultSiteConfig, ...JSON.parse(savedCfg) };
+                }
+                const savedProjs = localStorage.getItem('fso_projects_v2');
+                if (savedProjs) {
+                    const parsed = JSON.parse(savedProjs);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        projects = parsed;
+                    }
+                }
+            } catch (err) {
+                console.warn('Erro ao carregar dados salvos:', err);
+            }
+        }
+
+        function persistDataToStorage() {
+            try {
+                localStorage.setItem('fso_siteConfig_v2', JSON.stringify(siteConfig));
+                localStorage.setItem('fso_projects_v2', JSON.stringify(projects));
+            } catch (err) {
+                console.warn('Limite de armazenamento atingido:', err);
+            }
+        }
+
+        function applySiteConfigToUI() {
+            const cleanWa = (siteConfig.whatsapp || "5544999999999").replace(/\D/g, '');
+            const customMsg = siteConfig.whatsappMsg || defaultSiteConfig.whatsappMsg;
+            const defaultWaMsg = encodeURIComponent(customMsg);
+            const waUrl = `https://wa.me/${cleanWa}?text=${defaultWaMsg}`;
+
+            // Update all WhatsApp buttons
+            document.getElementById('headerWhatsappBtn').href = waUrl;
+            document.getElementById('mobileWhatsappBtn').href = waUrl;
+            document.getElementById('floatingWhatsappBtn').href = waUrl;
+            const heroWaBtn = document.getElementById('heroWhatsappBtn');
+            if (heroWaBtn) {
+                heroWaBtn.href = waUrl;
+                document.getElementById('heroWhatsappLabel').textContent = siteConfig.phoneDisplay ? `WhatsApp: ${siteConfig.phoneDisplay}` : 'Falar no WhatsApp';
+            }
+
+            // Update Favicon and Browser Tab Title dynamically
+            const activeFavicon = siteConfig.faviconUrl || getOfficialLogoFaviconDataUrl();
+            const faviconLink = document.getElementById('dynamicFavicon');
+            if (faviconLink) faviconLink.href = activeFavicon;
+            document.title = siteConfig.pageTitle || defaultSiteConfig.pageTitle;
+
+            // Update Footer & Texts
+            document.getElementById('footerPhone').textContent = siteConfig.phoneDisplay || siteConfig.whatsapp;
+            document.getElementById('footerEmail').textContent = siteConfig.email;
+            document.getElementById('footerAddress').textContent = siteConfig.address;
+            document.getElementById('resRateDisplay').textContent = `${siteConfig.interestRate.toString().replace('.', ',')}%`;
+
+            // Render Social Icons in Topbar, Hero Quick-Connect Bar & Footer
+            const topSocial = document.getElementById('topSocialLinks');
+            const heroSocial = document.getElementById('heroSocialBadges');
+            const footerSocial = document.getElementById('footerSocialLinks');
+            let topHtml = '';
+            let heroHtml = '';
+            let footerHtml = '';
+
+            // Always show WhatsApp direct link in Topbar and Footer social bars
+            topHtml += `<a href="${waUrl}" target="_blank" rel="noopener noreferrer" title="WhatsApp ${siteConfig.phoneDisplay}" class="text-emerald-300 hover:text-white transition flex items-center gap-1 font-semibold"><i class="fa-brands fa-whatsapp text-sm"></i> <span class="hidden md:inline">${siteConfig.phoneDisplay}</span></a>`;
+            footerHtml += `<a href="${waUrl}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-10 h-10 rounded-xl bg-brand-green hover:bg-brand-greenLight flex items-center justify-center text-white transition"><i class="fa-brands fa-whatsapp text-lg"></i></a>`;
+
+            if (siteConfig.instagram) {
+                topHtml += `<a href="${siteConfig.instagram}" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-white/80 hover:text-brand-greenLight transition"><i class="fa-brands fa-instagram text-sm"></i></a>`;
+                heroHtml += `<a href="${siteConfig.instagram}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/20 border border-white/15 px-3 py-1.5 rounded-xl text-xs font-semibold text-white transition"><i class="fa-brands fa-instagram text-pink-400 text-sm"></i> Instagram</a>`;
+                footerHtml += `<a href="${siteConfig.instagram}" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-brand-green flex items-center justify-center text-white transition"><i class="fa-brands fa-instagram text-lg"></i></a>`;
+            }
+            if (siteConfig.facebook) {
+                topHtml += `<a href="${siteConfig.facebook}" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-white/80 hover:text-brand-greenLight transition"><i class="fa-brands fa-facebook text-sm"></i></a>`;
+                heroHtml += `<a href="${siteConfig.facebook}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/20 border border-white/15 px-3 py-1.5 rounded-xl text-xs font-semibold text-white transition"><i class="fa-brands fa-facebook text-blue-400 text-sm"></i> Facebook</a>`;
+                footerHtml += `<a href="${siteConfig.facebook}" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-brand-green flex items-center justify-center text-white transition"><i class="fa-brands fa-facebook text-lg"></i></a>`;
+            }
+            if (siteConfig.youtube) {
+                topHtml += `<a href="${siteConfig.youtube}" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="text-white/80 hover:text-brand-greenLight transition"><i class="fa-brands fa-youtube text-sm"></i></a>`;
+                heroHtml += `<a href="${siteConfig.youtube}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/20 border border-white/15 px-3 py-1.5 rounded-xl text-xs font-semibold text-white transition"><i class="fa-brands fa-youtube text-red-400 text-sm"></i> YouTube</a>`;
+                footerHtml += `<a href="${siteConfig.youtube}" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-brand-green flex items-center justify-center text-white transition"><i class="fa-brands fa-youtube text-lg"></i></a>`;
+            }
+
+            topSocial.innerHTML = topHtml;
+            if (heroSocial) heroSocial.innerHTML = heroHtml;
+            footerSocial.innerHTML = footerHtml;
+
+            updateSimulation();
+        }
+
+        function populateAdminConfigForm() {
+            document.getElementById('cfgWhatsapp').value = siteConfig.whatsapp || '';
+            document.getElementById('cfgPhoneDisplay').value = siteConfig.phoneDisplay || '';
+            document.getElementById('cfgWhatsappMsg').value = siteConfig.whatsappMsg || '';
+            document.getElementById('cfgInstagram').value = siteConfig.instagram || '';
+            document.getElementById('cfgFacebook').value = siteConfig.facebook || '';
+            document.getElementById('cfgYoutube').value = siteConfig.youtube || '';
+            document.getElementById('cfgInterestRate').value = siteConfig.interestRate || 9.89;
+            document.getElementById('cfgAddress').value = siteConfig.address || '';
+            document.getElementById('cfgEmail').value = siteConfig.email || '';
+            document.getElementById('cfgHeroTitle').value = siteConfig.heroTitle || '';
+            document.getElementById('cfgPageTitle').value = siteConfig.pageTitle || defaultSiteConfig.pageTitle;
+            document.getElementById('cfgFaviconUrl').value = siteConfig.faviconUrl || getOfficialLogoFaviconDataUrl();
+            updateLiveAdminPreview();
+        }
+
+        function updateLiveAdminPreview() {
+            const favInput = document.getElementById('cfgFaviconUrl').value.trim() || getOfficialLogoFaviconDataUrl();
+            const titleInput = document.getElementById('cfgPageTitle').value.trim() || defaultSiteConfig.pageTitle;
+            const previewImg = document.getElementById('browserTabFaviconPreview');
+            const previewTitle = document.getElementById('browserTabTitlePreview');
+
+            if (previewImg) previewImg.src = favInput;
+            if (previewTitle) previewTitle.textContent = titleInput;
+        }
+
+        function useOfficialLogoFavicon() {
+            const officialSvg = getOfficialLogoFaviconDataUrl();
+            document.getElementById('cfgFaviconUrl').value = officialSvg;
+            siteConfig.faviconUrl = officialSvg;
+            updateLiveAdminPreview();
+            applySiteConfigToUI();
+            persistDataToStorage();
+            showToast('Ícone oficial da logo (Casa + Gráfico) aplicado na aba do navegador!');
+        }
+
+        function handleFaviconUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = 64;
+                    canvas.height = 64;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, 64, 64);
+                    const faviconDataUrl = canvas.toDataURL('image/png');
+                    document.getElementById('cfgFaviconUrl').value = faviconDataUrl;
+                    siteConfig.faviconUrl = faviconDataUrl;
+                    updateLiveAdminPreview();
+                    applySiteConfigToUI();
+                    persistDataToStorage();
+                    showToast('Novo ícone da aba do site carregado e aplicado!');
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function saveSiteConfig(e) {
+            e.preventDefault();
+            siteConfig.whatsapp = document.getElementById('cfgWhatsapp').value.trim();
+            siteConfig.phoneDisplay = document.getElementById('cfgPhoneDisplay').value.trim();
+            siteConfig.whatsappMsg = document.getElementById('cfgWhatsappMsg').value.trim();
+            siteConfig.instagram = document.getElementById('cfgInstagram').value.trim();
+            siteConfig.facebook = document.getElementById('cfgFacebook').value.trim();
+            siteConfig.youtube = document.getElementById('cfgYoutube').value.trim();
+            siteConfig.interestRate = parseFloat(document.getElementById('cfgInterestRate').value) || 9.89;
+            siteConfig.address = document.getElementById('cfgAddress').value.trim();
+            siteConfig.email = document.getElementById('cfgEmail').value.trim();
+            siteConfig.heroTitle = document.getElementById('cfgHeroTitle').value.trim();
+            siteConfig.pageTitle = document.getElementById('cfgPageTitle').value.trim() || defaultSiteConfig.pageTitle;
+            siteConfig.faviconUrl = document.getElementById('cfgFaviconUrl').value.trim() || getOfficialLogoFaviconDataUrl();
+
+            if (siteConfig.heroTitle) {
+                document.getElementById('heroHeadline').innerHTML = siteConfig.heroTitle;
+            }
+
+            persistDataToStorage();
+            applySiteConfigToUI();
+            showToast('WhatsApp, Redes Sociais e Ícone da Aba atualizados com sucesso!');
+        }
+
+        function exportBackupJson() {
+            const data = { siteConfig, projects, exportedAt: new Date().toISOString() };
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'backup-financiesuaobra.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('Backup exportado com sucesso!');
+        }
+
+        function importBackupJson(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if (imported.siteConfig) siteConfig = { ...defaultSiteConfig, ...imported.siteConfig };
+                    if (Array.isArray(imported.projects)) projects = imported.projects;
+                    persistDataToStorage();
+                    populateAdminConfigForm();
+                    applySiteConfigToUI();
+                    renderPublicProjects();
+                    renderAdminProjectsList();
+                    showToast('Backup importado e restaurado com sucesso!');
+                } catch (err) {
+                    showToast('Arquivo de backup inválido.', 'error');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // ============================================================================
+        // 4. CAIXA CREDIT SIMULATOR ENGINE
+        // ============================================================================
+        function selectModalityInSimulator(mod) {
+            setSimModality(mod);
+        }
+
+        function setSimModality(mod) {
+            simState.modality = mod;
+            const btnTC = document.getElementById('btnModTerrenoObra');
+            const btnTP = document.getElementById('btnModTerrenoProprio');
+            const labelTerreno = document.getElementById('labelTerreno');
+
+            if (mod === 'terreno_construcao') {
+                btnTC.className = "p-4 rounded-2xl border-2 border-brand-green bg-emerald-50/50 text-left transition flex items-center gap-3";
+                btnTP.className = "p-4 rounded-2xl border-2 border-slate-200 hover:border-brand-blue text-left transition flex items-center gap-3";
+                labelTerreno.textContent = "Valor do Terreno a Adquirir:";
+            } else {
+                btnTP.className = "p-4 rounded-2xl border-2 border-brand-green bg-emerald-50/50 text-left transition flex items-center gap-3";
+                btnTC.className = "p-4 rounded-2xl border-2 border-slate-200 hover:border-brand-blue text-left transition flex items-center gap-3";
+                labelTerreno.textContent = "Valor de Avaliação do Seu Terreno Próprio:";
+            }
+            updateSimulation();
+        }
+
+        function setSimStandard(std) {
+            simState.standard = std;
+            const mapCost = { medio: 3100, alto: 3650, luxo: 4600 };
+            simState.costPerSqm = mapCost[std] || 3650;
+
+            ['Medio', 'Alto', 'Luxo'].forEach(item => {
+                const el = document.getElementById('std' + item);
+                if (item.toLowerCase() === std) {
+                    el.className = "py-2.5 px-3 rounded-xl border-2 border-brand-blue bg-brand-blue text-white text-xs sm:text-sm font-bold transition";
+                } else {
+                    el.className = "py-2.5 px-3 rounded-xl border-2 border-slate-200 text-xs sm:text-sm font-bold text-slate-700 hover:border-brand-blue transition";
+                }
+            });
+            updateSimulation();
+        }
+
+        function updateSimulation(changedSource) {
+            const SFH_MAX_LIMIT = 2250000;
+            const terrenoInput = document.getElementById('simTerrenoRange');
+            const obraInput = document.getElementById('simObraRange');
+            const sfhBadge = document.getElementById('sfhLimitBadge');
+
+            let terrenoVal = parseFloat(terrenoInput.value) || 0;
+            let obraVal = parseFloat(obraInput.value) || 0;
+
+            // Enforce SFH Ceiling of R$ 2.250.000 for combined Investment (Terreno + Obra)
+            if (terrenoVal + obraVal > SFH_MAX_LIMIT) {
+                if (changedSource === 'terreno') {
+                    obraVal = Math.max(200000, SFH_MAX_LIMIT - terrenoVal);
+                    if (terrenoVal + obraVal > SFH_MAX_LIMIT) {
+                        terrenoVal = SFH_MAX_LIMIT - obraVal;
+                        terrenoInput.value = terrenoVal;
+                    }
+                    obraInput.value = obraVal;
+                } else {
+                    terrenoVal = Math.max(80000, SFH_MAX_LIMIT - obraVal);
+                    if (terrenoVal + obraVal > SFH_MAX_LIMIT) {
+                        obraVal = SFH_MAX_LIMIT - terrenoVal;
+                        obraInput.value = obraVal;
+                    }
+                    terrenoInput.value = terrenoVal;
+                }
+            }
+
+            const totalGlobal = terrenoVal + obraVal;
+            if (sfhBadge) {
+                if (totalGlobal >= SFH_MAX_LIMIT) {
+                    sfhBadge.classList.remove('hidden');
+                } else {
+                    sfhBadge.classList.add('hidden');
+                }
+            }
+
+            let entradaVal = parseFloat(document.getElementById('simEntradaRange').value) || 0;
+            const months = parseInt(document.getElementById('simPrazoSelect').value) || 420;
+
+            const minEntryRequired = totalGlobal * 0.20; // Caixa 80% max financing quota
+
+            // In "Terreno Próprio", the land value counts toward the client's equity/entry
+            let effectiveCashEntry = entradaVal;
+            let financedAmount = 0;
+
+            if (simState.modality === 'terreno_construcao') {
+                if (effectiveCashEntry < minEntryRequired) {
+                    effectiveCashEntry = minEntryRequired;
+                    document.getElementById('simEntradaRange').value = effectiveCashEntry;
+                }
+                if (effectiveCashEntry > totalGlobal * 0.9) {
+                    effectiveCashEntry = totalGlobal * 0.9;
+                }
+                financedAmount = Math.max(0, totalGlobal - effectiveCashEntry);
+                document.getElementById('resEntrySummary').textContent = `Entrada + FGTS: ${formatBRL(effectiveCashEntry)} (${Math.round((effectiveCashEntry/totalGlobal)*100)}% do total)`;
+            } else {
+                // Terreno próprio: Caixa finances up to 80% of global evaluation, capped at 100% of construction cost
+                const maxCaixaQuota = totalGlobal * 0.80;
+                const desiredFinance = Math.max(0, obraVal - effectiveCashEntry);
+                financedAmount = Math.min(maxCaixaQuota, desiredFinance);
+                const actualCashNeeded = Math.max(0, obraVal - financedAmount);
+                document.getElementById('resEntrySummary').textContent = `Terreno próprio entra na operação! Recurso extra/FGTS: ${formatBRL(actualCashNeeded)}`;
+            }
+
+            // Update Displays
+            document.getElementById('simTerrenoDisplay').textContent = formatBRL(terrenoVal);
+            document.getElementById('simObraDisplay').textContent = formatBRL(obraVal);
+            document.getElementById('simEntradaDisplay').textContent = formatBRL(effectiveCashEntry);
+
+            const approxSqm = Math.round(obraVal / simState.costPerSqm);
+            document.getElementById('simAreaEstimada').textContent = `Área construída estimada: ~${approxSqm} m²`;
+
+            // SAC Amortization Calculation
+            const annualRate = (siteConfig.interestRate || 9.89) / 100;
+            const monthlyRate = Math.pow(1 + annualRate, 1 / 12) - 1;
+            const monthlyAmortization = financedAmount / months;
+            const adminInsuranceFee = 65; // Standard monthly MIP/DFI + Caixa operational estimate
+
+            const firstInstallment = financedAmount > 0 ? (monthlyAmortization + (financedAmount * monthlyRate) + adminInsuranceFee) : 0;
+            const lastInstallment = financedAmount > 0 ? (monthlyAmortization + (monthlyAmortization * monthlyRate) + adminInsuranceFee) : 0;
+            const requiredIncome = firstInstallment / 0.30; // 30% income commitment rule
+
+            // Market Valuation (+28% immediate appreciation upon Habite-se)
+            const marketValuation = totalGlobal * 1.28;
+            const equityGain = marketValuation - totalGlobal;
+
+            document.getElementById('resTotalProject').textContent = formatBRL(totalGlobal);
+            document.getElementById('resFinancedAmount').textContent = formatBRL(financedAmount);
+            document.getElementById('resFirstInstallment').textContent = formatBRL(firstInstallment);
+            document.getElementById('resLastInstallment').textContent = formatBRL(lastInstallment);
+            document.getElementById('resRequiredIncome').textContent = `${formatBRL(requiredIncome)}/mês`;
+            document.getElementById('resMarketValuation').textContent = formatBRL(marketValuation);
+            document.getElementById('resNetEquityGain').innerHTML = `Ganho patrimonial estimado na entrega: <strong>+ ${formatBRL(equityGain)}</strong>`;
+        }
+
+        function sendSimulationToWhatsApp() {
+            const clientName = document.getElementById('simClientName').value.trim();
+            const terrenoVal = parseFloat(document.getElementById('simTerrenoRange').value) || 0;
+            const obraVal = parseFloat(document.getElementById('simObraRange').value) || 0;
+            const months = document.getElementById('simPrazoSelect').value;
+            const financedText = document.getElementById('resFinancedAmount').textContent;
+            const firstInstText = document.getElementById('resFirstInstallment').textContent;
+            const modLabel = simState.modality === 'terreno_construcao' ? 'Aquisição de Terreno + Construção' : 'Construção em Terreno Próprio';
+            const stdLabel = simState.standard === 'medio' ? 'Médio Padrão' : (simState.standard === 'alto' ? 'Alto Padrão' : 'Alto Luxo');
+
+            const greeting = clientName ? `Olá! Meu nome é *${clientName}*.` : `Olá!`;
+            const message = `${greeting} Fiz uma simulação no site *financiesuaobra.com.br* e gostaria de receber um estudo personalizado:\n\n` +
+                `▪ *Modalidade:* ${modLabel}\n` +
+                `▪ *Padrão:* ${stdLabel} (Geminadas.com & Level)\n` +
+                `▪ *Valor do Terreno:* ${formatBRL(terrenoVal)}\n` +
+                `▪ *Orçamento da Obra:* ${formatBRL(obraVal)}\n` +
+                `▪ *Valor Financiado Caixa:* ${financedText}\n` +
+                `▪ *Prazo:* ${months} meses | *1ª Parcela Est.:* ${firstInstText}\n\n` +
+                `Podemos agendar uma conversa?`;
+
+            const cleanWa = siteConfig.whatsapp.replace(/\D/g, '');
+            window.open(`https://wa.me/${cleanWa}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // ============================================================================
+        // 5. PORTFOLIO GALLERY, FILTER & MODAL (PHOTOS + FLOORPLAN)
+        // ============================================================================
+        function filterProjects(filterValue) {
+            currentFilter = filterValue;
+            const btnAll = document.getElementById('filter-all');
+            const btnTc = document.getElementById('filter-tc');
+            const btnTp = document.getElementById('filter-tp');
+
+            [btnAll, btnTc, btnTp].forEach(b => {
+                b.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-brand-ice text-slate-700 hover:bg-slate-200 transition";
+            });
+
+            if (filterValue === 'all') btnAll.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-brand-blue text-white transition";
+            if (filterValue === 'Terreno + Construção') btnTc.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-brand-blue text-white transition";
+            if (filterValue === 'Construção em Terreno Próprio') btnTp.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-brand-blue text-white transition";
+
+            renderPublicProjects();
+        }
+
+        function renderPublicProjects() {
+            const grid = document.getElementById('projectsGrid');
+            const filtered = currentFilter === 'all'
+                ? projects
+                : projects.filter(p => p.modality === currentFilter);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 bg-brand-ice rounded-3xl text-slate-500">Nenhuma obra encontrada neste filtro. Cadastre novas obras na aba Admin!</div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(proj => {
+                const gainPercent = proj.valuation && proj.cost ? Math.round(((proj.valuation - proj.cost) / proj.cost) * 100) : 28;
+                return `
+                <article class="bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-100 hover:shadow-2xl transition flex flex-col justify-between group">
+                    <div>
+                        <div class="relative h-60 overflow-hidden bg-slate-200 cursor-pointer" onclick="openProjectModal('${proj.id}')">
+                            <img src="${proj.photoUrl}" alt="${proj.title}" onerror="this.src='https://placehold.co/800x500/0F3156/FFFFFF?text=Obra+Financiada'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute top-3 left-3 bg-brand-blue/90 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1 rounded-full">
+                                ${proj.modality}
+                            </div>
+                            <div class="absolute top-3 right-3 bg-brand-green text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">
+                                ${proj.standard}
+                            </div>
+                            <div class="absolute bottom-3 right-3 bg-white/95 text-brand-blue text-xs font-bold px-3 py-1.5 rounded-xl shadow flex items-center gap-1.5">
+                                <i class="fa-solid fa-compass-drafting text-brand-green"></i> Fotos + Planta Baixa
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <div class="text-xs font-semibold text-slate-400 flex items-center gap-1.5 mb-1">
+                                <i class="fa-solid fa-location-dot text-brand-green"></i> ${proj.location}
+                            </div>
+                            <h3 class="font-display font-extrabold text-xl text-brand-blue group-hover:text-brand-green transition cursor-pointer" onclick="openProjectModal('${proj.id}')">
+                                ${proj.title}
+                            </h3>
+
+                            <div class="grid grid-cols-3 gap-2 my-4 py-3 border-y border-slate-100 text-xs text-slate-600">
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-ruler-combined text-brand-blue"></i>
+                                    <span><strong>${proj.area}</strong> m²</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-bed text-brand-blue"></i>
+                                    <span class="truncate">${proj.beds}</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-car text-brand-blue"></i>
+                                    <span><strong>${proj.garage || 2}</strong> Vagas</span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between bg-brand-ice px-4 py-2.5 rounded-xl">
+                                <div>
+                                    <span class="block text-[10px] uppercase font-bold text-slate-400">Investimento / Caixa</span>
+                                    <span class="font-display font-extrabold text-sm text-brand-blue">${formatBRL(proj.cost)}</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="block text-[10px] uppercase font-bold text-brand-green">Valorização (+${gainPercent}%)</span>
+                                    <span class="font-display font-bold text-xs text-slate-700">Aval.: ${formatBRL(proj.valuation || proj.cost * 1.28)}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-6 pb-6 pt-1 flex gap-2">
+                        <button onclick="openProjectModal('${proj.id}', 'photo')" class="flex-1 py-2.5 px-3 rounded-xl bg-brand-blue hover:bg-brand-blueLight text-white font-bold text-xs transition flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-eye"></i> Detalhes da Obra
+                        </button>
+                        <button onclick="openProjectModal('${proj.id}', 'floorplan')" class="py-2.5 px-3.5 rounded-xl bg-emerald-50 hover:bg-brand-green text-brand-greenDark hover:text-white border border-brand-green/30 font-bold text-xs transition flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-compass-drafting"></i> Planta Baixa
+                        </button>
+                    </div>
+                </article>`;
+            }).join('');
+        }
+
+        function openProjectModal(projectId, initialTab = 'photo') {
+            const proj = projects.find(p => p.id === projectId);
+            if (!proj) return;
+            activeModalProject = proj;
+
+            document.getElementById('modalBadge').textContent = `${proj.modality} • ${proj.standard}`;
+            document.getElementById('modalTitle').textContent = proj.title;
+            document.getElementById('modalLocation').innerHTML = `<i class="fa-solid fa-location-dot text-brand-green"></i> ${proj.location}`;
+            document.getElementById('modalArea').textContent = `${proj.area} m²`;
+            document.getElementById('modalLot').textContent = `${proj.lotArea || 360} m²`;
+            document.getElementById('modalBeds').textContent = proj.beds;
+            document.getElementById('modalTimeline').textContent = proj.timeline || '10 meses';
+            document.getElementById('modalCost').textContent = formatBRL(proj.cost);
+            document.getElementById('modalValuation').textContent = formatBRL(proj.valuation || proj.cost * 1.28);
+            document.getElementById('modalDescription').textContent = proj.description;
+
+            switchModalMedia(initialTab);
+
+            const cleanWa = siteConfig.whatsapp.replace(/\D/g, '');
+            const msg = `Olá! Vi a obra *${proj.title}* (${proj.area}m² - ${proj.modality}) no site *financiesuaobra.com.br* e gostaria de orçar um projeto similar com financiamento Caixa.`;
+            document.getElementById('modalWhatsappBtn').onclick = () => {
+                window.open(`https://wa.me/${cleanWa}?text=${encodeURIComponent(msg)}`, '_blank');
+            };
+
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        function switchModalMedia(type) {
+            if (!activeModalProject) return;
+            const img = document.getElementById('modalMainImage');
+            const caption = document.getElementById('modalMediaCaption');
+            const btnPhoto = document.getElementById('modalBtnPhoto');
+            const btnFloorplan = document.getElementById('modalBtnFloorplan');
+
+            if (type === 'floorplan') {
+                img.src = activeModalProject.floorplanUrl || createArchitecturalFloorplanSvg(activeModalProject.title, activeModalProject.area, activeModalProject.beds);
+                caption.textContent = "Planta Baixa Inteligente • Escritório Geminadas.com Arquitetura";
+                btnFloorplan.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-brand-green text-white transition flex items-center gap-2";
+                btnPhoto.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white text-brand-blue border border-slate-200 transition flex items-center gap-2";
+            } else {
+                img.src = activeModalProject.photoUrl;
+                caption.textContent = "Obra Executada pela Level Construtora • Financiamento Caixa";
+                btnPhoto.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-brand-blue text-white transition flex items-center gap-2";
+                btnFloorplan.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white text-brand-blue border border-slate-200 hover:border-brand-green transition flex items-center gap-2";
+            }
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        // ============================================================================
+        // 6. ADMIN CMS: CREATE, EDIT, DELETE PROJECTS & IMAGE COMPRESSION
+        // ============================================================================
+        function handleImageUpload(event, targetInputId, previewImgId) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    // Compress image via Canvas to keep site fast and lightweight
+                    const canvas = document.createElement('canvas');
+                    const maxWidth = 1000;
+                    const scale = img.width > maxWidth ? maxWidth / img.width : 1;
+                    canvas.width = img.width * scale;
+                    canvas.height = img.height * scale;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.82);
+
+                    document.getElementById(targetInputId).value = compressedDataUrl;
+                    const preview = document.getElementById(previewImgId);
+                    preview.src = compressedDataUrl;
+                    preview.classList.remove('hidden');
+                    showToast('Imagem carregada e otimizada com sucesso!');
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function saveProject(e) {
+            e.preventDefault();
+            const existingId = document.getElementById('projId').value;
+            const title = document.getElementById('projTitle').value.trim();
+            const area = parseInt(document.getElementById('projArea').value) || 180;
+            const beds = document.getElementById('projBeds').value.trim() || "3 Suítes";
+            const cost = parseFloat(document.getElementById('projCost').value) || 650000;
+            const valuation = parseFloat(document.getElementById('projValuation').value) || Math.round(cost * 1.28);
+
+            const photoUrl = document.getElementById('projPhotoUrl').value.trim() || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80";
+            const floorplanUrl = document.getElementById('projFloorplanUrl').value.trim() || createArchitecturalFloorplanSvg(title, area, beds);
+
+            const projectData = {
+                id: existingId || 'obra-' + Date.now(),
+                title,
+                modality: document.getElementById('projModality').value,
+                standard: document.getElementById('projStandard').value,
+                location: document.getElementById('projLocation').value.trim(),
+                timeline: document.getElementById('projTimeline').value.trim() || "10 meses",
+                area,
+                lotArea: parseInt(document.getElementById('projLotArea').value) || 360,
+                beds,
+                garage: parseInt(document.getElementById('projGarage').value) || 2,
+                cost,
+                valuation,
+                photoUrl,
+                floorplanUrl,
+                description: document.getElementById('projDescription').value.trim()
+            };
+
+            if (existingId) {
+                const idx = projects.findIndex(p => p.id === existingId);
+                if (idx > -1) projects[idx] = projectData;
+                showToast('Obra atualizada com sucesso!');
+            } else {
+                projects.unshift(projectData);
+                showToast('Nova obra cadastrada e publicada na página inicial!');
+            }
+
+            persistDataToStorage();
+            resetProjectForm();
+            renderPublicProjects();
+            renderAdminProjectsList();
+        }
+
+        function editProject(id) {
+            const proj = projects.find(p => p.id === id);
+            if (!proj) return;
+
+            document.getElementById('projId').value = proj.id;
+            document.getElementById('projTitle').value = proj.title;
+            document.getElementById('projModality').value = proj.modality;
+            document.getElementById('projStandard').value = proj.standard;
+            document.getElementById('projLocation').value = proj.location;
+            document.getElementById('projTimeline').value = proj.timeline;
+            document.getElementById('projArea').value = proj.area;
+            document.getElementById('projLotArea').value = proj.lotArea;
+            document.getElementById('projBeds').value = proj.beds;
+            document.getElementById('projGarage').value = proj.garage;
+            document.getElementById('projCost').value = proj.cost;
+            document.getElementById('projValuation').value = proj.valuation;
+            document.getElementById('projPhotoUrl').value = proj.photoUrl;
+            document.getElementById('projFloorplanUrl').value = proj.floorplanUrl;
+            document.getElementById('projDescription').value = proj.description;
+
+            document.getElementById('formProjectTitle').innerHTML = `<i class="fa-solid fa-pen-to-square text-brand-green"></i> Editando Obra`;
+            document.getElementById('submitProjectBtnText').textContent = "Atualizar Obra";
+            document.getElementById('cancelEditBtn').classList.remove('hidden');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function deleteProject(id) {
+            projects = projects.filter(p => p.id !== id);
+            persistDataToStorage();
+            renderPublicProjects();
+            renderAdminProjectsList();
+            showToast('Obra removida do portfólio.');
+        }
+
+        function resetProjectForm() {
+            document.getElementById('projectForm').reset();
+            document.getElementById('projId').value = '';
+            document.getElementById('previewPhoto').classList.add('hidden');
+            document.getElementById('previewFloorplan').classList.add('hidden');
+            document.getElementById('formProjectTitle').innerHTML = `<i class="fa-solid fa-plus-circle text-brand-green"></i> 2. Cadastrar Obra Financiada`;
+            document.getElementById('submitProjectBtnText').textContent = "Salvar e Publicar Obra no Site";
+            document.getElementById('cancelEditBtn').classList.add('hidden');
+        }
+
+        function renderAdminProjectsList() {
+            const container = document.getElementById('adminProjectsList');
+            document.getElementById('adminProjectsCount').textContent = `${projects.length} obra(s)`;
+
+            if (projects.length === 0) {
+                container.innerHTML = `<div class="p-8 text-center text-slate-400 bg-brand-ice rounded-2xl">Nenhuma obra cadastrada. Use o formulário ao lado para adicionar.</div>`;
+                return;
+            }
+
+            container.innerHTML = projects.map(proj => `
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-2xl bg-brand-ice border border-slate-200 hover:border-brand-blue transition">
+                    <div class="flex items-center gap-4">
+                        <img src="${proj.photoUrl}" alt="${proj.title}" onerror="this.src='https://placehold.co/200x200/0F3156/FFFFFF?text=Obra'" class="w-20 h-16 rounded-xl object-cover shrink-0 border border-slate-300">
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-brand-blue text-white">${proj.modality}</span>
+                                <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-brand-green text-white">${proj.area} m²</span>
+                            </div>
+                            <h4 class="font-display font-bold text-base text-brand-blue mt-1">${proj.title}</h4>
+                            <p class="text-xs text-slate-500">${proj.location} • Financiado: <strong>${formatBRL(proj.cost)}</strong></p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 self-end sm:self-center">
+                        <button onclick="editProject('${proj.id}')" class="px-3 py-2 rounded-xl bg-white hover:bg-brand-blue hover:text-white text-brand-blue border border-slate-200 text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-pen"></i> Editar
+                        </button>
+                        <button onclick="deleteProject('${proj.id}')" class="px-3 py-2 rounded-xl bg-red-50 hover:bg-red-600 text-red-600 hover:text-white text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-trash"></i> Excluir
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ============================================================================
+        // 7. INITIALIZE ON WINDOW LOAD
+        // ============================================================================
+        // ============================================================================
+        // 7. HERO INTERACTIVE SLIDER, ADVANTAGES SLIDER & DIRECT INLINE EDITING
+        // ============================================================================
+        function formatNumberPoints(num) {
+            return Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        function handleHeroDirectInput(rawVal) {
+            const SFH_CEILING = 2250000;
+            const numeric = parseInt(String(rawVal).replace(/\D/g, ''), 10) || 1020000;
+            const clamped = Math.max(300000, Math.min(SFH_CEILING, numeric));
+            if (numeric > SFH_CEILING) {
+                showToast('Valor ajustado para R$ 2.250.000 (Teto máximo do SFH Caixa).');
+            }
+            const slider = document.getElementById('heroCostSlider');
+            slider.max = SFH_CEILING;
+            slider.value = clamped;
+            updateHeroInteractiveCard();
+        }
+
+        function updateHeroInteractiveCard() {
+            const sliderEl = document.getElementById('heroCostSlider');
+            if (!sliderEl) return;
+            const totalInvest = Math.min(2250000, parseFloat(sliderEl.value) || 1020000);
+            const quotaPct = parseInt(document.getElementById('heroQuotaSlider').value, 10) || 80;
+            const marginInput = document.getElementById('quickCfgMargin');
+            const marketMarkupPct = marginInput ? (parseFloat(marginInput.value) || 30) : 30;
+
+            // Update direct text input with formatted dots
+            const directInput = document.getElementById('heroCostInputDirect');
+            if (directInput && document.activeElement !== directInput) {
+                directInput.value = formatNumberPoints(totalInvest);
+            }
+
+            // Calculate estimated area (m²) based on total investment (land + construction)
+            const estimatedSqm = Math.max(85, Math.round((totalInvest * 0.72) / (simState.costPerSqm || 3350)));
+            const sqmBadge = document.getElementById('heroCardSqmBadge');
+            if (sqmBadge) sqmBadge.textContent = `(~${estimatedSqm} m²)`;
+
+            // Caixa Financed vs Entry
+            const financedVal = totalInvest * (quotaPct / 100);
+            const entryVal = totalInvest - financedVal;
+            const annualRate = (siteConfig.interestRate || 9.89) / 100;
+            const monthlyRate = Math.pow(1 + annualRate, 1 / 12) - 1;
+            const estFirstInst = (financedVal / 420) + (financedVal * monthlyRate) + 65;
+
+            document.getElementById('heroQuotaLabel').textContent = `${quotaPct}%`;
+            document.getElementById('heroCaixaFinancedValue').textContent = `Crédito Caixa: ${formatBRL(financedVal)}`;
+            document.getElementById('heroEntryRequiredLabel').textContent = `Entrada/Lote (${100 - quotaPct}%): ${formatBRL(entryVal)}`;
+            document.getElementById('heroEstimatedInstallment').textContent = `1ª Parc. ~${formatBRL(estFirstInst)}`;
+
+            // Market Price vs Build With Us Price
+            const readyMarketPrice = Math.round(totalInvest * (1 + (marketMarkupPct / 100)));
+            const savings = readyMarketPrice - totalInvest;
+
+            document.getElementById('heroReadyMarketPrice').textContent = formatBRL(readyMarketPrice);
+            document.getElementById('heroBuildWithUsPrice').textContent = formatBRL(totalInvest);
+            document.getElementById('heroEquitySavingsValue').textContent = `+ ${formatBRL(savings)}`;
+
+            // Dynamic visual bar widths
+            const ratioPercent = Math.max(45, Math.min(92, Math.round((totalInvest / readyMarketPrice) * 100)));
+            const barBuild = document.getElementById('heroBarBuild');
+            if (barBuild) barBuild.style.width = `${ratioPercent}%`;
+        }
+
+        function sendHeroQuickSimToWhatsApp() {
+            const totalInvest = parseFloat(document.getElementById('heroCostSlider').value) || 1020000;
+            const quotaPct = parseInt(document.getElementById('heroQuotaSlider').value, 10) || 80;
+            const financedVal = totalInvest * (quotaPct / 100);
+            const entryVal = totalInvest - financedVal;
+            const savingsText = document.getElementById('heroEquitySavingsValue').textContent;
+            const sqmText = document.getElementById('heroCardSqmBadge').textContent;
+
+            const msg = `Olá! Usei o simulador rápido na capa do site *financiesuaobra.com.br*:\n\n` +
+                `▪ *Investimento Desejado (Terreno + Obra):* ${formatBRL(totalInvest)} ${sqmText}\n` +
+                `▪ *Crédito Financiado Caixa (${quotaPct}%):* ${formatBRL(financedVal)}\n` +
+                `▪ *Entrada / Terreno (${100 - quotaPct}%):* ${formatBRL(entryVal)}\n` +
+                `▪ *Economia / Ganho Patrimonial Estimado:* ${savingsText}\n\n` +
+                `Gostaria de conversar com um especialista do Grupo Geminadas.com & Level!`;
+
+            const cleanWa = (siteConfig.whatsapp || "5544999999999").replace(/\D/g, '');
+            window.open(`https://wa.me/${cleanWa}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function updateVantagensInteractive() {
+            const slider = document.getElementById('vantagensSqmSlider');
+            if (!slider) return;
+            const sqm = parseInt(slider.value, 10) || 200;
+            const buildCostPerSqm = 4650; // Includes proportional lot + construction cost
+            const marketCostPerSqm = 6600; // Ready house market price per m²
+
+            const buildTotal = sqm * buildCostPerSqm;
+            const marketTotal = sqm * marketCostPerSqm;
+            const diffSavings = marketTotal - buildTotal;
+
+            document.getElementById('vantagensSqmLabel').textContent = `${sqm} m²`;
+            document.getElementById('vantagensSqmEcho1').textContent = sqm;
+            document.getElementById('vantagensSqmEcho2').textContent = sqm;
+            document.getElementById('vantagensMarketVal').textContent = formatBRL(marketTotal);
+            document.getElementById('vantagensBuildVal').textContent = formatBRL(buildTotal);
+            document.getElementById('vantagensSavingsVal').textContent = `+ ${formatBRL(diffSavings)}`;
+        }
+
+        // Direct Inline Editing & Floating Draggable Bar Logic
+        let isDirectEditMode = false;
+
+        function toggleDirectEditMode() {
+            isDirectEditMode = !isDirectEditMode;
+            const body = document.body;
+            const floatingBar = document.getElementById('floatingQuickAdminBar');
+            const btnLabel = document.getElementById('directEditBtnLabel');
+            const editableElements = document.querySelectorAll('[data-editable="true"]');
+
+            if (isDirectEditMode) {
+                body.classList.add('direct-edit-active');
+                floatingBar.classList.remove('hidden');
+                btnLabel.textContent = 'Sair da Edição Direta';
+                editableElements.forEach(el => {
+                    el.setAttribute('contenteditable', 'true');
+                });
+                // Populate quick admin fields
+                document.getElementById('quickCfgWhatsapp').value = siteConfig.whatsapp || '';
+                document.getElementById('quickCfgPhone').value = siteConfig.phoneDisplay || '';
+                document.getElementById('quickCfgInstagram').value = siteConfig.instagram || '';
+                document.getElementById('quickCfgFacebook').value = siteConfig.facebook || '';
+                document.getElementById('quickCfgYoutube').value = siteConfig.youtube || '';
+                showToast('Modo Edição Direta ativado! Clique nos textos ou arraste as barras.');
+            } else {
+                body.classList.remove('direct-edit-active');
+                floatingBar.classList.add('hidden');
+                btnLabel.textContent = 'Editar Direto no Site';
+                editableElements.forEach(el => {
+                    el.removeAttribute('contenteditable');
+                });
+                saveDirectEditsToStorage();
+            }
+        }
+
+        function syncQuickAdminChanges() {
+            siteConfig.whatsapp = document.getElementById('quickCfgWhatsapp').value.trim();
+            siteConfig.phoneDisplay = document.getElementById('quickCfgPhone').value.trim();
+            siteConfig.instagram = document.getElementById('quickCfgInstagram').value.trim();
+            siteConfig.facebook = document.getElementById('quickCfgFacebook').value.trim();
+            siteConfig.youtube = document.getElementById('quickCfgYoutube').value.trim();
+            applySiteConfigToUI();
+        }
+
+        function moveFloatingWhatsappPosition(rightPx) {
+            const btn = document.getElementById('floatingWhatsappBtn');
+            if (btn) {
+                btn.style.right = `${rightPx}px`;
+            }
+        }
+
+        function saveDirectEditsToStorage() {
+            const heroHeadlineEl = document.getElementById('heroHeadline');
+            if (heroHeadlineEl) {
+                siteConfig.heroTitle = heroHeadlineEl.innerHTML;
+            }
+            persistDataToStorage();
+            showToast('Alterações feitas direto no site foram salvas!');
+        }
+
+        function initDraggableQuickBar() {
+            const bar = document.getElementById('floatingQuickAdminBar');
+            const handle = document.getElementById('quickAdminDragHeader');
+            if (!bar || !handle) return;
+
+            let isDragging = false;
+            let startX = 0, startY = 0, initialLeft = 0, initialTop = 0;
+
+            const startDrag = (clientX, clientY) => {
+                isDragging = true;
+                const rect = bar.getBoundingClientRect();
+                initialLeft = rect.left;
+                initialTop = rect.top;
+                startX = clientX;
+                startY = clientY;
+            };
+
+            const onMove = (clientX, clientY) => {
+                if (!isDragging) return;
+                const dx = clientX - startX;
+                const dy = clientY - startY;
+                const newLeft = Math.max(8, Math.min(window.innerWidth - bar.offsetWidth - 8, initialLeft + dx));
+                const newTop = Math.max(8, Math.min(window.innerHeight - 80, initialTop + dy));
+                bar.style.left = `${newLeft}px`;
+                bar.style.top = `${newTop}px`;
+            };
+
+            handle.addEventListener('mousedown', (e) => startDrag(e.clientX, e.clientY));
+            window.addEventListener('mousemove', (e) => onMove(e.clientX, e.clientY));
+            window.addEventListener('mouseup', () => { isDragging = false; });
+
+            handle.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 1) startDrag(e.touches[0].clientX, e.touches[0].clientY);
+            }, { passive: true });
+            window.addEventListener('touchmove', (e) => {
+                if (isDragging && e.touches.length === 1) onMove(e.touches[0].clientX, e.touches[0].clientY);
+            }, { passive: true });
+            window.addEventListener('touchend', () => { isDragging = false; });
+        }
+
+        window.onload = function() {
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            loadSavedDataFromStorage();
+            applySiteConfigToUI();
+            renderPublicProjects();
+            renderAdminProjectsList();
+            updateHeroInteractiveCard();
+            updateVantagensInteractive();
+            initDraggableQuickBar();
+        };
+    </script>
+</body>
+</html>

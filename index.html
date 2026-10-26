@@ -1223,31 +1223,16 @@
         <!-- 6. PORTFÓLIO DE OBRAS FINANCIADAS (FOTOS E PLANTA BAIXA) -->
         <section id="obras" class="py-16 sm:py-20 lg:py-24 bg-white" aria-labelledby="obrasTitle">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-6">
-                    <div>
-                        <span class="inline-block bg-brand-blue/10 text-brand-blue font-bold text-xs uppercase tracking-widest px-3.5 py-1.5 rounded-full mb-3">
-                            Portfólio Realizado
-                        </span>
-                        <h2 id="obrasTitle" class="fluid-section-title font-display font-extrabold text-brand-blue">
-                            Obras Construídas com Financiamento Caixa
-                        </h2>
-                        <p class="text-slate-600 mt-2 text-sm sm:text-base max-w-2xl leading-relaxed">
-                            Confira casas de médio e alto padrão projetadas pela <strong>Geminadas.com</strong> e executadas pela <strong>Level Construtora</strong> através da <strong>financiesuaobra.com.br</strong>. Clique para ver <strong>Fotos e Planta Baixa</strong>.
-                        </p>
-                    </div>
-
-                    <!-- Filter Tabs -->
-                    <div class="flex flex-wrap gap-2" role="tablist" aria-label="Filtro de Obras">
-                        <button type="button" onclick="filterProjects('all')" id="filter-all" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-brand-blue text-white transition touch-target" role="tab" aria-selected="true">
-                            Todas as Obras
-                        </button>
-                        <button type="button" onclick="filterProjects('Terreno + Construção')" id="filter-tc" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-brand-ice text-slate-700 hover:bg-slate-200 transition touch-target" role="tab" aria-selected="false">
-                            Terreno + Construção
-                        </button>
-                        <button type="button" onclick="filterProjects('Construção em Terreno Próprio')" id="filter-tp" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-brand-ice text-slate-700 hover:bg-slate-200 transition touch-target" role="tab" aria-selected="false">
-                            Terreno Próprio
-                        </button>
-                    </div>
+                <div class="max-w-3xl mb-10 sm:mb-12">
+                    <span class="inline-block bg-brand-blue/10 text-brand-blue font-bold text-xs uppercase tracking-widest px-3.5 py-1.5 rounded-full mb-3">
+                        Portfólio Realizado
+                    </span>
+                    <h2 id="obrasTitle" class="fluid-section-title font-display font-extrabold text-brand-blue">
+                        Obras Construídas com Financiamento Caixa
+                    </h2>
+                    <p class="text-slate-600 mt-2 text-sm sm:text-base leading-relaxed">
+                        Confira casas de médio e alto padrão projetadas pela <strong>Geminadas.com</strong> e executadas pela <strong>Level Construtora</strong> através da <strong>financiesuaobra.com.br</strong>. Clique para ver <strong>Fotos e Planta Baixa</strong>.
+                    </p>
                 </div>
 
                 <!-- Dynamic Projects Grid -->
@@ -1398,6 +1383,9 @@
                     <button type="button" onclick="navigateToPublicView()" class="bg-white text-brand-blue hover:bg-emerald-50 font-bold text-xs sm:text-sm px-5 py-3 rounded-xl shadow transition flex items-center justify-center gap-2 touch-target">
                         <i class="fa-solid fa-arrow-left text-brand-green" aria-hidden="true"></i> Voltar ao Site Público
                     </button>
+                    <button type="button" onclick="adminLogout()" class="bg-red-500/20 hover:bg-red-600 text-red-200 hover:text-white border border-red-500/40 px-4 py-3 rounded-xl text-xs font-bold transition flex items-center gap-1.5 touch-target" title="Encerrar Sessão de Administrador">
+                        <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Sair
+                    </button>
                 </div>
             </div>
 
@@ -1540,7 +1528,41 @@
                 </div>
             </form>
 
-            <!-- 2. CADASTRAR E GERENCIAR OBRAS FINANCIADAS -->
+            <!-- 2. SEGURANÇA & ALTERAR SENHA DO ADMIN -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border-2 border-slate-200/80 space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-brand-green">2. Segurança de Acesso</span>
+                        <h2 class="font-display font-extrabold text-xl text-brand-blue flex items-center gap-2 mt-0.5">
+                            <i class="fa-solid fa-key text-brand-green" aria-hidden="true"></i> Alterar Senha de Administrador
+                        </h2>
+                    </div>
+                    <span class="text-xs text-slate-500">A senha protege as configurações e a edição de obras.</span>
+                </div>
+
+                <form onsubmit="handleUpdateAdminPassword(event)" class="grid sm:grid-cols-12 gap-4 items-end">
+                    <div class="sm:col-span-5">
+                        <label for="cfgNewAdminPass" class="block text-xs font-bold uppercase text-slate-600 mb-1">Nova Senha *</label>
+                        <div class="relative">
+                            <input type="password" id="cfgNewAdminPass" required minlength="4" placeholder="Mínimo 4 caracteres" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-semibold text-brand-blue pr-10 focus:outline-none focus:border-brand-green">
+                            <button type="button" onclick="togglePasswordVisibility('cfgNewAdminPass', 'newPassEyeIcon')" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 text-sm touch-target" aria-label="Mostrar ou ocultar senha">
+                                <i id="newPassEyeIcon" class="fa-solid fa-eye" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="sm:col-span-4">
+                        <label for="cfgConfirmAdminPass" class="block text-xs font-bold uppercase text-slate-600 mb-1">Confirmar Nova Senha *</label>
+                        <input type="password" id="cfgConfirmAdminPass" required minlength="4" placeholder="Repita a nova senha" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-semibold text-brand-blue focus:outline-none focus:border-brand-green">
+                    </div>
+                    <div class="sm:col-span-3">
+                        <button type="submit" class="w-full py-2.5 px-4 rounded-xl bg-brand-blue hover:bg-brand-blueLight text-white font-bold text-xs sm:text-sm shadow transition flex items-center justify-center gap-2 touch-target">
+                            <i class="fa-solid fa-lock text-brand-green" aria-hidden="true"></i> Atualizar Senha
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 3. CADASTRAR E GERENCIAR OBRAS FINANCIADAS -->
             <div class="grid lg:grid-cols-12 gap-8">
                 
                 <!-- Left: Form to Add/Edit Project -->
@@ -1728,6 +1750,61 @@
                     <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i> Salvar Tudo
                 </button>
             </div>
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- ADMIN AUTHENTICATION MODAL (RESTRICTED PASSWORD GATE)                     -->
+    <!-- ========================================================================= -->
+    <div id="adminAuthModal" class="fixed inset-0 z-50 hidden bg-brand-blueDark/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+        <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-100 p-6 sm:p-8 my-auto animate-in fade-in zoom-in-95 duration-200">
+            <div class="text-center space-y-3 mb-6">
+                <div class="w-16 h-16 rounded-2xl bg-brand-ice border-2 border-brand-green/30 flex items-center justify-center mx-auto text-brand-green text-2xl shadow-inner">
+                    <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                </div>
+                <div class="inline-block bg-brand-blue/10 text-brand-blue font-bold text-xs uppercase tracking-widest px-3 py-1 rounded-full">
+                    Acesso Restrito da Gestão
+                </div>
+                <h3 id="authModalTitle" class="font-display font-extrabold text-2xl text-brand-blue">
+                    Painel Administrativo
+                </h3>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    Área restrita para edição de dados do ecossistema <strong>Geminadas.com & Level Construtora</strong>. Digite sua senha de acesso.
+                </p>
+            </div>
+
+            <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                <div class="space-y-1.5">
+                    <label for="adminAuthPasswordInput" class="block text-xs font-bold uppercase text-slate-600">Senha de Administrador</label>
+                    <div class="relative">
+                        <input type="password" id="adminAuthPasswordInput" required autocomplete="current-password" placeholder="Digite sua senha de acesso" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-brand-blue pr-12 focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/20">
+                        <button type="button" onclick="togglePasswordVisibility('adminAuthPasswordInput', 'authEyeIcon')" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 text-sm touch-target" aria-label="Mostrar ou ocultar senha">
+                            <i id="authEyeIcon" class="fa-solid fa-eye" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="authErrorMessage" class="hidden text-xs font-semibold text-red-600 bg-red-50 border border-red-200 rounded-xl p-3 flex items-center gap-2">
+                    <i class="fa-solid fa-circle-exclamation shrink-0" aria-hidden="true"></i>
+                    <span id="authErrorText">Senha incorreta. Verifique e tente novamente.</span>
+                </div>
+
+                <div class="pt-2 flex flex-col gap-2.5">
+                    <button type="submit" id="authSubmitBtn" class="w-full py-3.5 px-6 rounded-xl bg-brand-green hover:bg-brand-greenDark text-white font-display font-bold text-sm shadow-md shadow-brand-green/20 transition flex items-center justify-center gap-2 touch-target">
+                        <i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i>
+                        <span>Entrar no Painel</span>
+                    </button>
+                    <button type="button" onclick="closeAdminAuthModal()" class="w-full py-2.5 px-4 rounded-xl text-slate-500 hover:text-slate-700 hover:bg-slate-100 text-xs font-semibold transition touch-target">
+                        Voltar ao Site Público
+                    </button>
+                </div>
+
+                <div class="pt-3 border-t border-slate-100 text-center">
+                    <p class="text-[11px] text-slate-400">
+                        Senha padrão inicial: <strong class="text-slate-600">admin123</strong> (você pode alterá-la no painel).
+                    </p>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -2044,21 +2121,134 @@
         let isDirectEditMode = false;
 
         // ============================================================================
-        // 2. ROUTING: /admin RESTRICTED ROUTE VS PUBLIC CLIENT VIEW
+        // 2. ROUTING & ADMIN PASSWORD AUTHENTICATION GATE
         // ============================================================================
+        function getAdminPassword() {
+            return localStorage.getItem('fso_admin_pass') || 'admin123';
+        }
+
+        function isAdminAuthenticated() {
+            return sessionStorage.getItem('fso_admin_auth') === 'active';
+        }
+
+        function togglePasswordVisibility(inputId, iconId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+            if (!input || !icon) return;
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        function openAdminAuthModal() {
+            const modal = document.getElementById('adminAuthModal');
+            const input = document.getElementById('adminAuthPasswordInput');
+            const err = document.getElementById('authErrorMessage');
+            if (err) err.classList.add('hidden');
+            if (input) {
+                input.value = '';
+                input.classList.remove('border-red-400', 'bg-red-50/30');
+                setTimeout(() => input.focus(), 150);
+            }
+            if (modal) modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAdminAuthModal() {
+            const modal = document.getElementById('adminAuthModal');
+            if (modal) modal.classList.add('hidden');
+            document.body.style.overflow = '';
+            if (!isAdminAuthenticated() && window.location.hash.toLowerCase().includes('admin')) {
+                navigateToPublicView();
+            }
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const input = document.getElementById('adminAuthPasswordInput');
+            const err = document.getElementById('authErrorMessage');
+            const errText = document.getElementById('authErrorText');
+            const enteredPass = input ? input.value : '';
+
+            if (enteredPass === getAdminPassword()) {
+                sessionStorage.setItem('fso_admin_auth', 'active');
+                if (err) err.classList.add('hidden');
+                closeAdminAuthModal();
+                window.location.hash = 'admin';
+                activateAdminView();
+                showToast('Acesso concedido ao Painel Administrativo!');
+            } else {
+                if (err && errText) {
+                    errText.textContent = 'Senha incorreta. Verifique e tente novamente.';
+                    err.classList.remove('hidden');
+                }
+                if (input) {
+                    input.classList.add('border-red-400', 'bg-red-50/30');
+                    input.select();
+                }
+            }
+        }
+
+        function adminLogout() {
+            sessionStorage.removeItem('fso_admin_auth');
+            if (isDirectEditMode) {
+                toggleDirectEditMode();
+            }
+            navigateToPublicView();
+            showToast('Sessão administrativa finalizada com sucesso.');
+        }
+
+        function handleUpdateAdminPassword(e) {
+            e.preventDefault();
+            const newPassEl = document.getElementById('cfgNewAdminPass');
+            const confirmPassEl = document.getElementById('cfgConfirmAdminPass');
+            const newPass = newPassEl ? newPassEl.value.trim() : '';
+            const confirmPass = confirmPassEl ? confirmPassEl.value.trim() : '';
+
+            if (newPass.length < 4) {
+                showToast('A nova senha deve ter no mínimo 4 caracteres.', 'error');
+                return;
+            }
+            if (newPass !== confirmPass) {
+                showToast('As senhas não coincidem. Digite novamente.', 'error');
+                return;
+            }
+
+            localStorage.setItem('fso_admin_pass', newPass);
+            newPassEl.value = '';
+            confirmPassEl.value = '';
+            showToast('Nova senha de administrador salva com sucesso!');
+        }
+
         function checkRoute() {
             const hash = window.location.hash.toLowerCase();
             const search = window.location.search.toLowerCase();
             const isAdminRoute = hash === '#admin' || hash === '#/admin' || search.includes('admin');
 
             if (isAdminRoute) {
-                activateAdminView();
+                if (isAdminAuthenticated()) {
+                    activateAdminView();
+                } else {
+                    openAdminAuthModal();
+                }
             } else {
+                closeAdminAuthModal();
                 activatePublicView();
             }
         }
 
         function activateAdminView() {
+            if (!isAdminAuthenticated()) {
+                openAdminAuthModal();
+                return;
+            }
+
             const publicView = document.getElementById('publicView');
             const adminView = document.getElementById('adminView');
             const publicNav = document.getElementById('publicNav');
@@ -2089,12 +2279,17 @@
 
         function navigateToAdminView(e) {
             if (e) e.preventDefault();
-            window.location.hash = 'admin';
+            if (isAdminAuthenticated()) {
+                window.location.hash = 'admin';
+            } else {
+                openAdminAuthModal();
+            }
         }
 
         function navigateToPublicView() {
             window.location.hash = '';
             history.pushState("", document.title, window.location.pathname + window.location.search);
+            closeAdminAuthModal();
             activatePublicView();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -2513,43 +2708,20 @@
         // ============================================================================
         // 6. PORTFOLIO & MODAL SYSTEM (NATIVE LAZY LOADING & RETINA SUPPORT)
         // ============================================================================
-        function filterProjects(filterValue) {
-            currentFilter = filterValue;
-            const btnAll = document.getElementById('filter-all');
-            const btnTc = document.getElementById('filter-tc');
-            const btnTp = document.getElementById('filter-tp');
-
-            [btnAll, btnTc, btnTp].forEach(b => {
-                b.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-brand-ice text-slate-700 hover:bg-slate-200 transition touch-target";
-                b.setAttribute('aria-selected', 'false');
-            });
-
-            if (filterValue === 'all') {
-                btnAll.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-brand-blue text-white transition touch-target";
-                btnAll.setAttribute('aria-selected', 'true');
-            } else if (filterValue === 'Terreno + Construção') {
-                btnTc.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-brand-blue text-white transition touch-target";
-                btnTc.setAttribute('aria-selected', 'true');
-            } else {
-                btnTp.className = "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-brand-blue text-white transition touch-target";
-                btnTp.setAttribute('aria-selected', 'true');
-            }
-
+        function filterProjects() {
             renderPublicProjects();
         }
 
         function renderPublicProjects() {
             const grid = document.getElementById('projectsGrid');
-            const filtered = currentFilter === 'all'
-                ? projects
-                : projects.filter(p => p.modality === currentFilter);
+            if (!grid) return;
 
-            if (filtered.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-12 bg-brand-ice rounded-3xl text-slate-500">Nenhuma obra encontrada para este filtro.</div>`;
+            if (!projects || projects.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 bg-brand-ice rounded-3xl text-slate-500">Nenhuma obra encontrada.</div>`;
                 return;
             }
 
-            grid.innerHTML = filtered.map((proj, idx) => {
+            grid.innerHTML = projects.map((proj, idx) => {
                 const gainPercent = proj.valuation && proj.cost ? Math.round(((proj.valuation - proj.cost) / proj.cost) * 100) : 28;
                 return `
                 <article class="bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-100 hover:shadow-2xl transition flex flex-col justify-between group">
@@ -2671,14 +2843,15 @@
             document.body.style.overflow = '';
         }
 
-        // Close modal on Escape key
+        // Close modals on Escape key
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeProjectModal();
+                closeAdminAuthModal();
             }
             // Admin shortcut: Ctrl+Shift+A
             if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
-                if (window.location.hash.includes('admin')) {
+                if (window.location.hash.includes('admin') && isAdminAuthenticated()) {
                     navigateToPublicView();
                 } else {
                     navigateToAdminView();
@@ -2686,12 +2859,21 @@
             }
         });
 
-        // Close modal on backdrop click
+        // Close modals on backdrop click
         document.getElementById('projectModal').addEventListener('click', (e) => {
             if (e.target === document.getElementById('projectModal')) {
                 closeProjectModal();
             }
         });
+
+        const authModalBackdrop = document.getElementById('adminAuthModal');
+        if (authModalBackdrop) {
+            authModalBackdrop.addEventListener('click', (e) => {
+                if (e.target === authModalBackdrop) {
+                    closeAdminAuthModal();
+                }
+            });
+        }
 
         // ============================================================================
         // 7. ADMIN CMS CRUD FOR PROJECTS
@@ -2969,6 +3151,11 @@
         // 9. INLINE DIRECT EDITING & FLOATING DRAGGABLE BAR
         // ============================================================================
         function toggleDirectEditMode() {
+            if (!isAdminAuthenticated()) {
+                openAdminAuthModal();
+                showToast('Informe a senha do administrador para ativar a edição direta.', 'error');
+                return;
+            }
             isDirectEditMode = !isDirectEditMode;
             const body = document.body;
             const floatingBar = document.getElementById('floatingQuickAdminBar');

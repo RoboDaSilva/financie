@@ -523,7 +523,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
             <!-- Brand Logo (Vector SVG Faithful to LOGO COMPLETA.jpg) -->
-            <a href="#inicio" onclick="handleLogoClick(event)" class="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-brand-green rounded-xl p-1" aria-label="Página Inicial financiesuaobra.com.br">
+            <a href="#inicio" onclick="handleLogoClick(event)" class="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-brand-green rounded-xl p-1 shrink-0" aria-label="Página Inicial financiesuaobra.com.br">
                 <svg class="w-11 h-11 sm:w-13 sm:h-13 transition-transform duration-300 group-hover:scale-105 shrink-0" viewBox="0 0 120 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="50" height="46">
                     <!-- Left House Outline (Dark Blue #0F3156) -->
                     <path d="M16 55L56 20C59.5 17 63.5 17 67 20L76 28" stroke="#0F3156" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -544,22 +544,40 @@
                 </div>
             </a>
 
-            <!-- Desktop Navigation Links -->
-            <nav id="publicNav" class="hidden lg:flex items-center gap-7 text-sm font-semibold text-slate-700" role="navigation" aria-label="Navegação Principal">
-                <a href="#modalidades" class="hover:text-brand-green transition focus-visible:outline-none focus-visible:text-brand-green py-2">Modalidades Caixa</a>
-                <a href="#vantagens" class="hover:text-brand-green transition focus-visible:outline-none focus-visible:text-brand-green py-2">Construir vs. Comprar</a>
-                <a href="#grupo" class="hover:text-brand-green transition focus-visible:outline-none focus-visible:text-brand-green py-2">O Grupo</a>
-                <a href="#simulador" class="text-brand-blue hover:text-brand-green transition flex items-center gap-1.5 focus-visible:outline-none py-2">
-                    <i class="fa-solid fa-calculator text-brand-green" aria-hidden="true"></i> Simulador de Crédito
+            <!-- Desktop Navigation Links (Centered text & Generous Spacing) -->
+            <nav id="publicNav" class="hidden lg:flex items-center justify-center gap-3.5 xl:gap-7 text-xs xl:text-sm font-semibold text-slate-700 ml-6 lg:ml-10 xl:ml-16" role="navigation" aria-label="Navegação Principal">
+                <a href="#modalidades" class="text-center hover:text-brand-green transition focus-visible:outline-none focus-visible:text-brand-green py-1.5 px-1 leading-tight flex flex-col items-center justify-center">
+                    <span>Modalidades</span>
+                    <span>Caixa</span>
                 </a>
-                <a href="#obras" class="hover:text-brand-green transition focus-visible:outline-none focus-visible:text-brand-green py-2">Obras Financiadas</a>
-                <a href="#faq" class="hover:text-brand-green transition focus-visible:outline-none focus-visible:text-brand-green py-2">Dúvidas Frequentes</a>
+                <a href="#vantagens" class="text-center hover:text-brand-green transition focus-visible:outline-none focus-visible:text-brand-green py-1.5 px-1 leading-tight flex flex-col items-center justify-center">
+                    <span>Construir vs.</span>
+                    <span>Comprar</span>
+                </a>
+                <a href="#grupo" class="text-center hover:text-brand-green transition focus-visible:outline-none focus-visible:text-brand-green py-1.5 px-1 leading-tight flex flex-col items-center justify-center whitespace-nowrap">
+                    <span>O Grupo</span>
+                </a>
+                <a href="#simulador" class="text-brand-blue hover:text-brand-green transition flex flex-col items-center justify-center text-center gap-0.5 focus-visible:outline-none py-1.5 px-1 leading-tight">
+                    <span class="inline-flex items-center gap-1">
+                        <i class="fa-solid fa-calculator text-brand-green text-xs" aria-hidden="true"></i>
+                        <span>Simulador de</span>
+                    </span>
+                    <span>Crédito</span>
+                </a>
+                <a href="#obras" class="text-center hover:text-brand-green transition focus-visible:outline-none focus-visible:text-brand-green py-1.5 px-1 leading-tight flex flex-col items-center justify-center">
+                    <span>Obras</span>
+                    <span>Financiadas</span>
+                </a>
+                <a href="#faq" class="text-center hover:text-brand-green transition focus-visible:outline-none focus-visible:text-brand-green py-1.5 px-1 leading-tight flex flex-col items-center justify-center">
+                    <span>Dúvidas</span>
+                    <span>Frequentes</span>
+                </a>
             </nav>
 
             <!-- CTA & Mobile Menu Toggle Button -->
-            <div class="flex items-center gap-3">
-                <a href="#" id="headerWhatsappBtn" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 bg-brand-green hover:bg-brand-greenDark text-white font-semibold text-sm px-5 py-2.5 rounded-xl shadow-md shadow-brand-green/20 transition transform hover:-translate-y-0.5 touch-target">
-                    <i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i>
+            <div class="flex items-center gap-3 shrink-0 ml-4 lg:ml-6">
+                <a href="#" id="headerWhatsappBtn" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center justify-center text-center gap-2 bg-brand-green hover:bg-brand-greenDark text-white font-semibold text-xs xl:text-sm px-4 xl:px-5 py-2.5 rounded-xl shadow-md shadow-brand-green/20 transition transform hover:-translate-y-0.5 touch-target whitespace-nowrap">
+                    <i class="fa-brands fa-whatsapp text-lg shrink-0" aria-hidden="true"></i>
                     <span>Falar com Especialista</span>
                 </a>
                 <button type="button" onclick="toggleMobileMenu()" class="lg:hidden touch-target rounded-xl text-brand-blue hover:bg-brand-ice focus-visible:ring-2 focus-visible:ring-brand-green" aria-expanded="false" aria-controls="mobileMenu" aria-label="Alternar Menu de Navegação">

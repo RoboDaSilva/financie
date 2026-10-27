@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- 1. PÁGINA INICIAL (HOME) -->
   <url>
     <loc>https://financiesuaobra.com.br/</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
       <image:title>Construção Financiada Caixa em Maringá - Residência de Alto Padrão</image:title>
-      <image:caption>Residência contemporânea executada pelo Grupo Geminadas.com e Level Construtora em condomínio fechado de Maringá PR</image:caption>
+      <image:caption>Residência contemporânea assinada pela Geminadas.com e executada pela Level Construtora via financiesuaobra.com.br</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
@@ -17,40 +19,57 @@
       <image:caption>Obra financiada em terreno próprio com projeto Geminadas.com e engenharia Level Construtora</image:caption>
     </image:image>
   </url>
+
+  <!-- 2. SILO 1: AQUISIÇÃO DE TERRENO E CONSTRUÇÃO -->
   <url>
-    <loc>https://financiesuaobra.com.br/#modalidades</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://financiesuaobra.com.br/aquisicao-de-terreno-e-construcao/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
+      <image:title>Financiamento de Terreno e Construção Caixa Econômica Federal</image:title>
+      <image:caption>Compra do lote e execução da obra no mesmo contrato imobiliário Caixa com uso do FGTS e prazo de até 420 meses</image:caption>
+    </image:image>
   </url>
+
+  <!-- 3. SILO 2: CONSTRUÇÃO EM TERRENO PRÓPRIO -->
   <url>
-    <loc>https://financiesuaobra.com.br/#vantagens</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://financiesuaobra.com.br/construcao-em-terreno-proprio/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
+      <image:title>Construção em Terreno Próprio Caixa</image:title>
+      <image:caption>Financiamento da construção para quem já possui terreno quitado ou em fase de quitação com zero descapitalização inicial</image:caption>
+    </image:image>
   </url>
+
+  <!-- 4. SILO 3: SIMULADOR DE FINANCIAMENTO DE CONSTRUÇÃO CAIXA -->
   <url>
-    <loc>https://financiesuaobra.com.br/#grupo</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://financiesuaobra.com.br/simulador-financiamento-construcao-caixa/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
+      <image:title>Simulador Online de Financiamento de Construção Caixa</image:title>
+      <image:caption>Simulação instantânea de parcelas, entrada, amortização SAC e viabilidade de renda para obras financiadas</image:caption>
+    </image:image>
   </url>
+
+  <!-- 5. SILO 4: SEO LOCAL - CONSTRUÇÃO FINANCIADA CAIXA EM MARINGÁ E REGIÃO -->
   <url>
-    <loc>https://financiesuaobra.com.br/#simulador</loc>
-    <lastmod>2026-10-26</lastmod>
+    <loc>https://financiesuaobra.com.br/construcao-financiada-caixa-maringa/</loc>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
+      <image:title>Construção Financiada Caixa em Maringá PR e Região Metropolitana</image:title>
+      <image:caption>Projetos arquitetônicos autorais e execução turnkey em condomínios fechados de Maringá, Sarandi, Paiçandu e região</image:caption>
+    </image:image>
   </url>
-  <url>
-    <loc>https://financiesuaobra.com.br/#obras</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://financiesuaobra.com.br/#faq</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
+
 </urlset>

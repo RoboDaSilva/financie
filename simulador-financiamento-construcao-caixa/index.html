@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <!-- SEO & Core Meta Tags -->
+    <title>Simulador de Financiamento de Construção Caixa | Calcule Parcelas e Entrada</title>
+    <meta name="description" content="Simulador online de crédito Caixa Econômica Federal para construção residencial e aquisição de terreno. Calcule parcelas no SAC, valor de entrada, amortização e ganho patrimonial. Simule grátis!">
+    <meta name="keywords" content="simulador financiamento construção caixa, simulador habitacional caixa obra, simular financiamento terreno e construção, calcular parcelas construção caixa sac, simulador credito imobiliario caixa, simulador habitacional maringá, grupo geminadas level construtora">
+    <meta name="author" content="financiesuaobra.com.br • Grupo Geminadas.com & Level Construtora">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://financiesuaobra.com.br/simulador-financiamento-construcao-caixa/">
+
+    <!-- Geo Tags -->
+    <meta name="geo.region" content="BR-PR">
+    <meta name="geo.placename" content="Maringá">
+    <meta name="geo.position" content="-23.420999;-51.933056">
+    <meta name="ICBM" content="-23.420999, -51.933056">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:url" content="https://financiesuaobra.com.br/simulador-financiamento-construcao-caixa/">
+    <meta property="og:site_name" content="financiesuaobra.com.br">
+    <meta property="og:title" content="Simulador de Financiamento de Construção Caixa | Calcule Parcelas e Entrada">
+    <meta property="og:description" content="Ferramenta gratuita de simulação de financiamento de obra e terreno pela Caixa. Calcule parcelas decrescentes no SAC, entrada e potencial de economia patrimonial.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Simulador de Financiamento de Construção Caixa">
+    <meta name="twitter:description" content="Simule seu financiamento habitacional Caixa online: parcelas SAC, entrada e ganho patrimonial imediato.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80">
+
+    <!-- Dynamic Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 110'%3E%3Crect width='120' height='110' rx='24' fill='%23FFFFFF'/%3E%3Cpath d='M16 55L56 20C59.5 17 63.5 17 67 20L76 28' stroke='%230F3156' stroke-width='10' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M27 47V84C27 91 32 95 39 95H43C49 95 53 91 53 84V76' stroke='%230F3156' stroke-width='10' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M44 59L59 45L71 55L98 27' stroke='%230F3156' stroke-width='10' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M83 25H100V42' stroke='%230F3156' stroke-width='10' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M55 95H90C96 95 100 91 100 84V47L93 40' stroke='%23138A59' stroke-width='10' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M67 95V68' stroke='%23138A59' stroke-width='10' stroke-linecap='round' fill='none'/%3E%3Cpath d='M83 95V58' stroke='%23138A59' stroke-width='10' stroke-linecap='round' fill='none'/%3E%3Cpath d='M100 47L107 54' stroke='%23138A59' stroke-width='10' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0F3156',
+                            blueDark: '#0B1E33',
+                            blueLight: '#1A4D80',
+                            green: '#138A59',
+                            greenDark: '#0E6642',
+                            greenLight: '#1CB073',
+                            ice: '#F4F8F6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Schema.org JSON-LD: WebApplication, BreadcrumbList & FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://financiesuaobra.com.br/simulador-financiamento-construcao-caixa/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Início",
+              "item": "https://financiesuaobra.com.br/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Simulador de Financiamento de Construção Caixa",
+              "item": "https://financiesuaobra.com.br/simulador-financiamento-construcao-caixa/"
+            }
+          ]
+        },
+        {
+          "@type": "WebApplication",
+          "@id": "https://financiesuaobra.com.br/simulador-financiamento-construcao-caixa/#software",
+          "name": "Simulador de Financiamento de Construção Caixa Econômica Federal",
+          "url": "https://financiesuaobra.com.br/simulador-financiamento-construcao-caixa/",
+          "applicationCategory": "FinanceApplication",
+          "operatingSystem": "All",
+          "browserRequirements": "Requires JavaScript. Requires HTML5.",
+          "description": "Calculadora interativa e gratuita para estimativa de parcelas, valor de entrada, cota de financiamento SFH (até 80%), prazo de até 420 meses e ganho patrimonial imediato na construção financiada Caixa.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "financiesuaobra.com.br",
+            "url": "https://financiesuaobra.com.br/"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://financiesuaobra.com.br/simulador-financiamento-construcao-caixa/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Como são calculadas as parcelas do simulador pelo sistema SAC?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "O Sistema de Amortização Constante (SAC) divide o saldo financiado igualmente entre o número de meses do contrato (ex: 420 meses). Os juros mensais incidem sobre o saldo devedor restante, que diminui a cada mês. Como consequência, a primeira parcela é o valor mais alto e todas as parcelas seguintes diminuem gradativamente até o fim do contrato."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Qual é a renda familiar necessária para aprovar o financiamento simulado?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A regra prudencial do Banco Central e da Caixa estabelece que a primeira parcela do financiamento imobiliário não pode ultrapassar 30% da renda bruta familiar comprovada. No simulador, o campo 'Renda Familiar Sugerida' indica exatamente quanto você precisa comprovar para obter a aprovação do valor desejado, podendo compor renda com cônjuge, pais ou filhos."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Qual o teto máximo de financiamento habitacional do SFH?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "O limite máximo de avaliação do imóvel pelo Sistema Financeiro de Habitação (SFH) é de R$ 2,25 milhões. Dentro desse teto, aplicam-se as taxas reduzidas e é permitido utilizar o saldo do FGTS."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+</head>
+<body class="antialiased text-slate-800 bg-white selection:bg-brand-green selection:text-white">
+
+    <!-- TOP BAR -->
+    <div class="bg-brand-blueDark text-white/90 text-[11px] sm:text-xs py-1.5 sm:py-2 px-2.5 sm:px-6 border-b border-white/10" role="complementary" aria-label="Informações do Grupo">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-1.5 sm:gap-2">
+            <div class="flex items-center gap-1 sm:gap-2 min-w-0">
+                <span class="inline-flex items-center gap-1 font-bold text-emerald-300 shrink-0">
+                    <i class="fa-solid fa-layer-group text-[10px] sm:text-xs" aria-hidden="true"></i>
+                    <span class="hidden sm:inline">Ecossistema Completo:</span>
+                    <span class="sm:hidden font-semibold">Grupo:</span>
+                </span>
+                <span class="hover:text-white transition shrink-0 whitespace-nowrap"><strong>Geminadas.com</strong> <span class="hidden sm:inline">(Arquitetura)</span></span>
+                <span class="text-white/30 shrink-0" aria-hidden="true">•</span>
+                <span class="hover:text-white transition shrink-0 whitespace-nowrap"><strong>Level</strong> <span class="hidden sm:inline">(Construtora)</span></span>
+                <span class="text-white/30 hidden md:inline shrink-0" aria-hidden="true">•</span>
+                <span class="hidden md:inline text-white/80 font-medium shrink-0">financiesuaobra.com.br</span>
+            </div>
+            <div class="flex items-center shrink-0 ml-auto">
+                <div class="flex items-center gap-0.5 sm:gap-1.5">
+                    <a href="https://wa.me/5544999999999?text=Ol%C3%A1!%20Fiz%20uma%20simula%C3%A7%C3%A3o%20online%20e%20gostaria%20de%20receber%20um%20estudo%20personalizado." target="_blank" rel="noopener noreferrer" class="w-7 h-7 sm:w-auto sm:h-8 sm:px-2 rounded-lg text-emerald-300 hover:text-white hover:bg-white/10 transition inline-flex items-center justify-center gap-1.5 font-semibold text-xs sm:text-sm touch-target" title="WhatsApp Atendimento">
+                        <i class="fa-brands fa-whatsapp text-sm sm:text-base" aria-hidden="true"></i>
+                        <span class="hidden md:inline">(44) 99999-9999</span>
+                    </a>
+                    <a href="https://instagram.com/geminadas" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg text-white/80 hover:text-white hover:bg-white/10 inline-flex items-center justify-center transition touch-target"><i class="fa-brands fa-instagram text-sm sm:text-base" aria-hidden="true"></i></a>
+                    <a href="https://facebook.com/geminadas" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg text-white/80 hover:text-white hover:bg-white/10 inline-flex items-center justify-center transition touch-target"><i class="fa-brands fa-facebook text-sm sm:text-base" aria-hidden="true"></i></a>
+                    <a href="https://youtube.com/@geminadas" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg text-white/80 hover:text-white hover:bg-white/10 inline-flex items-center justify-center transition touch-target"><i class="fa-brands fa-youtube text-sm sm:text-base" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 transition-all duration-300" role="banner">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2.5 sm:gap-3 group focus-visible:ring-2 focus-visible:ring-brand-green rounded-xl p-1 shrink-0" aria-label="Página Inicial financiesuaobra.com.br">
+                <svg class="w-9 h-9 sm:w-12 sm:h-12 transition-transform duration-300 group-hover:scale-105 shrink-0" viewBox="0 0 120 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M16 55L56 20C59.5 17 63.5 17 67 20L76 28" stroke="#0F3156" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M27 47V84C27 91 32 95 39 95H43C49 95 53 91 53 84V76" stroke="#0F3156" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M44 59L59 45L71 55L98 27" stroke="#0F3156" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M83 25H100V42" stroke="#0F3156" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M55 95H90C96 95 100 91 100 84V47L93 40" stroke="#138A59" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M67 95V68" stroke="#138A59" stroke-width="10" stroke-linecap="round"/>
+                    <path d="M83 95V58" stroke="#138A59" stroke-width="10" stroke-linecap="round"/>
+                    <path d="M100 47L107 54" stroke="#138A59" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="flex flex-col leading-none select-none">
+                    <span class="font-display font-extrabold text-xl sm:text-[26px] tracking-tight text-brand-blue">financie</span>
+                    <span class="font-display font-extrabold text-xl sm:text-[26px] tracking-tight text-brand-green -mt-1 sm:-mt-1.5">suaobra</span>
+                    <span class="font-sans font-semibold text-[10px] sm:text-[11px] text-brand-blue self-end -mt-0.5 sm:-mt-1 tracking-wide">.com.br</span>
+                </div>
+            </a>
+
+            <!-- Nav Links -->
+            <nav class="hidden lg:flex items-center justify-center gap-4 xl:gap-7 text-xs xl:text-sm font-semibold text-slate-700 ml-6" role="navigation" aria-label="Navegação Principal">
+                <a href="/" class="hover:text-brand-green transition py-1.5 px-2">Início</a>
+                <a href="/aquisicao-de-terreno-e-construcao/" class="hover:text-brand-green transition py-1.5 px-2">Terreno + Construção</a>
+                <a href="/construcao-em-terreno-proprio/" class="hover:text-brand-green transition py-1.5 px-2">Terreno Próprio</a>
+                <a href="/simulador-financiamento-construcao-caixa/" class="text-brand-green font-bold border-b-2 border-brand-green py-1.5 px-2 flex items-center gap-1">
+                    <i class="fa-solid fa-calculator text-brand-green text-xs" aria-hidden="true"></i> Simulador
+                </a>
+                <a href="/construcao-financiada-caixa-maringa/" class="hover:text-brand-green transition py-1.5 px-2">Maringá e Região</a>
+                <a href="/#faq" class="hover:text-brand-green transition py-1.5 px-2">FAQ</a>
+            </nav>
+
+            <div class="flex items-center gap-3 shrink-0">
+                <a href="https://wa.me/5544999999999?text=Ol%C3%A1!%20Fiz%20uma%20simula%C3%A7%C3%A3o%20de%20financiamento%20e%20gostaria%20de%20um%20estudo%20detalhado." target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 bg-brand-green hover:bg-brand-greenDark text-white font-semibold text-xs xl:text-sm px-4 xl:px-5 py-2.5 rounded-xl shadow-md transition transform hover:-translate-y-0.5">
+                    <i class="fa-brands fa-whatsapp text-lg shrink-0" aria-hidden="true"></i>
+                    <span>Enviar Estudo WhatsApp</span>
+                </a>
+                <button type="button" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')" class="lg:hidden p-2 rounded-xl text-brand-blue hover:bg-brand-ice" aria-label="Menu">
+                    <i class="fa-solid fa-bars text-xl" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 space-y-2 shadow-xl">
+            <a href="/" class="block py-2.5 px-3 rounded-xl font-semibold text-slate-700 hover:bg-brand-ice">Início</a>
+            <a href="/aquisicao-de-terreno-e-construcao/" class="block py-2.5 px-3 rounded-xl font-semibold text-slate-700 hover:bg-brand-ice">Aquisição de Terreno + Construção</a>
+            <a href="/construcao-em-terreno-proprio/" class="block py-2.5 px-3 rounded-xl font-semibold text-slate-700 hover:bg-brand-ice">Construção em Terreno Próprio</a>
+            <a href="/simulador-financiamento-construcao-caixa/" class="block py-2.5 px-3 rounded-xl font-bold text-brand-green bg-emerald-50">Simulador Online Caixa</a>
+            <a href="/construcao-financiada-caixa-maringa/" class="block py-2.5 px-3 rounded-xl font-semibold text-slate-700 hover:bg-brand-ice">Construção em Maringá (Local)</a>
+            <a href="/#faq" class="block py-2.5 px-3 rounded-xl font-semibold text-slate-700 hover:bg-brand-ice">Dúvidas Frequentes</a>
+        </div>
+    </header>
+
+    <main id="mainContent" role="main">
+        
+        <!-- BREADCRUMB -->
+        <nav class="bg-brand-ice py-3 px-4 sm:px-6 lg:px-8 border-b border-slate-200/70" aria-label="Trilha de Navegação (Breadcrumb)">
+            <div class="max-w-7xl mx-auto flex items-center gap-2 text-xs text-slate-500">
+                <a href="/" class="hover:text-brand-green transition"><i class="fa-solid fa-house" aria-hidden="true"></i> Início</a>
+                <i class="fa-solid fa-chevron-right text-[10px] text-slate-400" aria-hidden="true"></i>
+                <span class="text-brand-blue font-semibold">Simulador de Financiamento de Construção Caixa</span>
+            </div>
+        </nav>
+
+        <!-- INTRO HERO -->
+        <section class="bg-gradient-to-br from-brand-blueDark via-brand-blue to-[#123d6b] text-white pt-12 pb-16 sm:py-16 text-center">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+                <span class="inline-block bg-brand-green/20 text-emerald-300 font-bold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full border border-emerald-400/30">
+                    Ferramenta Interativa Oficial
+                </span>
+                <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight">
+                    Simulador de Financiamento de Construção Caixa
+                </h1>
+                <p class="text-slate-200 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+                    Ajuste os valores de terreno, padrão construtivo e entrada para calcular parcelas estimadas (Sistema SAC), cota de financiamento Caixa pelo SFH e ganho patrimonial imediato.
+                </p>
+            </div>
+        </section>
+
+        <!-- SIMULATOR INTERACTIVE WIDGET -->
+        <section class="py-12 sm:py-16 bg-brand-ice -mt-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white rounded-3xl shadow-2xl border border-slate-200/80 overflow-hidden grid lg:grid-cols-12">
+                    
+                    <!-- Left: Sliders & Controls -->
+                    <div class="lg:col-span-7 p-5 sm:p-8 lg:p-10 space-y-6">
+                        
+                        <!-- 1. Modalidade Selection -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2.5">1. Escolha a Modalidade Caixa</label>
+                            <div class="grid sm:grid-cols-2 gap-3">
+                                <button type="button" id="btnModTerrenoObra" onclick="setSimModality('terreno_construcao')" class="p-4 rounded-2xl border-2 border-brand-green bg-emerald-50/50 text-left transition flex items-center gap-3 touch-target w-full">
+                                    <div class="w-10 h-10 rounded-xl bg-brand-green text-white flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-display font-bold text-sm text-brand-blue">Terreno + Construção</div>
+                                        <div class="text-xs text-slate-500">Ainda vou comprar o lote</div>
+                                    </div>
+                                </button>
+                                <button type="button" id="btnModTerrenoProprio" onclick="setSimModality('terreno_proprio')" class="p-4 rounded-2xl border-2 border-slate-200 hover:border-brand-blue text-left transition flex items-center gap-3 touch-target w-full">
+                                    <div class="w-10 h-10 rounded-xl bg-slate-100 text-brand-blue flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-trowel-bricks" aria-hidden="true"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-display font-bold text-sm text-brand-blue">Construção</div>
+                                        <div class="text-xs text-slate-500">Já tenho terreno</div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 2. Padrão Construtivo -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2.5">2. Padrão da Residência Desejada</label>
+                            <div class="grid grid-cols-3 gap-2 sm:gap-3">
+                                <button type="button" onclick="setSimStandard('medio')" id="stdMedio" class="py-3 px-2 sm:px-3 rounded-xl border-2 border-slate-200 text-xs sm:text-sm font-bold text-slate-700 hover:border-brand-blue transition touch-target w-full">
+                                    Médio Padrão
+                                </button>
+                                <button type="button" onclick="setSimStandard('alto')" id="stdAlto" class="py-3 px-2 sm:px-3 rounded-xl border-2 border-brand-blue bg-brand-blue text-white text-xs sm:text-sm font-bold transition touch-target w-full">
+                                    Alto Padrão
+                                </button>
+                                <button type="button" onclick="setSimStandard('luxo')" id="stdLuxo" class="py-3 px-2 sm:px-3 rounded-xl border-2 border-slate-200 text-xs sm:text-sm font-bold text-slate-700 hover:border-brand-blue transition touch-target w-full">
+                                    Alto Luxo
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 3. Sliders -->
+                        <div class="space-y-5">
+                            <div class="p-3 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-between gap-2 flex-wrap">
+                                <div class="flex items-center gap-2 text-xs font-bold text-brand-blue">
+                                    <i class="fa-solid fa-shield-halved text-brand-green text-sm" aria-hidden="true"></i>
+                                    <span>Teto SFH Caixa: <strong>R$ 2,25 milhões</strong> (com taxas reduzidas e FGTS)</span>
+                                </div>
+                                <span id="sfhLimitBadge" class="hidden text-[10px] font-extrabold uppercase bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full shrink-0">
+                                    Limite SFH Atingido
+                                </span>
+                            </div>
+
+                            <!-- Terreno Slider -->
+                            <div>
+                                <div class="flex justify-between items-center mb-1.5 flex-wrap gap-1">
+                                    <label for="simTerrenoRange" class="text-xs sm:text-sm font-semibold text-slate-700" id="labelTerreno">Valor do Terreno a Adquirir:</label>
+                                    <span id="simTerrenoDisplay" class="font-display font-extrabold text-base sm:text-lg text-brand-blue">R$ 250.000</span>
+                                </div>
+                                <input type="range" id="simTerrenoRange" min="80000" max="1500000" step="10000" value="250000" oninput="updateSimulation('terreno')" class="w-full accent-brand-green" aria-label="Valor do Terreno">
+                                <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                                    <span>R$ 80 mil</span>
+                                    <span>R$ 1,5 milhão</span>
+                                </div>
+                            </div>
+
+                            <!-- Obra Slider -->
+                            <div>
+                                <div class="flex justify-between items-center mb-1.5 flex-wrap gap-1">
+                                    <label for="simObraRange" class="text-xs sm:text-sm font-semibold text-slate-700">Orçamento Estimado para a Construção:</label>
+                                    <div class="text-right">
+                                        <span id="simObraDisplay" class="font-display font-extrabold text-base sm:text-lg text-brand-green">R$ 550.000</span>
+                                        <span id="simAreaEstimada" class="block text-[11px] text-slate-500">Área aprox. sugerida: ~151 m²</span>
+                                    </div>
+                                </div>
+                                <input type="range" id="simObraRange" min="200000" max="2050000" step="10000" value="550000" oninput="updateSimulation('obra')" class="w-full accent-brand-green" aria-label="Orçamento Estimado da Construção">
+                                <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                                    <span>R$ 200 mil</span>
+                                    <span>Teto Global: R$ 2,25 milhões</span>
+                                </div>
+                            </div>
+
+                            <!-- Entrada Slider -->
+                            <div>
+                                <div class="flex justify-between items-center mb-1.5 flex-wrap gap-1">
+                                    <label for="simEntradaRange" class="text-xs sm:text-sm font-semibold text-slate-700">Recursos Próprios / Entrada + FGTS:</label>
+                                    <div class="text-right">
+                                        <span id="simEntradaDisplay" class="font-display font-extrabold text-base sm:text-lg text-slate-700">R$ 160.000</span>
+                                        <span id="simEntradaPercent" class="block text-[11px] font-bold text-brand-green">20% do investimento global</span>
+                                    </div>
+                                </div>
+                                <input type="range" id="simEntradaRange" min="160000" max="640000" step="5000" value="160000" oninput="updateSimulation('entrada')" class="w-full accent-brand-green" aria-label="Recursos Próprios ou Entrada">
+                                <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                                    <span id="simEntradaMinLabel">Mínimo Caixa (20%)</span>
+                                    <span id="simEntradaMaxLabel">Máximo permitido</span>
+                                </div>
+                            </div>
+
+                            <!-- Prazo Select -->
+                            <div class="grid sm:grid-cols-2 gap-3 pt-2">
+                                <div>
+                                    <label for="simPrazoSelect" class="block text-xs font-semibold text-slate-700 mb-1">Prazo de Amortização (SAC):</label>
+                                    <select id="simPrazoSelect" onchange="updateSimulation()" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-xs sm:text-sm font-medium focus:outline-none focus:border-brand-green">
+                                        <option value="420" selected>420 meses (35 anos) - Menor Parcela</option>
+                                        <option value="360">360 meses (30 anos)</option>
+                                        <option value="300">300 meses (25 anos)</option>
+                                        <option value="240">240 meses (20 anos)</option>
+                                        <option value="180">180 meses (15 anos)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="simClientName" class="block text-xs font-semibold text-slate-700 mb-1">Seu Nome para o Relatório:</label>
+                                    <input type="text" id="simClientName" placeholder="Ex: Rodrigo Silva" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-xs sm:text-sm focus:outline-none focus:border-brand-green">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right: Results Panel & WhatsApp Action -->
+                    <div class="lg:col-span-5 bg-gradient-to-br from-brand-blue to-brand-blueDark text-white p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-6">
+                        
+                        <div class="space-y-5">
+                            <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                                <span class="text-xs uppercase tracking-wider text-emerald-300 font-bold">Resultado Estimado Caixa</span>
+                                <span class="text-[11px] bg-white/10 px-2.5 py-1 rounded-full text-slate-300">Sistema SAC</span>
+                            </div>
+
+                            <!-- First Installment Hero -->
+                            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/15 text-center space-y-1">
+                                <span class="text-xs text-slate-300 block uppercase font-medium">1ª Parcela Estimada (Decrescente):</span>
+                                <div id="resFirstInstallment" class="font-display font-extrabold text-3xl sm:text-4xl text-emerald-300">R$ 5.918</div>
+                                <span class="text-[11px] text-slate-300 block">Última parcela estimada: <strong id="resLastInstallment" class="text-white">R$ 1.545</strong></span>
+                            </div>
+
+                            <!-- Detailed Metrics -->
+                            <div class="space-y-3 text-xs sm:text-sm">
+                                <div class="flex justify-between items-center py-1.5 border-b border-white/10">
+                                    <span class="text-slate-300">Investimento Global (Lote + Obra):</span>
+                                    <strong id="resTotalInvestment" class="font-semibold text-white">R$ 800.000</strong>
+                                </div>
+                                <div class="flex justify-between items-center py-1.5 border-b border-white/10">
+                                    <span class="text-slate-300">Valor Financiado pela Caixa:</span>
+                                    <strong id="resFinancedAmount" class="font-semibold text-emerald-300">R$ 640.000</strong>
+                                </div>
+                                <div class="flex justify-between items-center py-1.5 border-b border-white/10">
+                                    <span class="text-slate-300">Entrada / Recursos Próprios:</span>
+                                    <strong id="resDownPayment" class="font-semibold text-white">R$ 160.000</strong>
+                                </div>
+                                <div class="flex justify-between items-center py-1.5 border-b border-white/10">
+                                    <span class="text-slate-300">Renda Bruta Familiar Sugerida:</span>
+                                    <strong id="resRequiredIncome" class="font-semibold text-amber-300">R$ 19.726</strong>
+                                </div>
+                            </div>
+
+                            <!-- Comparative Bars -->
+                            <div class="space-y-2 pt-2">
+                                <div class="flex justify-between text-[11px] text-slate-300">
+                                    <span>Casa Pronta Equivalente:</span>
+                                    <span id="resMarketValuation" class="font-bold text-red-300">R$ 1.024.000</span>
+                                </div>
+                                <div class="w-full bg-white/10 rounded-full h-2">
+                                    <div id="simBarMarket" class="bg-red-400 h-2 rounded-full" style="width: 100%;"></div>
+                                </div>
+
+                                <div class="flex justify-between text-[11px] text-slate-300 pt-1">
+                                    <span>Construir com Grupo (Preço de Custo):</span>
+                                    <span id="simBuildWithUsPrice" class="font-bold text-emerald-300">R$ 800.000</span>
+                                </div>
+                                <div class="w-full bg-white/10 rounded-full h-2">
+                                    <div id="simBarBuild" class="bg-brand-green h-2 rounded-full" style="width: 78%;"></div>
+                                </div>
+
+                                <div class="p-3 rounded-xl bg-emerald-500/20 border border-emerald-400/30 text-center mt-3">
+                                    <span class="text-[11px] uppercase tracking-wider text-emerald-200 block font-semibold">Ganho Patrimonial Imediato:</span>
+                                    <span id="resNetEquityGain" class="font-display font-extrabold text-lg text-emerald-300">+ R$ 224.000 (Economia de 28%)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA WhatsApp Button -->
+                        <div class="pt-2">
+                            <button type="button" onclick="sendSimulationToWhatsApp()" class="w-full py-4 px-6 rounded-2xl bg-brand-green hover:bg-brand-greenLight text-white font-display font-extrabold text-sm sm:text-base shadow-xl transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2.5 touch-target">
+                                <i class="fa-brands fa-whatsapp text-xl shrink-0" aria-hidden="true"></i>
+                                <span>Receber Este Estudo no WhatsApp</span>
+                            </button>
+                            <span class="text-[10px] text-center text-slate-400 block mt-2">
+                                Atendimento direto com nossos engenheiros bancários Caixa. Sem compromisso.
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: CONTEÚDO TÉCNICO EXPLICATIVO (800+ PALAVRAS) -->
+        <section class="py-16 sm:py-20 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-brand-green block mb-2">Engenharia Financeira Descomplicada</span>
+                    <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-brand-blue">
+                        Como Funciona a Tabela SAC na Construção Financiada da Caixa?
+                    </h2>
+                    <div class="text-slate-600 mt-4 space-y-4 text-sm sm:text-base leading-relaxed">
+                        <p>
+                            O <strong>Sistema de Amortização Constante (SAC)</strong> é a modalidade padrão adotada pela Caixa Econômica Federal para contratos de crédito habitacional pelo Sistema Financeiro de Habitação (SFH). Diferentemente da Tabela Price (comum em empréstimos pessoais e financiamentos automotivos, onde as parcelas são fixas do início ao fim), no sistema SAC a parcela mensal cai a cada pagamento.
+                        </p>
+                        <p>
+                            Isso ocorre porque a amortização — a parcela real da dívida que você devolve ao banco — é um valor fixo obtido pela divisão do valor financiado pelo prazo em meses (por exemplo: R$ 640.000 / 420 meses = R$ 1.523,80/mês). Os juros mensais, por sua vez, incidem exclusivamente sobre o <strong>saldo devedor remanescente</strong>. Como o saldo cai todos os meses, o valor dos juros também diminui continuamente, gerando parcelas decrescentes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-brand-ice border-l-4 border-brand-green space-y-3">
+                    <h3 class="font-display font-bold text-lg text-brand-blue">
+                        Por Que a Fase de Obra Possui Pagamento Diferenciado?
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        Durante o período de construção da casa (que geralmente varia de 8 a 12 meses pela <strong>Level Construtora</strong>), o cliente não paga a parcela cheia com amortização da dívida. Paga-se apenas os <strong>juros de evolução de obra</strong>, proporcionais ao valor liberado na medição física de cada etapa. Se a obra está na fase de fundação (com 15% executado), os juros incidem apenas sobre esses 15%. A amortização da dívida só começa efetivamente após a conclusão total da edificação e emissão do Habite-se.
+                    </p>
+                </div>
+
+                <div>
+                    <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-brand-blue">
+                        Regra dos 30% da Renda Familiar Bruta Comprovada
+                    </h2>
+                    <div class="text-slate-600 mt-4 space-y-4 text-sm sm:text-base leading-relaxed">
+                        <p>
+                            Para garantir a segurança financeira do comprador e a solvência da operação, as normas do Conselho Monetário Nacional e da Caixa estabelecem que a <strong>primeira parcela do financiamento não pode comprometer mais do que 30% da renda bruta familiar</strong>.
+                        </p>
+                        <p>
+                            A grande vantagem é que a Caixa permite a <strong>composição de renda familiar</strong> entre até 3 proponentes (por exemplo: casal, pai e filho, ou irmãos). Além disso, profissionais liberais, autônomos e empresários podem comprovar sua capacidade financeira mediante declaração completa de Imposto de Renda Pessoa Física (IRPF) e extratos bancários com movimentação dos últimos 6 meses.
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-brand-blue">
+                        O Ganho Patrimonial Imediato: Construir a Preço de Custo vs. Imóvel Pronto
+                    </h2>
+                    <div class="text-slate-600 mt-4 space-y-4 text-sm sm:text-base leading-relaxed">
+                        <p>
+                            Quando você adquire uma casa pronta em condomínio fechado, o valor anunciado inclui: o custo do lote, o custo da construção, a margem de lucro líquido da incorporadora (geralmente entre 25% e 35%), impostos integrais sobre o imóvel pronto e a comissão de corretagem imobiliária.
+                        </p>
+                        <p>
+                            Ao optar pela construção financiada com a <strong>financiesuaobra.com.br</strong>, o escritório <strong>Geminadas.com</strong> assina a arquitetura autoral e a <strong>Level Construtora</strong> executa a obra a preço de custo orçado. No exato momento em que você recebe as chaves e o Habite-se é averbado, seu imóvel vale no mercado imobiliário cerca de 30% a mais do que você efetivamente contratou, gerando um ganho patrimonial imediato para sua família.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-blueDark text-white pt-14 pb-8 border-t border-white/10" role="contentinfo">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-white/10">
+                <div class="md:col-span-5 space-y-4">
+                    <div class="flex items-center gap-2.5">
+                        <span class="font-display font-extrabold text-2xl tracking-tight text-white">financie<span class="text-brand-green">suaobra</span><span class="text-xs text-slate-300">.com.br</span></span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-md">
+                        Ecossistema integrado entre <strong>Geminadas.com Arquitetura</strong>, <strong>Level Construtora</strong> e engenharia financeira Caixa Econômica Federal. Obras residenciais sob medida em Maringá e região.
+                    </p>
+                </div>
+
+                <div class="md:col-span-3 space-y-2 text-xs sm:text-sm">
+                    <h3 class="font-display font-bold text-sm sm:text-base text-emerald-300 mb-3">Páginas Especializadas</h3>
+                    <p><a href="/aquisicao-de-terreno-e-construcao/" class="text-slate-300 hover:text-white transition py-1 inline-block">Aquisição Terreno + Construção</a></p>
+                    <p><a href="/construcao-em-terreno-proprio/" class="text-slate-300 hover:text-white transition py-1 inline-block">Construção em Terreno Próprio</a></p>
+                    <p><a href="/simulador-financiamento-construcao-caixa/" class="text-white font-bold transition py-1 inline-block">Simulador de Financiamento Caixa</a></p>
+                    <p><a href="/construcao-financiada-caixa-maringa/" class="text-slate-300 hover:text-white transition py-1 inline-block">Construção em Maringá (Local)</a></p>
+                    <p><a href="/#obras" class="text-slate-300 hover:text-white transition py-1 inline-block">Portfólio de Obras e Plantas</a></p>
+                </div>
+
+                <div class="md:col-span-4 space-y-3 text-xs sm:text-sm">
+                    <h3 class="font-display font-bold text-sm sm:text-base text-emerald-300 mb-3">Atendimento Especializado</h3>
+                    <p class="flex items-start gap-2.5 text-slate-300">
+                        <i class="fa-brands fa-whatsapp text-brand-greenLight text-base mt-0.5 shrink-0" aria-hidden="true"></i>
+                        <span>(44) 99999-9999</span>
+                    </p>
+                    <p class="flex items-start gap-2.5 text-slate-300">
+                        <i class="fa-solid fa-envelope text-brand-greenLight mt-0.5 shrink-0" aria-hidden="true"></i>
+                        <span>contato@financiesuaobra.com.br</span>
+                    </p>
+                    <p class="flex items-start gap-2.5 text-slate-300">
+                        <i class="fa-solid fa-location-dot text-brand-greenLight mt-0.5 shrink-0" aria-hidden="true"></i>
+                        <span>Av. Horácio Raccanello Filho, 5570 - Maringá/PR</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-3">
+                <p>© 2026 <strong>financiesuaobra.com.br</strong> — Todos os direitos reservados ao Grupo Geminadas.com & Level Construtora.</p>
+                <a href="/#admin" class="text-slate-400 hover:text-emerald-300 transition flex items-center gap-1.5 py-1 px-2 rounded-lg">
+                    <i class="fa-solid fa-lock text-[10px]" aria-hidden="true"></i> Área Administrativa
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP -->
+    <a href="https://wa.me/5544999999999?text=Ol%C3%A1!%20Fiz%20uma%20simula%C3%A7%C3%A3o%20online%20e%20gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer" aria-label="Conversar no WhatsApp" class="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-brand-green hover:bg-brand-greenDark text-white flex items-center justify-center text-3xl shadow-2xl transition transform hover:scale-110 touch-target">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+    </a>
+
+    <!-- SIMULATOR JAVASCRIPT ENGINE -->
+    <script>
+        const simState = {
+            modality: 'terreno_construcao',
+            standard: 'alto',
+            costPerSqm: 3650,
+            interestRate: 9.89
+        };
+
+        function formatBRL(value) {
+            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(value);
+        }
+
+        function setSimModality(mod) {
+            simState.modality = mod;
+            const btnTC = document.getElementById('btnModTerrenoObra');
+            const btnTP = document.getElementById('btnModTerrenoProprio');
+            const labelTerreno = document.getElementById('labelTerreno');
+
+            if (mod === 'terreno_construcao') {
+                btnTC.className = "p-4 rounded-2xl border-2 border-brand-green bg-emerald-50/50 text-left transition flex items-center gap-3 touch-target w-full";
+                btnTP.className = "p-4 rounded-2xl border-2 border-slate-200 hover:border-brand-blue text-left transition flex items-center gap-3 touch-target w-full";
+                labelTerreno.textContent = "Valor do Terreno a Adquirir:";
+            } else {
+                btnTP.className = "p-4 rounded-2xl border-2 border-brand-green bg-emerald-50/50 text-left transition flex items-center gap-3 touch-target w-full";
+                btnTC.className = "p-4 rounded-2xl border-2 border-slate-200 hover:border-brand-blue text-left transition flex items-center gap-3 touch-target w-full";
+                labelTerreno.textContent = "Valor de Avaliação do Seu Terreno Próprio:";
+            }
+            updateSimulation();
+        }
+
+        function setSimStandard(std) {
+            simState.standard = std;
+            const mapCost = { medio: 3100, alto: 3650, luxo: 4600 };
+            simState.costPerSqm = mapCost[std] || 3650;
+
+            ['Medio', 'Alto', 'Luxo'].forEach(item => {
+                const el = document.getElementById('std' + item);
+                if (item.toLowerCase() === std) {
+                    el.className = "py-3 px-2 sm:px-3 rounded-xl border-2 border-brand-blue bg-brand-blue text-white text-xs sm:text-sm font-bold transition touch-target w-full";
+                } else {
+                    el.className = "py-3 px-2 sm:px-3 rounded-xl border-2 border-slate-200 text-xs sm:text-sm font-bold text-slate-700 hover:border-brand-blue transition touch-target w-full";
+                }
+            });
+            updateSimulation();
+        }
+
+        function updateSimulation(changedField) {
+            const elTerreno = document.getElementById('simTerrenoRange');
+            const elObra = document.getElementById('simObraRange');
+            const elEntrada = document.getElementById('simEntradaRange');
+            const elPrazo = document.getElementById('simPrazoSelect');
+
+            let terreno = parseFloat(elTerreno.value);
+            let obra = parseFloat(elObra.value);
+
+            // Ceiling limit SFH check
+            const sfhCeiling = 2250000;
+            if (terreno + obra > sfhCeiling) {
+                if (changedField === 'terreno') {
+                    obra = sfhCeiling - terreno;
+                    elObra.value = obra;
+                } else {
+                    terreno = sfhCeiling - obra;
+                    elTerreno.value = terreno;
+                }
+                document.getElementById('sfhLimitBadge').classList.remove('hidden');
+            } else {
+                document.getElementById('sfhLimitBadge').classList.add('hidden');
+            }
+
+            const totalGlobal = terreno + obra;
+            const minDownPayment = Math.round(totalGlobal * 0.20);
+            const maxDownPayment = Math.round(totalGlobal * 0.80);
+
+            elEntrada.min = minDownPayment;
+            elEntrada.max = maxDownPayment;
+
+            let entrada = parseFloat(elEntrada.value);
+            if (entrada < minDownPayment || changedField !== 'entrada') {
+                entrada = minDownPayment;
+                elEntrada.value = entrada;
+            } else if (entrada > maxDownPayment) {
+                entrada = maxDownPayment;
+                elEntrada.value = entrada;
+            }
+
+            const financed = totalGlobal - entrada;
+            const months = parseInt(elPrazo.value) || 420;
+            const annualRate = (simState.interestRate || 9.89) / 100;
+            const monthlyRate = Math.pow(1 + annualRate, 1 / 12) - 1;
+
+            // SAC Calculation
+            const amortization = financed / months;
+            const firstInterest = financed * monthlyRate;
+            const adminInsurance = 65; // Estimated MIP/DFI
+            const firstInstallment = Math.round(amortization + firstInterest + adminInsurance);
+            const lastInterest = (financed / months) * monthlyRate;
+            const lastInstallment = Math.round(amortization + lastInterest + adminInsurance);
+            const requiredIncome = Math.round(firstInstallment / 0.30);
+            const estimatedArea = Math.round(obra / simState.costPerSqm);
+
+            // Update DOM Displays
+            document.getElementById('simTerrenoDisplay').textContent = formatBRL(terreno);
+            document.getElementById('simObraDisplay').textContent = formatBRL(obra);
+            document.getElementById('simEntradaDisplay').textContent = formatBRL(entrada);
+            document.getElementById('simAreaEstimada').textContent = `Área aprox. sugerida: ~${estimatedArea} m²`;
+
+            const percentEntrada = Math.round((entrada / totalGlobal) * 100);
+            document.getElementById('simEntradaPercent').textContent = `${percentEntrada}% do investimento global`;
+            document.getElementById('simEntradaMinLabel').textContent = `Mínimo: ${formatBRL(minDownPayment)}`;
+            document.getElementById('simEntradaMaxLabel').textContent = `Máx: ${formatBRL(maxDownPayment)}`;
+
+            document.getElementById('resFirstInstallment').textContent = formatBRL(firstInstallment);
+            document.getElementById('resLastInstallment').textContent = formatBRL(lastInstallment);
+            document.getElementById('resTotalInvestment').textContent = formatBRL(totalGlobal);
+            document.getElementById('resFinancedAmount').textContent = formatBRL(financed);
+            document.getElementById('resDownPayment').textContent = formatBRL(entrada);
+            document.getElementById('resRequiredIncome').textContent = formatBRL(requiredIncome);
+
+            // Comparative Valuation (28% markup on ready home)
+            const margin = 0.28;
+            const marketValuation = Math.round(totalGlobal * (1 + margin));
+            const netGain = marketValuation - totalGlobal;
+
+            document.getElementById('resMarketValuation').textContent = formatBRL(marketValuation);
+            document.getElementById('simBuildWithUsPrice').textContent = formatBRL(totalGlobal);
+            document.getElementById('resNetEquityGain').textContent = `+ ${formatBRL(netGain)} (Economia de 28%)`;
+
+            const buildWidthPercent = Math.round((totalGlobal / marketValuation) * 100);
+            document.getElementById('simBarBuild').style.width = `${buildWidthPercent}%`;
+        }
+
+        function sendSimulationToWhatsApp() {
+            const clientName = document.getElementById('simClientName').value.trim();
+            const terrenoVal = parseFloat(document.getElementById('simTerrenoRange').value) || 0;
+            const obraVal = parseFloat(document.getElementById('simObraRange').value) || 0;
+            const months = document.getElementById('simPrazoSelect').value;
+            const financedText = document.getElementById('resFinancedAmount').textContent;
+            const firstInstText = document.getElementById('resFirstInstallment').textContent;
+            const savingsText = document.getElementById('resNetEquityGain').textContent;
+            const modLabel = simState.modality === 'terreno_construcao' ? 'Aquisição de Terreno + Construção' : 'Construção em Terreno Próprio';
+            const stdLabel = simState.standard === 'medio' ? 'Médio Padrão' : (simState.standard === 'alto' ? 'Alto Padrão' : 'Alto Luxo');
+            const totalGlobal = terrenoVal + obraVal;
+
+            const greeting = clientName ? `Olá! Meu nome é *${clientName}*.` : `Olá!`;
+            const message = `${greeting} Fiz uma simulação na página do *Simulador Caixa* (financiesuaobra.com.br):\n\n` +
+                `📌 *Modalidade:* ${modLabel}\n` +
+                `📌 *Padrão:* ${stdLabel} (Geminadas.com & Level)\n` +
+                `📌 *Valor do Terreno:* ${formatBRL(terrenoVal)}\n` +
+                `📌 *Orçamento da Obra:* ${formatBRL(obraVal)}\n` +
+                `📌 *Investimento Total:* ${formatBRL(totalGlobal)}\n` +
+                `📌 *Valor Financiado Caixa:* ${financedText}\n` +
+                `📌 *1ª Parcela Estimada:* ${firstInstText} (em ${months} meses pelo SAC)\n` +
+                `📌 *Ganho Patrimonial Estimado:* ${savingsText}\n\n` +
+                `Gostaria de agendar uma consultoria técnica de viabilidade de crédito.`;
+
+            if (typeof window.trackWhatsAppLead === 'function') {
+                window.trackWhatsAppLead('simulator_page_whatsapp', { total: totalGlobal, financed: financedText });
+            }
+
+            window.open(`https://wa.me/5544999999999?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateSimulation();
+        });
+    </script>
+
+    <!-- CENTRALIZED TRACKING SCRIPT -->
+    <script src="/tracking.js" defer></script>
+</body>
+</html>

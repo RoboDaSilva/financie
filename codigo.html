@@ -311,7 +311,7 @@
         }
     </style>
 
-    <!-- Schema.org JSON-LD Structured Data for ConstructionBusiness, RealEstateAgent, LocalBusiness & FAQPage -->
+    <!-- Schema.org JSON-LD Structured Data: LocalBusiness, FinancialProduct, WebApplication, FAQPage & BreadcrumbList -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -330,7 +330,7 @@
             "height": "600"
           },
           "image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
-          "description": "Empresa especializada em engenharia financeira de financiamento Caixa Econômica Federal (Aquisição de Terreno + Construção e Construção em Terreno Próprio), projetos de arquitetura autoral Geminadas.com e execução com rigor técnico Level Construtora em Maringá e todo o Noroeste do Paraná.",
+          "description": "Engenharia financeira especializada em financiamento Caixa Econômica Federal (Aquisição de Terreno + Construção e Construção em Terreno Próprio), projetos de arquitetura autoral Geminadas.com e execução com rigor técnico Level Construtora em Maringá e região.",
           "telephone": "+55-44-99999-9999",
           "email": "contato@financiesuaobra.com.br",
           "priceRange": "$$$$",
@@ -355,8 +355,7 @@
             { "@type": "City", "name": "Marialva" },
             { "@type": "City", "name": "Mandaguaçu" },
             { "@type": "City", "name": "Paiçandu" },
-            { "@type": "AdministrativeArea", "name": "Região Metropolitana de Maringá" },
-            { "@type": "AdministrativeArea", "name": "Noroeste do Paraná" }
+            { "@type": "AdministrativeArea", "name": "Região Metropolitana de Maringá" }
           ],
           "hasOfferCatalog": {
             "@type": "OfferCatalog",
@@ -367,7 +366,7 @@
                 "itemOffered": {
                   "@type": "Service",
                   "name": "Aquisição de Terreno + Construção Caixa",
-                  "description": "Financiamento unificado da compra do lote e construção da residência com até 80% do valor global financiado pelo SFH e uso do saldo FGTS."
+                  "url": "https://financiesuaobra.com.br/aquisicao-de-terreno-e-construcao/"
                 }
               },
               {
@@ -375,54 +374,52 @@
                 "itemOffered": {
                   "@type": "Service",
                   "name": "Construção em Terreno Próprio Caixa",
-                  "description": "Seu lote quitado entra como garantia e compõe a entrada, possibilitando financiar até 100% da obra."
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Projetos de Arquitetura Autoral Geminadas.com",
-                  "description": "Plantas personalizadas, projetos executivos, maquetes 3D fotorrealistas e aprovação na Caixa."
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Execução Chave na Mão Level Construtora",
-                  "description": "Construção com acompanhamento de cronograma físico-financeiro, compra em escala e entrega no prazo com Habite-se."
+                  "url": "https://financiesuaobra.com.br/construcao-em-terreno-proprio/"
                 }
               }
             ]
+          }
+        },
+        {
+          "@type": ["FinancialProduct", "LoanOrCredit"],
+          "@id": "https://financiesuaobra.com.br/#financialProduct",
+          "name": "Financiamento Caixa Construção e Terreno",
+          "description": "Crédito imobiliário Caixa pelo Sistema Financeiro de Habitação (SFH) e SBPE para aquisição de lote e construção residencial, com LTV até 80%, prazo de até 420 meses e amortização pelo SAC.",
+          "provider": {
+            "@type": "FinancialService",
+            "name": "Caixa Econômica Federal",
+            "url": "https://www.caixa.gov.br/"
           },
-          "openingHoursSpecification": [
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-              "opens": "08:00",
-              "closes": "18:30"
-            },
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": "Saturday",
-              "opens": "08:30",
-              "closes": "12:30"
-            }
-          ],
-          "sameAs": [
-            "https://instagram.com/geminadas",
-            "https://facebook.com/geminadas",
-            "https://youtube.com/@geminadas",
-            "https://geminadas.com"
-          ]
+          "broker": {
+            "@id": "https://financiesuaobra.com.br/#organization"
+          },
+          "loanTerm": {
+            "@type": "QuantitativeValue",
+            "value": 420,
+            "unitText": "months"
+          },
+          "currency": "BRL"
+        },
+        {
+          "@type": "WebApplication",
+          "@id": "https://financiesuaobra.com.br/#simulatorTool",
+          "name": "Simulador de Financiamento de Construção Caixa",
+          "url": "https://financiesuaobra.com.br/simulador-financiamento-construcao-caixa/",
+          "applicationCategory": "FinanceApplication",
+          "operatingSystem": "All",
+          "description": "Calculadora online gratuita de crédito habitacional Caixa: estimativa de parcelas decrescentes no SAC, valor de entrada, amortização e ganho patrimonial imediato.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL"
+          }
         },
         {
           "@type": "WebSite",
           "@id": "https://financiesuaobra.com.br/#website",
           "url": "https://financiesuaobra.com.br/",
           "name": "financiesuaobra.com.br",
-          "description": "Construção Financiada Caixa - Grupo Geminadas.com & Level Construtora em Maringá e região",
+          "description": "Construção Financiada Caixa - Grupo Geminadas.com & Level Construtora",
           "publisher": {
             "@id": "https://financiesuaobra.com.br/#organization"
           },
@@ -441,26 +438,26 @@
             {
               "@type": "ListItem",
               "position": 2,
-              "name": "Financiamento Caixa Terreno e Construção",
-              "item": "https://financiesuaobra.com.br/#modalidades"
+              "name": "Aquisição de Terreno e Construção",
+              "item": "https://financiesuaobra.com.br/aquisicao-de-terreno-e-construcao/"
             },
             {
               "@type": "ListItem",
               "position": 3,
-              "name": "Simulador de Crédito Caixa",
-              "item": "https://financiesuaobra.com.br/#simulador"
+              "name": "Construção em Terreno Próprio",
+              "item": "https://financiesuaobra.com.br/construcao-em-terreno-proprio/"
             },
             {
               "@type": "ListItem",
               "position": 4,
-              "name": "Obras Entregues em Maringá",
-              "item": "https://financiesuaobra.com.br/#obras"
+              "name": "Simulador de Financiamento",
+              "item": "https://financiesuaobra.com.br/simulador-financiamento-construcao-caixa/"
             },
             {
               "@type": "ListItem",
               "position": 5,
-              "name": "Dúvidas Frequentes (FAQ)",
-              "item": "https://financiesuaobra.com.br/#faq"
+              "name": "Construção em Maringá",
+              "item": "https://financiesuaobra.com.br/construcao-financiada-caixa-maringa/"
             }
           ]
         },
@@ -470,34 +467,42 @@
           "mainEntity": [
             {
               "@type": "Question",
-              "name": "Como funciona o financiamento de Terreno + Construção pela Caixa Econômica em Maringá e região?",
+              "name": "O terreno precisa estar quitado para financiar a construção pela Caixa?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Na modalidade Aquisição de Terreno + Construção, a Caixa financia a compra do lote e a construção da casa em um único contrato. A financiesuaobra.com.br cuida de todas as etapas: aprovação do crédito, elaboração das planilhas PFUI/PLS de engenharia bancária, projetos de arquitetura com o escritório Geminadas.com e execução da obra pela Level Construtora. O cliente pode financiar até 80% do valor total (terreno + obra) pelo Sistema Financeiro de Habitação (SFH), com prazo de até 420 meses e uso do saldo FGTS."
+                "text": "Não! Se você ainda não possui terreno, a Caixa financia a compra do lote e a obra juntas na modalidade Aquisição de Terreno + Construção. Se você já tem um lote parcelado com loteadora, a Caixa pode quitar a dívida restante do lote (interveniente quitante) e financiar a obra no mesmo contrato."
               }
             },
             {
               "@type": "Question",
-              "name": "Posso utilizar o saldo do FGTS na construção da minha casa pela Caixa?",
+              "name": "Como funciona a modalidade Aquisição de Terreno e Construção?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Sim! O saldo do FGTS (Fundo de Garantia do Tempo de Serviço) pode ser utilizado na modalidade Terreno + Construção como parte da entrada necessária (completando os 20% exigidos), ou posteriormente para abater o saldo devedor ou reduzir em até 80% o valor de até 12 parcelas mensais consecutivas, desde que o imóvel se enquadre nas regras vigentes do SFH."
+                "text": "Na modalidade Aquisição de Terreno + Construção, a Caixa compra o lote à vista do vendedor e financia a construção da residência em um único contrato imobiliário pelo SFH. A financiesuaobra.com.br cuida da aprovação de crédito, projetos de arquitetura Geminadas.com, planilha PFUI/PCI e execução turnkey com a Level Construtora."
               }
             },
             {
               "@type": "Question",
-              "name": "Qual é o teto máximo de financiamento habitacional do SFH na Caixa?",
+              "name": "Como o dinheiro da obra é liberado pela Caixa (medições / PCI)?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "O teto máximo de avaliação do imóvel pelo Sistema Financeiro de Habitação (SFH) é de R$ 2,25 milhões (R$ 2.250.000,00). Imóveis dentro desse valor têm direito às menores taxas de juros nominais de crédito habitacional da Caixa e permissão legal para abatimento com recursos do FGTS."
+                "text": "O valor financiado é liberado em parcelas mensais diretamente na conta vinculada do cliente, mediante vistoria presencial de engenheiro credenciado da Caixa que atesta o cumprimento de cada etapa da planilha físico-financeira (fundação, alvenaria, laje, cobertura e acabamentos)."
               }
             },
             {
               "@type": "Question",
-              "name": "Já possuo um terreno em condomínio fechado em Maringá. É possível financiar 100% da construção?",
+              "name": "Posso usar meu FGTS na construção financiada?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Sim! Na modalidade Construção em Terreno Próprio, seu lote quitado é avaliado pelo engenheiro da Caixa e seu valor entra como a garantia e a entrada da operação. Desta forma, se o valor do lote cobrir a cota de 20%, você consegue financiar até 100% do custo físico da obra, sem precisar tirar dinheiro das suas reservas financeiras e pagando apenas juros proporcionais sobre as etapas liberadas durante a construção."
+                "text": "Sim! O saldo do FGTS pode ser utilizado para compor a entrada necessária (os 20% exigidos pela Caixa) ou posteriormente para amortizar o saldo devedor e reduzir em até 80% o valor de até 12 parcelas mensais consecutivas pelo SFH."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Qual o valor de entrada necessário para financiar uma obra?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A Caixa financia até 80% do valor de avaliação global (terreno + obra). A entrada exigida é de 20%, que pode ser paga com recursos próprios, FGTS ou, caso você já possua um lote quitado, a própria avaliação do terreno entra como a entrada, possibilitando financiar até 100% da obra."
               }
             },
             {
@@ -505,15 +510,7 @@
               "name": "Quanto economizo construindo em vez de comprar uma casa pronta em Maringá?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Ao construir a preço de custo com o Grupo Geminadas.com e Level Construtora, você economiza entre 25% e 35% em relação ao preço de mercado de uma casa pronta equivalente, eliminando a margem de lucro de incorporadores terceiros. Além disso, há uma economia expressiva no ITBI e nos custos de cartório, pois o imposto incide somente sobre o valor do terreno e não sobre o imóvel construído."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Quais são os prazos de financiamento e como funcionam as parcelas do sistema SAC?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "O prazo máximo de amortização pela Caixa é de até 420 meses (35 anos). Utilizamos o Sistema de Amortização Constante (SAC), onde o valor amortizado da dívida é fixo e os juros diminuem a cada mês, resultando em parcelas decrescentes (a primeira parcela é a mais alta e a última é a mais baixa). Durante o período de obras executado pela Level Construtora, o cliente paga apenas a taxa de evolução de obra proporcional às medições concluídas."
+                "text": "Ao construir a preço de custo com o Grupo Geminadas.com e Level Construtora, você economiza entre 25% e 35% em relação ao mercado de imóveis prontos. Além disso, há economia substancial no ITBI, que incide apenas sobre o valor do lote, e não sobre o imóvel construído."
               }
             }
           ]
@@ -535,25 +532,25 @@
     <!-- ========================================================================= -->
     <!-- TOP BAR: GROUP AUTHORITY & DIRECT CHANNELS                                -->
     <!-- ========================================================================= -->
-    <div class="bg-brand-blueDark text-white/90 text-[11px] sm:text-xs py-2 px-3 sm:px-6 border-b border-white/10" role="complementary" aria-label="Informações do Grupo">
-        <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
+    <div class="bg-brand-blueDark text-white/90 text-[11px] sm:text-xs py-1.5 sm:py-2 px-2.5 sm:px-6 border-b border-white/10" role="complementary" aria-label="Informações do Grupo">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-1.5 sm:gap-2">
             <!-- Authority Badge -->
-            <div class="flex items-center gap-1.5 sm:gap-2 min-w-0 truncate">
+            <div class="flex items-center gap-1 sm:gap-2 min-w-0">
                 <span class="inline-flex items-center gap-1 font-bold text-emerald-300 shrink-0">
-                    <i class="fa-solid fa-layer-group text-xs" aria-hidden="true"></i>
+                    <i class="fa-solid fa-layer-group text-[10px] sm:text-xs" aria-hidden="true"></i>
                     <span class="hidden sm:inline">Ecossistema Completo:</span>
                     <span class="sm:hidden font-semibold">Grupo:</span>
                 </span>
-                <span class="hover:text-white transition truncate"><strong>Geminadas.com</strong> <span class="hidden sm:inline">(Arquitetura)</span></span>
+                <span class="hover:text-white transition shrink-0 whitespace-nowrap"><strong>Geminadas.com</strong> <span class="hidden sm:inline">(Arquitetura)</span></span>
                 <span class="text-white/30 shrink-0" aria-hidden="true">•</span>
-                <span class="hover:text-white transition shrink-0"><strong>Level</strong> <span class="hidden sm:inline">(Construtora)</span></span>
+                <span class="hover:text-white transition shrink-0 whitespace-nowrap"><strong>Level</strong> <span class="hidden sm:inline">(Construtora)</span></span>
                 <span class="text-white/30 hidden md:inline shrink-0" aria-hidden="true">•</span>
                 <span class="hidden md:inline text-white/80 font-medium shrink-0">financiesuaobra.com.br</span>
             </div>
 
             <!-- Direct Contact & Social Links -->
-            <div class="flex items-center gap-1.5 shrink-0 ml-auto">
-                <div class="flex items-center gap-1.5 sm:gap-2" id="topSocialLinks">
+            <div class="flex items-center shrink-0 ml-auto">
+                <div class="flex items-center gap-0.5 sm:gap-1.5" id="topSocialLinks">
                     <!-- Populated dynamically via JS -->
                 </div>
             </div>
@@ -588,31 +585,32 @@
                 </div>
             </a>
 
-            <!-- Desktop Navigation Links (Centered text & Generous Spacing) -->
-            <nav id="publicNav" class="hidden lg:flex items-center justify-center gap-3.5 xl:gap-7 text-xs xl:text-sm font-semibold text-slate-700 ml-6 lg:ml-10 xl:ml-16" role="navigation" aria-label="Navegação Principal">
-                <a href="#modalidades" class="text-center hover:text-brand-green transition focus-visible:outline-none focus-visible:text-brand-green py-1.5 px-1 leading-tight flex flex-col items-center justify-center">
-                    <span>Modalidades</span>
-                    <span>Caixa</span>
+            <!-- Desktop Navigation Links with Silos -->
+            <nav id="publicNav" class="hidden lg:flex items-center justify-center gap-3.5 xl:gap-6 text-xs xl:text-sm font-semibold text-slate-700 ml-4 lg:ml-8" role="navigation" aria-label="Navegação Principal">
+                <a href="/aquisicao-de-terreno-e-construcao/" class="text-center hover:text-brand-green transition py-1.5 px-1 leading-tight flex flex-col items-center justify-center">
+                    <span>Terreno +</span>
+                    <span>Construção</span>
                 </a>
-                <a href="#vantagens" class="text-center hover:text-brand-green transition focus-visible:outline-none focus-visible:text-brand-green py-1.5 px-1 leading-tight flex flex-col items-center justify-center">
-                    <span>Construir vs.</span>
-                    <span>Comprar</span>
+                <a href="/construcao-em-terreno-proprio/" class="text-center hover:text-brand-green transition py-1.5 px-1 leading-tight flex flex-col items-center justify-center">
+                    <span>Terreno</span>
+                    <span>Próprio</span>
                 </a>
-                <a href="#grupo" class="text-center hover:text-brand-green transition focus-visible:outline-none focus-visible:text-brand-green py-1.5 px-1 leading-tight flex flex-col items-center justify-center whitespace-nowrap">
-                    <span>O Grupo</span>
-                </a>
-                <a href="#simulador" class="text-brand-blue hover:text-brand-green transition flex flex-col items-center justify-center text-center gap-0.5 focus-visible:outline-none py-1.5 px-1 leading-tight">
+                <a href="/simulador-financiamento-construcao-caixa/" class="text-brand-blue hover:text-brand-green transition flex flex-col items-center justify-center text-center gap-0.5 py-1.5 px-1 leading-tight">
                     <span class="inline-flex items-center gap-1">
                         <i class="fa-solid fa-calculator text-brand-green text-xs" aria-hidden="true"></i>
-                        <span>Simulador de</span>
+                        <span>Simulador</span>
                     </span>
-                    <span>Crédito</span>
+                    <span>Caixa</span>
                 </a>
-                <a href="#obras" class="text-center hover:text-brand-green transition focus-visible:outline-none focus-visible:text-brand-green py-1.5 px-1 leading-tight flex flex-col items-center justify-center">
+                <a href="/construcao-financiada-caixa-maringa/" class="text-center hover:text-brand-green transition py-1.5 px-1 leading-tight flex flex-col items-center justify-center whitespace-nowrap">
+                    <span>Maringá e</span>
+                    <span>Região</span>
+                </a>
+                <a href="#obras" class="text-center hover:text-brand-green transition py-1.5 px-1 leading-tight flex flex-col items-center justify-center">
                     <span>Obras</span>
-                    <span>Financiadas</span>
+                    <span>Entregues</span>
                 </a>
-                <a href="#faq" class="text-center hover:text-brand-green transition focus-visible:outline-none focus-visible:text-brand-green py-1.5 px-1 leading-tight flex flex-col items-center justify-center">
+                <a href="#faq" class="text-center hover:text-brand-green transition py-1.5 px-1 leading-tight flex flex-col items-center justify-center">
                     <span>Dúvidas</span>
                     <span>Frequentes</span>
                 </a>
@@ -630,14 +628,17 @@
             </div>
         </div>
 
-        <!-- Mobile Menu Dropdown -->
+        <!-- Mobile Menu Dropdown with Silos -->
         <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 space-y-2 shadow-xl" role="navigation" aria-label="Menu Mobile">
-            <a href="#modalidades" onclick="toggleMobileMenu()" class="block py-3 px-3 rounded-xl font-semibold text-slate-700 hover:bg-brand-ice hover:text-brand-green touch-target w-full text-left">Modalidades Caixa</a>
-            <a href="#vantagens" onclick="toggleMobileMenu()" class="block py-3 px-3 rounded-xl font-semibold text-slate-700 hover:bg-brand-ice hover:text-brand-green touch-target w-full text-left">Construir vs. Comprar</a>
-            <a href="#grupo" onclick="toggleMobileMenu()" class="block py-3 px-3 rounded-xl font-semibold text-slate-700 hover:bg-brand-ice hover:text-brand-green touch-target w-full text-left">Grupo Geminadas.com & Level</a>
-            <a href="#simulador" onclick="toggleMobileMenu()" class="block py-3 px-3 rounded-xl font-bold text-brand-blue bg-emerald-50/70 border border-brand-green/20 touch-target w-full text-left">Simulador de Crédito Caixa</a>
-            <a href="#obras" onclick="toggleMobileMenu()" class="block py-3 px-3 rounded-xl font-semibold text-slate-700 hover:bg-brand-ice hover:text-brand-green touch-target w-full text-left">Obras Financiadas</a>
-            <a href="#faq" onclick="toggleMobileMenu()" class="block py-3 px-3 rounded-xl font-semibold text-slate-700 hover:bg-brand-ice hover:text-brand-green touch-target w-full text-left">Dúvidas Frequentes (FAQ)</a>
+            <a href="/aquisicao-de-terreno-e-construcao/" class="block py-2.5 px-3 rounded-xl font-semibold text-slate-700 hover:bg-brand-ice hover:text-brand-green touch-target w-full text-left">Aquisição Terreno + Construção</a>
+            <a href="/construcao-em-terreno-proprio/" class="block py-2.5 px-3 rounded-xl font-semibold text-slate-700 hover:bg-brand-ice hover:text-brand-green touch-target w-full text-left">Construção em Terreno Próprio</a>
+            <a href="/simulador-financiamento-construcao-caixa/" class="block py-2.5 px-3 rounded-xl font-bold text-brand-blue bg-emerald-50/70 border border-brand-green/20 touch-target w-full text-left flex items-center justify-between">
+                <span>Simulador de Crédito Caixa</span>
+                <i class="fa-solid fa-calculator text-brand-green text-sm" aria-hidden="true"></i>
+            </a>
+            <a href="/construcao-financiada-caixa-maringa/" class="block py-2.5 px-3 rounded-xl font-semibold text-slate-700 hover:bg-brand-ice hover:text-brand-green touch-target w-full text-left">Construção em Maringá e Região</a>
+            <a href="#obras" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-xl font-semibold text-slate-700 hover:bg-brand-ice hover:text-brand-green touch-target w-full text-left">Obras Financiadas Entregues</a>
+            <a href="#faq" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-xl font-semibold text-slate-700 hover:bg-brand-ice hover:text-brand-green touch-target w-full text-left">Dúvidas Frequentes (FAQ)</a>
             <div class="pt-3 flex flex-col gap-2">
                 <a href="#" id="mobileWhatsappBtn" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-4 rounded-xl font-bold text-sm bg-brand-green text-white flex items-center justify-center gap-2 shadow-md touch-target">
                     <i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i> Falar no WhatsApp Agora
@@ -748,7 +749,9 @@
                             </ul>
                         </div>
                         <div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between flex-wrap gap-2">
-                            <span class="text-xs font-semibold text-slate-500">Prazo de até 420 meses (35 anos)</span>
+                            <a href="/aquisicao-de-terreno-e-construcao/" class="text-xs font-semibold text-brand-blue hover:text-brand-green transition flex items-center gap-1">
+                                Ver detalhes da modalidade <i class="fa-solid fa-arrow-up-right-from-square text-[10px]" aria-hidden="true"></i>
+                            </a>
                             <a href="#simulador" onclick="selectModalityInSimulator('terreno_construcao')" class="inline-flex items-center gap-2 text-brand-green font-bold text-sm hover:text-brand-blue transition touch-target">
                                 Simular Terreno + Obra <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                             </a>
@@ -785,7 +788,9 @@
                             </ul>
                         </div>
                         <div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between flex-wrap gap-2">
-                            <span class="text-xs font-semibold text-slate-500">Liberação por etapas (PLS Caixa)</span>
+                            <a href="/construcao-em-terreno-proprio/" class="text-xs font-semibold text-brand-blue hover:text-brand-green transition flex items-center gap-1">
+                                Ver detalhes da modalidade <i class="fa-solid fa-arrow-up-right-from-square text-[10px]" aria-hidden="true"></i>
+                            </a>
                             <a href="#simulador" onclick="selectModalityInSimulator('terreno_proprio')" class="inline-flex items-center gap-2 text-brand-blue font-bold text-sm hover:text-brand-green transition touch-target">
                                 Simular Terreno Próprio <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                             </a>
@@ -1979,14 +1984,15 @@
                     </div>
                 </div>
 
-                <!-- Col 2: Navigation Links -->
+                <!-- Col 2: Navigation Links with Silos -->
                 <div class="md:col-span-3 space-y-2 text-xs sm:text-sm">
-                    <h3 class="font-display font-bold text-sm sm:text-base text-emerald-300 mb-3">Soluções do Grupo</h3>
-                    <p><a href="#modalidades" class="text-slate-300 hover:text-white transition py-1 inline-block">Aquisição Terreno + Construção</a></p>
-                    <p><a href="#modalidades" class="text-slate-300 hover:text-white transition py-1 inline-block">Construção em Terreno Próprio</a></p>
-                    <p><a href="#vantagens" class="text-slate-300 hover:text-white transition py-1 inline-block">Construir vs. Comprar Pronta</a></p>
-                    <p><a href="#simulador" class="text-slate-300 hover:text-white transition py-1 inline-block">Simulador de Crédito Caixa</a></p>
+                    <h3 class="font-display font-bold text-sm sm:text-base text-emerald-300 mb-3">Páginas Especializadas</h3>
+                    <p><a href="/aquisicao-de-terreno-e-construcao/" class="text-slate-300 hover:text-white transition py-1 inline-block">Aquisição Terreno + Construção</a></p>
+                    <p><a href="/construcao-em-terreno-proprio/" class="text-slate-300 hover:text-white transition py-1 inline-block">Construção em Terreno Próprio</a></p>
+                    <p><a href="/simulador-financiamento-construcao-caixa/" class="text-slate-300 hover:text-white transition py-1 inline-block">Simulador de Financiamento Caixa</a></p>
+                    <p><a href="/construcao-financiada-caixa-maringa/" class="text-slate-300 hover:text-white transition py-1 inline-block">Construção em Maringá e Região</a></p>
                     <p><a href="#obras" class="text-slate-300 hover:text-white transition py-1 inline-block">Portfólio de Obras e Plantas</a></p>
+                    <p><a href="#vantagens" class="text-slate-300 hover:text-white transition py-1 inline-block">Construir vs. Comprar Pronta</a></p>
                 </div>
 
                 <!-- Col 3: Contact Info (Dynamic) -->
@@ -2464,9 +2470,9 @@
                     siteConfig = { ...defaultSiteConfig, ...JSON.parse(savedCfg) };
                 }
                 const savedProjs = localStorage.getItem('fso_projects_v2');
-                if (savedProjs) {
+                if (savedProjs !== null) {
                     const parsed = JSON.parse(savedProjs);
-                    if (Array.isArray(parsed) && parsed.length > 0) {
+                    if (Array.isArray(parsed)) {
                         projects = parsed.map(p => {
                             let photos = Array.isArray(p.photos) && p.photos.length > 0 ? p.photos : (p.photoUrl ? [p.photoUrl] : []);
                             let floorplans = Array.isArray(p.floorplans) && p.floorplans.length > 0 
@@ -2538,21 +2544,21 @@
             let heroHtml = '';
             let footerHtml = '';
 
-            topHtml += `<a href="${waUrl}" target="_blank" rel="noopener noreferrer" title="WhatsApp ${siteConfig.phoneDisplay}" class="h-8 px-2 rounded-lg text-emerald-300 hover:text-white hover:bg-white/10 transition inline-flex items-center gap-1.5 font-semibold text-xs sm:text-sm touch-target"><i class="fa-brands fa-whatsapp text-base sm:text-lg" aria-hidden="true"></i> <span class="hidden md:inline">${siteConfig.phoneDisplay}</span></a>`;
+            topHtml += `<a href="${waUrl}" target="_blank" rel="noopener noreferrer" title="WhatsApp ${siteConfig.phoneDisplay}" class="w-7 h-7 sm:w-auto sm:h-8 sm:px-2 rounded-lg text-emerald-300 hover:text-white hover:bg-white/10 transition inline-flex items-center justify-center gap-1.5 font-semibold text-xs sm:text-sm touch-target"><i class="fa-brands fa-whatsapp text-sm sm:text-base" aria-hidden="true"></i> <span class="hidden md:inline">${siteConfig.phoneDisplay}</span></a>`;
             footerHtml += `<a href="${waUrl}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-10 h-10 rounded-xl bg-brand-green hover:bg-brand-greenLight flex items-center justify-center text-white transition touch-target"><i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i></a>`;
 
             if (siteConfig.instagram) {
-                topHtml += `<a href="${siteConfig.instagram}" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-8 h-8 rounded-lg text-white/80 hover:text-white hover:bg-white/10 inline-flex items-center justify-center transition touch-target"><i class="fa-brands fa-instagram text-base sm:text-lg" aria-hidden="true"></i></a>`;
+                topHtml += `<a href="${siteConfig.instagram}" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg text-white/80 hover:text-white hover:bg-white/10 inline-flex items-center justify-center transition touch-target"><i class="fa-brands fa-instagram text-sm sm:text-base" aria-hidden="true"></i></a>`;
                 heroHtml += `<a href="${siteConfig.instagram}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/20 border border-white/15 px-3 py-1.5 rounded-xl text-xs font-semibold text-white transition"><i class="fa-brands fa-instagram text-pink-400 text-sm" aria-hidden="true"></i> Instagram</a>`;
                 footerHtml += `<a href="${siteConfig.instagram}" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-brand-green flex items-center justify-center text-white transition touch-target"><i class="fa-brands fa-instagram text-lg" aria-hidden="true"></i></a>`;
             }
             if (siteConfig.facebook) {
-                topHtml += `<a href="${siteConfig.facebook}" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-8 h-8 rounded-lg text-white/80 hover:text-white hover:bg-white/10 inline-flex items-center justify-center transition touch-target"><i class="fa-brands fa-facebook text-base sm:text-lg" aria-hidden="true"></i></a>`;
+                topHtml += `<a href="${siteConfig.facebook}" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg text-white/80 hover:text-white hover:bg-white/10 inline-flex items-center justify-center transition touch-target"><i class="fa-brands fa-facebook text-sm sm:text-base" aria-hidden="true"></i></a>`;
                 heroHtml += `<a href="${siteConfig.facebook}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/20 border border-white/15 px-3 py-1.5 rounded-xl text-xs font-semibold text-white transition"><i class="fa-brands fa-facebook text-blue-400 text-sm" aria-hidden="true"></i> Facebook</a>`;
                 footerHtml += `<a href="${siteConfig.facebook}" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-brand-green flex items-center justify-center text-white transition touch-target"><i class="fa-brands fa-facebook text-lg" aria-hidden="true"></i></a>`;
             }
             if (siteConfig.youtube) {
-                topHtml += `<a href="${siteConfig.youtube}" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-8 h-8 rounded-lg text-white/80 hover:text-white hover:bg-white/10 inline-flex items-center justify-center transition touch-target"><i class="fa-brands fa-youtube text-base sm:text-lg" aria-hidden="true"></i></a>`;
+                topHtml += `<a href="${siteConfig.youtube}" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg text-white/80 hover:text-white hover:bg-white/10 inline-flex items-center justify-center transition touch-target"><i class="fa-brands fa-youtube text-sm sm:text-base" aria-hidden="true"></i></a>`;
                 heroHtml += `<a href="${siteConfig.youtube}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/20 border border-white/15 px-3 py-1.5 rounded-xl text-xs font-semibold text-white transition"><i class="fa-brands fa-youtube text-red-400 text-sm" aria-hidden="true"></i> YouTube</a>`;
                 footerHtml += `<a href="${siteConfig.youtube}" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-brand-green flex items-center justify-center text-white transition touch-target"><i class="fa-brands fa-youtube text-lg" aria-hidden="true"></i></a>`;
             }
@@ -3844,5 +3850,8 @@
             checkRoute();
         });
     </script>
+
+    <!-- CENTRALIZED TRACKING SCRIPT (NON-BLOCKING GTM / GA4 / CLARITY) -->
+    <script src="/tracking.js" defer></script>
 </body>
 </html>

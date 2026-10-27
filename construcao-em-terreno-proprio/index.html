@@ -1,9 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NE0CF2P5BE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-NE0CF2P5BE');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
+    <!-- Anti-Cache Directives for Mobile Browsers & Proxies -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <!-- Aggressive Mobile Service Worker & CacheStorage Purge -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(regs) {
+                for (var i = 0; i < regs.length; i++) regs[i].unregister();
+            });
+        }
+        if ('caches' in window) {
+            caches.keys().then(function(keys) {
+                keys.forEach(function(k) { caches.delete(k); });
+            });
+        }
+    </script>
+
     <!-- SEO & Core Meta Tags -->
     <title>Construção em Terreno Próprio Caixa | Financie até 100% da Obra</title>
     <meta name="description" content="Já possui terreno quitado ou em fase final de quitação? Use a avaliação do lote como entrada e financie até 100% da construção com a Caixa. Até 420 meses pelo SFH. Simule online!">
@@ -560,7 +588,7 @@
         <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
     </a>
 
-    <!-- CENTRALIZED TRACKING SCRIPT -->
-    <script src="/tracking.js" defer></script>
+    <!-- CENTRALIZED TRACKING SCRIPT (WITH CACHE BUSTING) -->
+    <script src="/tracking.js?v=202610271550" defer></script>
 </body>
 </html>

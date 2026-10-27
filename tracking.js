@@ -2,15 +2,41 @@
  * ==============================================================================
  * tracking.js • financiesuaobra.com.br
  * Módulo Centralizado de Rastreamento Performático (GTM, GA4, Microsoft Clarity)
+ * + Rotina Anti-Cache & Desativação Definitiva de Service Worker Obsoleto
  * Carregamento não-bloqueante via requestIdleCallback e escuta de primeira interação
- * Zero impacto no First Input Delay (FID), Total Blocking Time (TBT) e LCP.
  * ==============================================================================
  */
 
 (function () {
     'use strict';
 
-    // Configuração dos IDs de Rastreamento (Substitua pelos IDs reais da sua conta)
+    // 1. DESATIVAÇÃO E PURGA DE SERVICE WORKERS ANTIGOS (Resolve cache agressivo em Mobile)
+    try {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function (registrations) {
+                for (var i = 0; i < registrations.length; i++) {
+                    registrations[i].unregister().then(function (unregistered) {
+                        if (unregistered) {
+                            console.log('[Cache Bust] Service Worker desativado com sucesso.');
+                        }
+                    });
+                }
+            }).catch(function (err) {
+                console.warn('[Cache Bust] Falha ao verificar Service Workers:', err);
+            });
+        }
+        if ('caches' in window) {
+            caches.keys().then(function (keys) {
+                keys.forEach(function (key) {
+                    caches.delete(key);
+                });
+            }).catch(function () {});
+        }
+    } catch (e) {
+        // Ignora silenciosamente em navegadores antigos
+    }
+
+    // 2. Configuração dos IDs de Rastreamento (Substitua pelos IDs reais da sua conta)
     const TRACKING_CONFIG = {
         // Ex: 'GTM-XXXXXXX' (deixe vazio se for usar apenas GA4 direto)
         gtmId: window.FSO_GTM_ID || '', 

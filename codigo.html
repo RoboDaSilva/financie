@@ -1,9 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NE0CF2P5BE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-NE0CF2P5BE');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
+    <!-- Anti-Cache Directives for Mobile Browsers & Proxies -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <!-- Aggressive Mobile Service Worker & CacheStorage Purge -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(regs) {
+                for (var i = 0; i < regs.length; i++) regs[i].unregister();
+            });
+        }
+        if ('caches' in window) {
+            caches.keys().then(function(keys) {
+                keys.forEach(function(k) { caches.delete(k); });
+            });
+        }
+    </script>
+
     <!-- SEO & Core Meta Tags (High-CTR, Search Intent & Local SEO) -->
     <title id="dynamicPageTitle">Financiamento Caixa Terreno e Construção | Financie Sua Obra</title>
     <meta name="description" content="Financie terreno e construção Caixa em Maringá e região. Economize até 35% com projetos Geminadas.com e obras Level Construtora. Simule parcelas online!">
@@ -2501,6 +2529,72 @@
                 console.warn('Limite de armazenamento atingido:', err);
                 showToast('Aviso: Armazenamento local com capacidade reduzida.', 'error');
             }
+
+            // Propagar instantaneamente para a API do Servidor (Cross-Device Sync Desktop <-> Mobile)
+            fetch('/api/content', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Cache-Control': 'no-cache, no-store, must-revalidate',
+                    'Pragma': 'no-cache'
+                },
+                cache: 'no-store',
+                body: JSON.stringify({ siteConfig, projects })
+            }).then(res => {
+                if (res.ok) {
+                    console.log('[FSO Sync] Alterações propagadas no servidor com sucesso.');
+                }
+            }).catch(err => {
+                console.warn('[FSO Sync] Servidor em modo estático/offline, mantido em localStorage:', err);
+            });
+        }
+
+        async function syncDataFromBackend() {
+            try {
+                const res = await fetch(`/api/content?_t=${Date.now()}`, {
+                    cache: 'no-store',
+                    headers: {
+                        'Cache-Control': 'no-cache, no-store, must-revalidate',
+                        'Pragma': 'no-cache'
+                    }
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    let hasUpdate = false;
+                    if (data.siteConfig && typeof data.siteConfig === 'object') {
+                        siteConfig = { ...defaultSiteConfig, ...data.siteConfig };
+                        try { localStorage.setItem('fso_siteConfig_v2', JSON.stringify(siteConfig)); } catch (e) {}
+                        hasUpdate = true;
+                    }
+                    if (Array.isArray(data.projects)) {
+                        projects = data.projects.map(p => {
+                            let photos = Array.isArray(p.photos) && p.photos.length > 0 ? p.photos : (p.photoUrl ? [p.photoUrl] : []);
+                            let floorplans = Array.isArray(p.floorplans) && p.floorplans.length > 0
+                                ? p.floorplans
+                                : (p.floorplanUrl ? [{ name: 'Pavimento Térreo', url: p.floorplanUrl }] : []);
+                            return {
+                                ...p,
+                                photos,
+                                photoUrl: photos[0] || p.photoUrl || '',
+                                floorplans,
+                                floorplanUrl: floorplans[0]?.url || p.floorplanUrl || ''
+                            };
+                        });
+                        try { localStorage.setItem('fso_projects_v2', JSON.stringify(projects)); } catch (e) {}
+                        hasUpdate = true;
+                    }
+                    if (hasUpdate) {
+                        applySiteConfigToUI();
+                        renderPublicProjects();
+                        if (document.getElementById('adminView') && !document.getElementById('adminView').classList.contains('hidden')) {
+                            populateAdminConfigForm();
+                            renderAdminProjectsList();
+                        }
+                    }
+                }
+            } catch (err) {
+                // Modo offline ou arquivo estático puro
+            }
         }
 
         // ============================================================================
@@ -3848,10 +3942,24 @@
             updateVantagensInteractive();
             initDraggableQuickBar();
             checkRoute();
+
+            // Sincronização assíncrona com o backend (Anti-Cache Mobile)
+            syncDataFromBackend();
+        });
+
+        // BFCache (Back-Forward Cache) em navegadores Mobile (Safari iOS e Android Chrome)
+        window.addEventListener('pageshow', () => {
+            syncDataFromBackend();
+        });
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                syncDataFromBackend();
+            }
         });
     </script>
 
-    <!-- CENTRALIZED TRACKING SCRIPT (NON-BLOCKING GTM / GA4 / CLARITY) -->
-    <script src="/tracking.js" defer></script>
+    <!-- CENTRALIZED TRACKING SCRIPT (NON-BLOCKING GTM / GA4 / CLARITY) COM CACHE BUSTING -->
+    <script src="/tracking.js?v=202610271550" defer></script>
 </body>
 </html>

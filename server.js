@@ -8,7 +8,9 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = process.env.PORT || 3000;
+// IMPORTANTE: Ignorar process.env.PORT pois o Easypanel injeta PORT=80 no container para o Nginx.
+// O Node.js deve escutar SEMPRE na porta interna 3000 (ou API_PORT se customizado).
+const PORT = Number(process.env.API_PORT) || 3000;
 const MAX_PAYLOAD_SIZE = 50 * 1024 * 1024; // 50MB para fotos e plantas baixas 9:16 em Base64
 
 // Dados iniciais padrão de fallback caso o arquivo físico ainda não exista
@@ -291,5 +293,5 @@ process.on('unhandledRejection', (reason, promise) => {
 });
 
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(`[FSO API] Servidor de persistência e sincronização ativo na porta ${PORT} (0.0.0.0)`);
+  console.log(`[FSO API] Servidor de persistência e sincronização ativo na porta ${PORT}`);
 });

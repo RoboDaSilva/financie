@@ -31,7 +31,7 @@ chmod 777 /usr/share/nginx/html 2>/dev/null || true
 
 # 3. Iniciar servidor Node.js API em background
 echo "[FSO Entrypoint] Iniciando API Node.js de sincronização na porta 3000..."
-node /usr/share/nginx/html/server.js &
+API_PORT=3000 node /usr/share/nginx/html/server.js &
 
 # 4. Aguardar 1 segundo para o Node abrir a porta
 sleep 1

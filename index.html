@@ -715,12 +715,12 @@
                     <!-- Trust Metrics Grid -->
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 border-t border-white/10 text-center max-w-3xl mx-auto">
                         <div class="p-4 bg-white/5 rounded-2xl border border-white/10 flex flex-col justify-center">
-                            <div class="font-display font-extrabold text-xl sm:text-2xl lg:text-3xl text-emerald-400">Até 80% ou 100%</div>
+                            <div class="font-display font-extrabold text-xl sm:text-2xl lg:text-3xl text-emerald-400">Até 100%</div>
                             <div class="text-xs sm:text-sm text-slate-300 mt-1">Financiamento Caixa: Até 80% (Lote+Obra) ou 100% (obra)</div>
                         </div>
                         <div class="p-4 bg-white/5 rounded-2xl border border-white/10 flex flex-col justify-center">
                             <div class="font-display font-extrabold text-xl sm:text-2xl lg:text-3xl text-emerald-400">R$ 2,25 mi</div>
-                            <div class="text-xs sm:text-sm text-slate-300 mt-1">Teto SFH com FGTS</div>
+                            <div class="text-xs sm:text-sm text-slate-300 mt-1">Teto de financiamento Caixa</div>
                         </div>
                         <div class="p-4 bg-white/5 rounded-2xl border border-white/10 flex flex-col justify-center">
                             <div class="font-display font-extrabold text-xl sm:text-2xl lg:text-3xl text-emerald-400">Chave na Mão</div>
@@ -1027,7 +1027,7 @@
                                     Alto Padrão
                                 </button>
                                 <button type="button" onclick="setSimStandard('luxo')" id="stdLuxo" class="py-3 px-2 sm:px-3 rounded-xl border-2 border-slate-200 text-xs sm:text-sm font-bold text-slate-700 hover:border-brand-blue transition touch-target w-full">
-                                    Alto Luxo
+                                    Padrão Luxo
                                 </button>
                             </div>
                         </div>
@@ -1458,6 +1458,27 @@
                                 <input type="text" id="cfgAddress" placeholder="Grupo Geminadas.com & Level Construtora" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs focus:outline-none focus:border-brand-green">
                             </div>
                         </div>
+
+                        <!-- Custos Médios de Construção (R$/m² para o Simulador) -->
+                        <div class="pt-3 border-t border-slate-200/80">
+                            <label class="block text-[11px] font-bold uppercase text-slate-600 mb-2 flex items-center gap-1.5">
+                                <i class="fa-solid fa-calculator text-brand-green" aria-hidden="true"></i> Custo da Construção por Metro Quadrado (R$/m² no Simulador)
+                            </label>
+                            <div class="grid sm:grid-cols-3 gap-3">
+                                <div>
+                                    <label for="cfgCostMedio" class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Médio Padrão (R$/m²)</label>
+                                    <input type="number" step="10" id="cfgCostMedio" placeholder="3100" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs font-bold text-brand-blue focus:outline-none focus:border-brand-green">
+                                </div>
+                                <div>
+                                    <label for="cfgCostAlto" class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Alto Padrão (R$/m²)</label>
+                                    <input type="number" step="10" id="cfgCostAlto" placeholder="3650" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs font-bold text-brand-blue focus:outline-none focus:border-brand-green">
+                                </div>
+                                <div>
+                                    <label for="cfgCostLuxo" class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Padrão Luxo (R$/m²)</label>
+                                    <input type="number" step="10" id="cfgCostLuxo" placeholder="4600" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs font-bold text-brand-blue focus:outline-none focus:border-brand-green">
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Right: Favicon & Browser Title (5 cols) -->
@@ -1580,7 +1601,7 @@
                                 <select id="projStandard" class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm font-medium bg-white focus:outline-none focus:border-brand-green">
                                     <option value="Alto Padrão">Alto Padrão</option>
                                     <option value="Médio Padrão">Médio Padrão</option>
-                                    <option value="Alto Luxo">Alto Luxo</option>
+                                    <option value="Padrão Luxo">Padrão Luxo</option>
                                 </select>
                             </div>
                         </div>
@@ -2122,6 +2143,9 @@
             facebook: "https://facebook.com/geminadas",
             youtube: "https://youtube.com/@geminadas",
             interestRate: 9.89,
+            costMedio: 3100,
+            costAlto: 3650,
+            costLuxo: 4600,
             address: "Av. Advogado Horácio Raccanello Filho, 5570 - Novo Centro, Maringá - PR, 87020-035",
             email: "contato@financiesuaobra.com.br",
             heroTitle: "Financiamento Caixa Terreno e Construção em Maringá: <span class=\"text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-brand-greenLight\">Projetos Geminadas & Obra Level</span>",
@@ -2820,6 +2844,9 @@
             document.getElementById('cfgFacebook').value = siteConfig.facebook || '';
             document.getElementById('cfgYoutube').value = siteConfig.youtube || '';
             document.getElementById('cfgInterestRate').value = siteConfig.interestRate || 9.89;
+            document.getElementById('cfgCostMedio').value = siteConfig.costMedio || 3100;
+            document.getElementById('cfgCostAlto').value = siteConfig.costAlto || 3650;
+            document.getElementById('cfgCostLuxo').value = siteConfig.costLuxo || 4600;
             document.getElementById('cfgAddress').value = siteConfig.address || '';
             document.getElementById('cfgEmail').value = siteConfig.email || '';
             document.getElementById('cfgHeroTitle').value = siteConfig.heroTitle || '';
@@ -2880,6 +2907,9 @@
             siteConfig.facebook = document.getElementById('cfgFacebook').value.trim();
             siteConfig.youtube = document.getElementById('cfgYoutube').value.trim();
             siteConfig.interestRate = parseFloat(document.getElementById('cfgInterestRate').value) || 9.89;
+            siteConfig.costMedio = parseFloat(document.getElementById('cfgCostMedio').value) || 3100;
+            siteConfig.costAlto = parseFloat(document.getElementById('cfgCostAlto').value) || 3650;
+            siteConfig.costLuxo = parseFloat(document.getElementById('cfgCostLuxo').value) || 4600;
             siteConfig.address = document.getElementById('cfgAddress').value.trim();
             siteConfig.email = document.getElementById('cfgEmail').value.trim();
             siteConfig.heroTitle = document.getElementById('cfgHeroTitle').value.trim() || siteConfig.heroTitle;
@@ -2952,8 +2982,12 @@
 
         function setSimStandard(std) {
             simState.standard = std;
-            const mapCost = { medio: 3100, alto: 3650, luxo: 4600 };
-            simState.costPerSqm = mapCost[std] || 3650;
+            const mapCost = {
+                medio: siteConfig.costMedio || 3100,
+                alto: siteConfig.costAlto || 3650,
+                luxo: siteConfig.costLuxo || 4600
+            };
+            simState.costPerSqm = mapCost[std] || (siteConfig.costAlto || 3650);
 
             ['Medio', 'Alto', 'Luxo'].forEach(item => {
                 const el = document.getElementById('std' + item);
@@ -3031,6 +3065,12 @@
             document.getElementById('simObraDisplay').textContent = formatBRL(obraVal);
             document.getElementById('simEntradaDisplay').textContent = formatBRL(effectiveCashEntry);
 
+            const mapCost = {
+                medio: siteConfig.costMedio || 3100,
+                alto: siteConfig.costAlto || 3650,
+                luxo: siteConfig.costLuxo || 4600
+            };
+            simState.costPerSqm = mapCost[simState.standard] || (siteConfig.costAlto || 3650);
             const approxSqm = Math.round(obraVal / simState.costPerSqm);
             document.getElementById('simAreaEstimada').textContent = `Área aprox. sugerida: ~${approxSqm} m²`;
 
@@ -3085,7 +3125,7 @@
             const financedText = document.getElementById('resFinancedAmount').textContent;
             const firstInstText = document.getElementById('resFirstInstallment').textContent;
             const modLabel = simState.modality === 'terreno_construcao' ? 'Aquisição de Terreno + Construção' : 'Construção em Terreno Próprio';
-            const stdLabel = simState.standard === 'medio' ? 'Médio Padrão' : (simState.standard === 'alto' ? 'Alto Padrão' : 'Alto Luxo');
+            const stdLabel = simState.standard === 'medio' ? 'Médio Padrão' : (simState.standard === 'alto' ? 'Alto Padrão' : 'Padrão Luxo');
 
             const totalGlobal = terrenoVal + obraVal;
             const savingsText = document.getElementById('resNetEquityGain')?.textContent || '';

@@ -330,7 +330,7 @@
                                     Alto Padrão
                                 </button>
                                 <button type="button" onclick="setSimStandard('luxo')" id="stdLuxo" class="py-3 px-2 sm:px-3 rounded-xl border-2 border-slate-200 text-xs sm:text-sm font-bold text-slate-700 hover:border-brand-blue transition touch-target w-full">
-                                    Alto Luxo
+                                    Padrão Luxo
                                 </button>
                             </div>
                         </div>
@@ -636,9 +636,24 @@
             updateSimulation();
         }
 
+        function getDynamicCosts() {
+            try {
+                const stored = localStorage.getItem('fso_site_config');
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    return {
+                        medio: parsed.costMedio || 3100,
+                        alto: parsed.costAlto || 3650,
+                        luxo: parsed.costLuxo || 4600
+                    };
+                }
+            } catch (e) {}
+            return { medio: 3100, alto: 3650, luxo: 4600 };
+        }
+
         function setSimStandard(std) {
             simState.standard = std;
-            const mapCost = { medio: 3100, alto: 3650, luxo: 4600 };
+            const mapCost = getDynamicCosts();
             simState.costPerSqm = mapCost[std] || 3650;
 
             ['Medio', 'Alto', 'Luxo'].forEach(item => {
@@ -747,7 +762,7 @@
             const firstInstText = document.getElementById('resFirstInstallment').textContent;
             const savingsText = document.getElementById('resNetEquityGain').textContent;
             const modLabel = simState.modality === 'terreno_construcao' ? 'Aquisição de Terreno + Construção' : 'Construção em Terreno Próprio';
-            const stdLabel = simState.standard === 'medio' ? 'Médio Padrão' : (simState.standard === 'alto' ? 'Alto Padrão' : 'Alto Luxo');
+            const stdLabel = simState.standard === 'medio' ? 'Médio Padrão' : (simState.standard === 'alto' ? 'Alto Padrão' : 'Padrão Luxo');
             const totalGlobal = terrenoVal + obraVal;
 
             const greeting = clientName ? `Olá! Meu nome é *${clientName}*.` : `Olá!`;

@@ -9,9 +9,9 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = process.env.PORT || 3000;
-const DATA_FILE = path.join(__dirname, 'content-data.json');
+const MAX_PAYLOAD_SIZE = 50 * 1024 * 1024; // 50MB para fotos e plantas baixas 9:16 em Base64
 
-// Dados iniciais padrão de fallback
+// Dados iniciais padrão de fallback caso o arquivo físico ainda não exista
 const initialDefaultData = {
   siteConfig: {
     whatsapp: "5544999999999",
@@ -104,38 +104,86 @@ const initialDefaultData = {
   lastUpdated: new Date().toISOString()
 };
 
-// Carregar dados existentes ou criar arquivo inicial
-let inMemoryData = null;
+// Resolver caminhos de armazenamento físico (suporte a volume /data e web root Nginx)
+function getDataFilePaths() {
+  const targets = [];
 
-function loadDataFromFile() {
+  if (process.env.DATA_FILE_PATH) {
+    targets.push(process.env.DATA_FILE_PATH);
+  }
+
+  // Volume persistente no Easypanel / Docker (/data/content-data.json)
   try {
-    if (fs.existsSync(DATA_FILE)) {
-      const raw = fs.readFileSync(DATA_FILE, 'utf8');
-      inMemoryData = JSON.parse(raw);
-    } else {
-      inMemoryData = initialDefaultData;
-      fs.writeFileSync(DATA_FILE, JSON.stringify(inMemoryData, null, 2), 'utf8');
+    if (fs.existsSync('/data')) {
+      targets.push('/data/content-data.json');
     }
-  } catch (err) {
-    console.error('[API FSO] Erro ao carregar content-data.json:', err);
-    inMemoryData = initialDefaultData;
+  } catch (_) {}
+
+  // Diretório web do Nginx no container
+  const nginxHtmlFile = '/usr/share/nginx/html/content-data.json';
+  targets.push(nginxHtmlFile);
+
+  // Diretório relativo da aplicação
+  const localFile = path.join(__dirname, 'content-data.json');
+  if (!targets.includes(localFile)) {
+    targets.push(localFile);
   }
+
+  return targets;
 }
 
-function saveDataToFile(data) {
-  try {
-    data.lastUpdated = new Date().toISOString();
-    inMemoryData = data;
-    fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf8');
-    return true;
-  } catch (err) {
-    console.error('[API FSO] Erro ao salvar content-data.json:', err);
-    return false;
+// Ler dados diretamente do disco em tempo real (Sem cache em memória obsoleto)
+function readDataFromDisk() {
+  const paths = getDataFilePaths();
+  
+  for (const filePath of paths) {
+    try {
+      if (fs.existsSync(filePath)) {
+        const raw = fs.readFileSync(filePath, 'utf8');
+        const parsed = JSON.parse(raw);
+        if (parsed && (parsed.siteConfig || Array.isArray(parsed.projects))) {
+          return parsed;
+        }
+      }
+    } catch (err) {
+      console.warn(`[FSO API] Aviso ao ler ${filePath}:`, err.message);
+    }
   }
+
+  // Se nenhum arquivo existir, criar com os dados padrão iniciais
+  writeDataToDisk(initialDefaultData);
+  return initialDefaultData;
 }
 
-// Inicializar armazenamento
-loadDataFromFile();
+// Gravar dados fisicamente no disco em todos os caminhos sincronizados
+function writeDataToDisk(data) {
+  data.lastUpdated = new Date().toISOString();
+  const jsonStr = JSON.stringify(data, null, 2);
+  const paths = getDataFilePaths();
+  let savedAny = false;
+
+  for (const filePath of paths) {
+    try {
+      const dir = path.dirname(filePath);
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+      fs.writeFileSync(filePath, jsonStr, 'utf8');
+      try { fs.chmodSync(filePath, 0o666); } catch (_) {}
+      savedAny = true;
+    } catch (err) {
+      console.error(`[FSO API] Erro ao gravar em ${filePath}:`, err.message);
+    }
+  }
+
+  if (savedAny) {
+    console.log(`[FSO API] Dados salvos em content-data.json com sucesso em ${data.lastUpdated}`);
+  }
+  return savedAny;
+}
+
+// Garantir arquivo inicial no boot
+readDataFromDisk();
 
 // Servidor HTTP Nativo
 const server = http.createServer((req, res) => {
@@ -143,7 +191,7 @@ const server = http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Cache-Control, Pragma, Authorization');
-  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
   res.setHeader('Pragma', 'no-cache');
   res.setHeader('Expires', '0');
 
@@ -163,53 +211,66 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 2. GET /api/content - Obter dados em tempo real (Mobile & Desktop)
+  // 2. GET /api/content - Obter dados em tempo real direto do disco (Mobile & Desktop)
   if (urlPath === '/api/content' && req.method === 'GET') {
-    res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-    res.end(JSON.stringify(inMemoryData || initialDefaultData));
+    try {
+      const currentData = readDataFromDisk();
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify(currentData));
+    } catch (err) {
+      console.error('[FSO API] Erro no GET /api/content:', err);
+      res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ error: 'Erro ao ler dados do servidor' }));
+    }
     return;
   }
 
-  // 3. POST /api/content - Salvar dados a partir do Painel Administrativo
+  // 3. POST /api/content - Salvar dados do Painel Admin (Com suporte a payload de até 50MB)
   if (urlPath === '/api/content' && req.method === 'POST') {
-    let body = '';
+    const chunks = [];
+    let receivedBytes = 0;
+
     req.on('data', chunk => {
-      body += chunk;
-      // Prevenir payload excessivo (limite de 15MB para fotos em base64)
-      if (body.length > 15 * 1024 * 1024) {
+      receivedBytes += chunk.length;
+      if (receivedBytes > MAX_PAYLOAD_SIZE) {
         res.writeHead(413, { 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(JSON.stringify({ error: 'Payload muito grande' }));
+        res.end(JSON.stringify({ error: 'Payload muito grande. O limite máximo permitido é 50MB.' }));
         req.destroy();
+        return;
       }
+      chunks.push(chunk);
     });
 
     req.on('end', () => {
       try {
-        const payload = JSON.parse(body);
-        if (!payload.siteConfig && !Array.isArray(payload.projects)) {
+        const bodyStr = Buffer.concat(chunks).toString('utf8');
+        const payload = JSON.parse(bodyStr);
+
+        if (!payload || (!payload.siteConfig && !Array.isArray(payload.projects))) {
           res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
           res.end(JSON.stringify({ error: 'Payload inválido. Esperado siteConfig e/ou projects.' }));
           return;
         }
 
+        const currentData = readDataFromDisk();
         const updatedData = {
-          siteConfig: payload.siteConfig || inMemoryData.siteConfig,
-          projects: Array.isArray(payload.projects) ? payload.projects : inMemoryData.projects,
+          siteConfig: payload.siteConfig || currentData.siteConfig || initialDefaultData.siteConfig,
+          projects: Array.isArray(payload.projects) ? payload.projects : (currentData.projects || initialDefaultData.projects),
           lastUpdated: new Date().toISOString()
         };
 
-        const success = saveDataToFile(updatedData);
+        const success = writeDataToDisk(updatedData);
         if (success) {
           res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-          res.end(JSON.stringify({ success: true, updated: updatedData.lastUpdated }));
+          res.end(JSON.stringify({ success: true, lastUpdated: updatedData.lastUpdated }));
         } else {
           res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
-          res.end(JSON.stringify({ error: 'Falha ao persistir em disco' }));
+          res.end(JSON.stringify({ error: 'Falha ao persistir alterações em disco no servidor.' }));
         }
       } catch (err) {
-        console.error('[API FSO] Erro no parsing JSON do POST:', err);
+        console.error('[FSO API] Erro no parsing JSON do POST:', err);
         res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(JSON.stringify({ error: 'JSON malformado' }));
+        res.end(JSON.stringify({ error: 'JSON malformado ou corrompido.' }));
       }
     });
     return;
@@ -217,18 +278,18 @@ const server = http.createServer((req, res) => {
 
   // 404 para outras rotas de API
   res.writeHead(404, { 'Content-Type': 'application/json; charset=utf-8' });
-  res.end(JSON.stringify({ error: 'Endpoint não encontrado' }));
+  res.end(JSON.stringify({ error: 'Endpoint de API não encontrado' }));
 });
 
-// Tratamento de erros globais para evitar crash do container
+// Tratamento de erros globais para manter o serviço sempre operacional
 process.on('uncaughtException', err => {
-  console.error('[API FSO] Uncaught Exception:', err);
+  console.error('[FSO API] Uncaught Exception:', err);
 });
 
 process.on('unhandledRejection', (reason, promise) => {
-  console.error('[API FSO] Unhandled Rejection:', reason);
+  console.error('[FSO API] Unhandled Rejection:', reason);
 });
 
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(`[API FSO] Servidor de sincronização ativo na porta ${PORT} (0.0.0.0)`);
+  console.log(`[FSO API] Servidor de persistência e sincronização ativo na porta ${PORT} (0.0.0.0)`);
 });

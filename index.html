@@ -2555,32 +2555,51 @@
             }
         }
 
-        function persistDataToStorage() {
+        async function persistDataToStorage(options = {}) {
+            // 1. Salvar no localStorage local para responsividade imediata no navegador ativo
             try {
                 localStorage.setItem('fso_siteConfig_v2', JSON.stringify(siteConfig));
                 localStorage.setItem('fso_projects_v2', JSON.stringify(projects));
             } catch (err) {
-                console.warn('Limite de armazenamento atingido:', err);
-                showToast('Aviso: Armazenamento local com capacidade reduzida.', 'error');
+                console.warn('[FSO Storage] Aviso de quota localStorage:', err);
             }
 
-            // Propagar instantaneamente para a API do Servidor (Cross-Device Sync Desktop <-> Mobile)
-            fetch('/api/content', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Cache-Control': 'no-cache, no-store, must-revalidate',
-                    'Pragma': 'no-cache'
-                },
-                cache: 'no-store',
-                body: JSON.stringify({ siteConfig, projects })
-            }).then(res => {
+            // 2. Persistir no Servidor como Fonte Única da Verdade (Cross-Device Sync Desktop <-> Mobile)
+            try {
+                const res = await fetch('/api/content', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Cache-Control': 'no-cache, no-store, must-revalidate',
+                        'Pragma': 'no-cache'
+                    },
+                    cache: 'no-store',
+                    body: JSON.stringify({
+                        siteConfig: siteConfig,
+                        projects: projects
+                    })
+                });
+
                 if (res.ok) {
-                    console.log('[FSO Sync] Alterações propagadas no servidor com sucesso.');
+                    const data = await res.json();
+                    console.log('[FSO Sync] Publicado no servidor com sucesso:', data);
+                    showToast(options.successMsg || 'Salvo e publicado no servidor para todos os usuários!', 'success');
+                    return true;
+                } else {
+                    let errMsg = `Erro ao salvar no servidor (HTTP ${res.status})`;
+                    try {
+                        const errData = await res.json();
+                        if (errData && errData.error) errMsg += `: ${errData.error}`;
+                    } catch (_) {}
+                    console.error('[FSO Sync] Resposta de erro do servidor:', errMsg);
+                    showToast(`${errMsg}. As alterações ficaram salvas apenas neste navegador.`, 'error');
+                    return false;
                 }
-            }).catch(err => {
-                console.warn('[FSO Sync] Servidor em modo estático/offline, mantido em localStorage:', err);
-            });
+            } catch (netErr) {
+                console.warn('[FSO Sync] Servidor indisponível ou offline:', netErr);
+                showToast('Salvo localmente neste navegador, mas o servidor está temporariamente inacessível.', 'warning');
+                return false;
+            }
         }
 
         async function syncDataFromBackend() {
@@ -2588,21 +2607,23 @@
 
             let payload = null;
 
-            // 1. Tentar obter da API dinâmica /api/content
+            // 1. Tentar obter da API dinâmica /api/content (Fonte Única da Verdade em tempo real)
             try {
                 const res = await fetch(`/api/content?_t=${Date.now()}`, {
                     cache: 'no-store',
                     headers: {
-                        'Cache-Control': 'no-cache, no-store, must-revalidate',
+                        'Cache-Control': 'no-cache, no-store, must-revalidate, proxy-revalidate',
                         'Pragma': 'no-cache'
                     }
                 });
                 if (res.ok) {
                     payload = await res.json();
                 }
-            } catch (err) {}
+            } catch (err) {
+                console.warn('[FSO Sync] Falha ao consultar /api/content:', err.message);
+            }
 
-            // 2. Se a API retornou erro/502, tentar ler o arquivo content-data.json estático
+            // 2. Se a API retornou erro/502 ou falhou, ler content-data.json estático de fallback
             if (!payload) {
                 try {
                     const resStatic = await fetch(`/content-data.json?_t=${Date.now()}`, {
@@ -2615,10 +2636,12 @@
                     if (resStatic.ok) {
                         payload = await resStatic.json();
                     }
-                } catch (err) {}
+                } catch (err) {
+                    console.warn('[FSO Sync] Falha ao consultar content-data.json estático:', err.message);
+                }
             }
 
-            // 3. Aplicar os dados encontrados
+            // 3. Aplicar os dados do Servidor (Sobrescrever variáveis globais e atualizar localStorage)
             if (payload) {
                 let hasUpdate = false;
                 if (payload.siteConfig && typeof payload.siteConfig === 'object') {
@@ -2815,14 +2838,13 @@
             if (previewTitle) previewTitle.textContent = titleInput;
         }
 
-        function useOfficialLogoFavicon() {
+        async function useOfficialLogoFavicon() {
             const officialSvg = getOfficialLogoFaviconDataUrl();
             document.getElementById('cfgFaviconUrl').value = officialSvg;
             siteConfig.faviconUrl = officialSvg;
             updateLiveAdminPreview();
             applySiteConfigToUI();
-            persistDataToStorage();
-            showToast('Ícone oficial aplicado na aba do navegador!');
+            await persistDataToStorage({ successMsg: 'Ícone oficial aplicado e publicado no servidor!' });
         }
 
         function handleFaviconUpload(event) {
@@ -2831,7 +2853,7 @@
             const reader = new FileReader();
             reader.onload = function(e) {
                 const img = new Image();
-                img.onload = function() {
+                img.onload = async function() {
                     const canvas = document.createElement('canvas');
                     canvas.width = 64;
                     canvas.height = 64;
@@ -2842,15 +2864,14 @@
                     siteConfig.faviconUrl = faviconDataUrl;
                     updateLiveAdminPreview();
                     applySiteConfigToUI();
-                    persistDataToStorage();
-                    showToast('Novo ícone da aba do site carregado e aplicado!');
+                    await persistDataToStorage({ successMsg: 'Novo ícone salvo e publicado no servidor!' });
                 };
                 img.src = e.target.result;
             };
             reader.readAsDataURL(file);
         }
 
-        function saveSiteConfig(e) {
+        async function saveSiteConfig(e) {
             e.preventDefault();
             siteConfig.whatsapp = document.getElementById('cfgWhatsapp').value.trim();
             siteConfig.phoneDisplay = document.getElementById('cfgPhoneDisplay').value.trim();
@@ -2865,9 +2886,8 @@
             siteConfig.pageTitle = document.getElementById('cfgPageTitle').value.trim() || defaultSiteConfig.pageTitle;
             siteConfig.faviconUrl = document.getElementById('cfgFaviconUrl').value.trim() || getOfficialLogoFaviconDataUrl();
 
-            persistDataToStorage();
             applySiteConfigToUI();
-            showToast('Configurações salvas e aplicadas em todo o site!');
+            await persistDataToStorage({ successMsg: 'Configurações salvas e publicadas no servidor para todos os usuários!' });
         }
 
         function exportBackupJson() {
@@ -2886,17 +2906,16 @@
             const file = event.target.files[0];
             if (!file) return;
             const reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = async function(e) {
                 try {
                     const imported = JSON.parse(e.target.result);
                     if (imported.siteConfig) siteConfig = { ...defaultSiteConfig, ...imported.siteConfig };
                     if (Array.isArray(imported.projects)) projects = imported.projects;
-                    persistDataToStorage();
                     populateAdminConfigForm();
                     applySiteConfigToUI();
                     renderPublicProjects();
                     renderAdminProjectsList();
-                    showToast('Backup importado com sucesso!');
+                    await persistDataToStorage({ successMsg: 'Backup importado e publicado no servidor para todos os usuários!' });
                 } catch (err) {
                     showToast('Arquivo de backup inválido.', 'error');
                 }
@@ -3668,7 +3687,7 @@
         }
 
         // Save & Edit Projects
-        function saveProject(e) {
+        async function saveProject(e) {
             e.preventDefault();
             const existingId = document.getElementById('projId').value;
             const title = document.getElementById('projTitle').value.trim();
@@ -3712,19 +3731,20 @@
                 description: document.getElementById('projDescription').value.trim()
             };
 
+            let successMsg = '';
             if (existingId) {
                 const idx = projects.findIndex(p => p.id === existingId);
                 if (idx > -1) projects[idx] = projectData;
-                showToast('Obra atualizada com sucesso!');
+                successMsg = 'Obra atualizada e sincronizada no servidor!';
             } else {
                 projects.unshift(projectData);
-                showToast('Nova obra publicada com sucesso!');
+                successMsg = 'Nova obra publicada no servidor para todos os usuários!';
             }
 
-            persistDataToStorage();
             resetProjectForm();
             renderPublicProjects();
             renderAdminProjectsList();
+            await persistDataToStorage({ successMsg });
         }
 
         function editProject(id) {
@@ -3772,13 +3792,12 @@
             document.getElementById('projectForm').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function deleteProject(id) {
+        async function deleteProject(id) {
             if (!confirm('Deseja realmente remover esta obra?')) return;
             projects = projects.filter(p => p.id !== id);
-            persistDataToStorage();
             renderPublicProjects();
             renderAdminProjectsList();
-            showToast('Obra removida do portfólio.');
+            await persistDataToStorage({ successMsg: 'Obra removida e sincronizada no servidor!' });
         }
 
         function resetProjectForm() {
@@ -3997,13 +4016,12 @@
             applySiteConfigToUI();
         }
 
-        function saveDirectEditsToStorage() {
+        async function saveDirectEditsToStorage() {
             const heroHeadlineEl = document.getElementById('heroHeadline');
             if (heroHeadlineEl) {
                 siteConfig.heroTitle = heroHeadlineEl.innerHTML;
             }
-            persistDataToStorage();
-            showToast('Alterações salvas com sucesso!');
+            await persistDataToStorage({ successMsg: 'Alterações ao vivo salvas e publicadas no servidor!' });
         }
 
         function initDraggableQuickBar() {

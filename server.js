@@ -229,6 +229,6 @@ process.on('unhandledRejection', (reason, promise) => {
   console.error('[API FSO] Unhandled Rejection:', reason);
 });
 
-server.listen(PORT, '127.0.0.1', () => {
-  console.log(`[API FSO] Servidor de sincronização ativo na porta ${PORT} (127.0.0.1)`);
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`[API FSO] Servidor de sincronização ativo na porta ${PORT} (0.0.0.0)`);
 });

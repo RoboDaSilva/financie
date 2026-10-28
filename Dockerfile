@@ -25,9 +25,14 @@ RUN if [ ! -f /usr/share/nginx/html/index.html ] && [ -f /usr/share/nginx/html/c
         cp /usr/share/nginx/html/codigo.html /usr/share/nginx/html/index.html; \
     fi
 
+# Configurar script de inicialização do container
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
 # Remover arquivos desnecessários de dentro da imagem final
 RUN rm -f /usr/share/nginx/html/Dockerfile \
           /usr/share/nginx/html/nginx.conf \
+          /usr/share/nginx/html/docker-entrypoint.sh \
           /usr/share/nginx/html/.dockerignore \
           /usr/share/nginx/html/*.bak
 
@@ -41,5 +46,5 @@ EXPOSE 80
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
   CMD curl -f http://localhost/ || exit 1
 
-# Inicializar o servidor Node API em background e Nginx em primeiro plano
-CMD sh -c "node /usr/share/nginx/html/server.js & nginx -g 'daemon off;'"
+# Ponto de entrada robusto que inicia Node.js e Nginx
+ENTRYPOINT ["/docker-entrypoint.sh"]
